@@ -43,9 +43,9 @@
   </properties>
 
   <scm>
-    <connection>scm:svn:http://svn.apache.org/repos/asf/sling/trunk/testing/org.apache.sling.testing.paxexam</connection>
-    <developerConnection>scm:svn:https://svn.apache.org/repos/asf/sling/trunk/testing/org.apache.sling.testing.paxexam</developerConnection>
-    <url>http://svn.apache.org/viewvc/sling/trunk/testing/org.apache.sling.testing.paxexam</url>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-testing-paxexam.git</conncetion>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-testing-paxexam.git</developerConnection>
+    <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-testing-paxexam.git</url>
   </scm>
 
   <build>
