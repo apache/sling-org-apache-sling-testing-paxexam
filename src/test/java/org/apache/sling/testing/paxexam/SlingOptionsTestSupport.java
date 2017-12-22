@@ -18,15 +18,26 @@
  */
 package org.apache.sling.testing.paxexam;
 
+import java.io.File;
+
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.util.PathUtils;
 
+import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
+import static org.ops4j.pax.exam.CoreOptions.systemProperty;
+import static org.ops4j.pax.exam.CoreOptions.when;
 
-public abstract class SlingOptionsTestSupport extends TestSupport {
+public abstract class SlingOptionsTestSupport {
 
-    @Override
+    private final String workingDirectory = String.format("%s/target/paxexam/%s", PathUtils.getBaseDir(), getClass().getSimpleName());
+
+    protected String workingDirectory() {
+        return workingDirectory;
+    }
+
     protected Option baseConfiguration() {
         return composite(
             failOnUnresolvedBundles(),
@@ -35,6 +46,23 @@ public abstract class SlingOptionsTestSupport extends TestSupport {
             CoreOptions.workingDirectory(workingDirectory()),
             testBundle("bundle.filename")
         );
+    }
+
+    protected Option failOnUnresolvedBundles() {
+        return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
+    }
+
+    protected Option localMavenRepo() {
+        final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
+        return when(localRepository.length() > 0).useOptions(
+            systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localRepository)
+        );
+    }
+
+    protected Option testBundle(final String systemProperty) {
+        final String filename = System.getProperty(systemProperty);
+        final File file = new File(filename);
+        return bundle(file.toURI().toString());
     }
 
 }
