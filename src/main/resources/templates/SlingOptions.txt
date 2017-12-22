@@ -110,10 +110,10 @@ public class SlingOptions {
         final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
         return composite(
             systemProperty("logback.configurationFile").value(filename),
-            mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version("1.7.21"),
-            mavenBundle().groupId("org.slf4j").artifactId("jcl-over-slf4j").version("1.7.21"),
-            mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version("1.1.7"),
-            mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version("1.1.7"),
+            mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver),
+            mavenBundle().groupId("org.slf4j").artifactId("jcl-over-slf4j").version(versionResolver),
+            mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version(versionResolver),
+            mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version(versionResolver),
             config()
         );
     }
