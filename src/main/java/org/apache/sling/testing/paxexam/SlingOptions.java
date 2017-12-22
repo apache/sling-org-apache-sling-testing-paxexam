@@ -900,11 +900,15 @@ public class SlingOptions {
         );
     }
 
+    // DO NOT REMOVE additional system packages
     public static Option jackrabbitVault() {
         return composite(
             scr(),
             jackrabbit(),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver)
+            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver),
+            systemPackages(
+                "org.w3c.dom.html"
+            )
         );
     }
 
