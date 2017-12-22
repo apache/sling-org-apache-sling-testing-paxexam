@@ -15,7 +15,7 @@ This module is part of the [Apache Sling](https://sling.apache.org) project.
 
 ## Getting Started
 
-###1. Add required dependencies:
+### 1. Add required dependencies:
 
     <!-- Sling Testing PaxExam -->
     <dependency>
