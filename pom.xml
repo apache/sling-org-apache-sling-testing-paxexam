@@ -57,7 +57,8 @@
         <configuration>
           <instructions>
             <Import-Package>
-              org.ops4j.pax.exam.cm;resolution:=optional,
+              org.osgi.service.cm.*;resolution:=optional,
+              org.ops4j.pax.exam.cm.*;resolution:=optional,
               *
             </Import-Package>
           </instructions>
