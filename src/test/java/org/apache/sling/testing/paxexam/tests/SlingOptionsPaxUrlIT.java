@@ -16,8 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.apache.sling.testing.paxexam;
+package org.apache.sling.testing.paxexam.tests;
 
+import org.apache.sling.testing.paxexam.SlingOptionsTestSupport;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
@@ -26,17 +27,17 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.eventadmin;
+import static org.apache.sling.testing.paxexam.SlingOptions.paxUrl;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class SlingOptionsEventadminIT extends SlingOptionsTestSupport {
+public class SlingOptionsPaxUrlIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
         return new Option[]{
             baseConfiguration(),
-            eventadmin()
+            paxUrl()
         };
     }
 
