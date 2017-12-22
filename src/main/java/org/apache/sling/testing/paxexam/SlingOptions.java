@@ -613,7 +613,31 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadNosqlCouchbase() {
+    public static Option slingNosqlGeneric() {
+        return composite(
+            sling(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.generic").version(versionResolver)
+        );
+    }
+
+    public static Option slingNosqlCouchbase() {
+        return composite(
+            slingNosqlGeneric(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-client").version(versionResolver),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-resourceprovider").version(versionResolver),
+            mavenBundle().groupId("io.wcm.osgi.wrapper").artifactId("io.wcm.osgi.wrapper.rxjava").version(versionResolver)
+        );
+    }
+
+    public static Option slingNosqlMongodb() {
+        return composite(
+            slingNosqlGeneric(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.mongodb-resourceprovider").version(versionResolver),
+            mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver)
+        );
+    }
+
+    public static Option slingQuickstartNosqlCouchbase() {
         return composite(
             slingNosqlCouchbase(),
             factoryConfiguration("org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config")
@@ -628,7 +652,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadNosqlMongodb() {
+    public static Option slingQuickstartNosqlMongodb() {
         return composite(
             slingNosqlMongodb(),
             factoryConfiguration("org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config")
@@ -640,7 +664,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadOak() {
+    public static Option slingQuickstartOak() {
         return composite(
             webconsole(),
             sling(),
@@ -692,9 +716,9 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadOakTar() {
+    public static Option slingQuickstartOakTar() {
         return composite(
-            slingLaunchpadOak(),
+            slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
@@ -708,9 +732,9 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadOakMongo() {
+    public static Option slingQuickstartOakMongo() {
         return composite(
-            slingLaunchpadOak(),
+            slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
@@ -723,30 +747,6 @@ public class SlingOptions {
                 .put("mongouri", "mongodb://localhost:27017")
                 .put("repository.home", "sling/repository")
                 .asOption()
-        );
-    }
-
-    public static Option slingNosqlGeneric() {
-        return composite(
-            sling(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.generic").version(versionResolver)
-        );
-    }
-
-    public static Option slingNosqlCouchbase() {
-        return composite(
-            slingNosqlGeneric(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-client").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-resourceprovider").version(versionResolver),
-            mavenBundle().groupId("io.wcm.osgi.wrapper").artifactId("io.wcm.osgi.wrapper.rxjava").version(versionResolver)
-        );
-    }
-
-    public static Option slingNosqlMongodb() {
-        return composite(
-            slingNosqlGeneric(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.mongodb-resourceprovider").version(versionResolver),
-            mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver)
         );
     }
 
@@ -938,12 +938,12 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadOakTar(final String workingDirectory, final int httpPort) {
+    public static Option slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
         return composite(
-            slingLaunchpadOak(),
+            slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
@@ -960,12 +960,12 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
+    public static Option slingQuickstartOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
         return composite(
-            slingLaunchpadOak(),
+            slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
