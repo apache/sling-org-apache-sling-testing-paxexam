@@ -211,7 +211,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.settings", "1.3.8");
         versions.put("org.apache.sling:org.apache.sling.urlrewriter", "0.0.2");
         versions.put("org.apache.sling:org.apache.sling.validation.api", "1.0.0");
-        versions.put("org.apache.sling:org.apache.sling.validation.core", "1.0.0");
+        versions.put("org.apache.sling:org.apache.sling.validation.core", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.xss", "2.0.0");
         versions.put("org.apache.tika:tika-bundle", "1.17");
         versions.put("org.apache.tika:tika-core", "1.17");

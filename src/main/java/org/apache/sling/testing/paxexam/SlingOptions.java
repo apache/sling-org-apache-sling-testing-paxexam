@@ -229,6 +229,7 @@ public class SlingOptions {
 
     public static Option slingCommonsThreads() {
         return composite(
+            config(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.threads").version(versionResolver)
         );
     }
@@ -296,11 +297,11 @@ public class SlingOptions {
             slingJcr(),
             slingExtensionEvent(),
             slingExtensionHealthcheck(),
+            jackrabbitVault(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.distribution.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.distribution.core").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
-            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver)
+            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver)
         );
     }
 
@@ -338,11 +339,11 @@ public class SlingOptions {
     public static Option slingExtensionFsresource() {
         return composite(
             sling(),
+            jackrabbitVault(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.fsresource").version(versionResolver),
             mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-jcr-commons").version(versionResolver),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver),
             mavenBundle().groupId("com.google.guava").artifactId("guava").version(versionResolver)
         );
     }
@@ -401,7 +402,7 @@ public class SlingOptions {
     public static Option slingExtensionPipes() {
         return composite(
             sling(),
-            jackrabbitSling(),
+            jackrabbit(),
             slingExtensionEvent(),
             slingExtensionQuery(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver)
@@ -549,9 +550,9 @@ public class SlingOptions {
         return composite(
             webconsole(),
             sling(),
-            jackrabbitSling(),
-            jackrabbitOakSling(),
-            tikaSling(),
+            jackrabbit(),
+            jackrabbitOak(),
+            tika(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.base").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.classloader").version(versionResolver),
@@ -857,7 +858,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option jackrabbitSling() {
+    public static Option jackrabbit() {
         return composite(
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-data").version(versionResolver),
@@ -885,11 +886,11 @@ public class SlingOptions {
         );
     }
 
-    public static Option jackrabbitOakSling() {
+    public static Option jackrabbitOak() {
         return composite(
             scr(),
-            jackrabbitSling(),
-            tikaSling(),
+            jackrabbit(),
+            tika(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-core").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-commons").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-blob").version(versionResolver),
@@ -899,25 +900,33 @@ public class SlingOptions {
         );
     }
 
-    public static Option tikaSling() {
+    public static Option jackrabbitVault() {
+        return composite(
+            scr(),
+            jackrabbit(),
+            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver)
+        );
+    }
+
+    public static Option tika() {
         return composite(
             mavenBundle().groupId("org.apache.tika").artifactId("tika-core").version(versionResolver),
             mavenBundle().groupId("org.apache.tika").artifactId("tika-bundle").version(versionResolver)
         );
     }
 
-    public static Option composumSling() {
+    public static Option composum() {
         return composite(
             sling(),
             slingJcr(),
             slingScriptingJsp(),
             slingExtensionEvent(),
+            jackrabbitVault(),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-commons").version(versionResolver),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-console").version(versionResolver),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-jslibs").version(versionResolver),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-user-management").version(versionResolver),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-package-manager").version(versionResolver),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
                 .put("whitelist.bundles", new String[]{"com.composum.core.commons", "com.composum.core.pckgmgr"})
                 .put("whitelist.name", "composum")
