@@ -28,15 +28,19 @@ import javax.inject.Inject;
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.util.PathUtils;
+import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.repository;
+import static org.ops4j.pax.exam.CoreOptions.streamBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 import static org.ops4j.pax.exam.CoreOptions.when;
+import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
 public abstract class TestSupport {
 
@@ -72,7 +76,8 @@ public abstract class TestSupport {
             localMavenRepo(),
             repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots(),
             CoreOptions.workingDirectory(workingDirectory()),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject()
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject(),
+            paxTinybundles()
         );
     }
 
@@ -91,6 +96,16 @@ public abstract class TestSupport {
         final String filename = System.getProperty(systemProperty);
         final File file = new File(filename);
         return bundle(file.toURI().toString());
+    }
+
+    protected Option buildBundleWithBnd(Class... classes) {
+        final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
+        for (final Class clazz : classes) {
+            bundle.add(clazz);
+        }
+        return streamBundle(
+            bundle.build(withBnd())
+        ).start();
     }
 
 }
