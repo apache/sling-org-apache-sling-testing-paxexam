@@ -59,6 +59,7 @@
             <Import-Package>
               org.osgi.service.cm.*;resolution:=optional,
               org.ops4j.pax.exam.cm.*;resolution:=optional,
+              org.ops4j.pax.tinybundles.*;resolution:=optional,
               *
             </Import-Package>
           </instructions>
@@ -112,6 +113,13 @@
       <artifactId>org.apache.felix.framework</artifactId>
       <version>5.6.10</version>
       <scope>test</scope>
+    </dependency>
+    <!-- OPS4J Pax -->
+    <dependency>
+      <groupId>org.ops4j.pax.tinybundles</groupId>
+      <artifactId>tinybundles</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
     </dependency>
     <!-- testing -->
     <dependency>

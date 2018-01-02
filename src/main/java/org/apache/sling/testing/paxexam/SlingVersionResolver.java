@@ -55,10 +55,12 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-property", "1.8.3");
         versions.put("org.ops4j.pax.url:pax-url-classpath", "2.5.4");
         versions.put("org.ops4j.pax.url:pax-url-commons", "2.5.4");
+        versions.put("org.ops4j.pax.tinybundles:tinybundles", "3.0.0");
         versions.put("org.slf4j:slf4j-api", "1.7.25");
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.25");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
+        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
         versions.put("com.composum.sling.core:composum-sling-core-commons", "1.8.2");
         versions.put("com.composum.sling.core:composum-sling-core-console", "1.8.2");
         versions.put("com.composum.sling.core:composum-sling-core-jslibs", "1.8.2");

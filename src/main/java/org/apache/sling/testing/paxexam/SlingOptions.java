@@ -106,6 +106,13 @@ public class SlingOptions {
         );
     }
 
+    public static Option paxTinybundles() {
+        return composite(
+            mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver)
+        );
+    }
+
     public static Option logback() {
         final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
         return composite(
