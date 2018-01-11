@@ -77,7 +77,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("commons-fileupload:commons-fileupload", "1.3.3");
         versions.put("commons-io:commons-io", "2.6");
         versions.put("commons-lang:commons-lang", "2.6");
-        versions.put("io.dropwizard.metrics:metrics-core", "3.2.5");
+        versions.put("io.dropwizard.metrics:metrics-core", "3.2.6");
         versions.put("io.wcm.osgi.wrapper:io.wcm.osgi.wrapper.rxjava", "1.0.14-0000");
         versions.put("javax.jcr:jcr", "2.0");
         versions.put("javax.mail:javax.mail-api", "1.6.0");
@@ -113,7 +113,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.jackrabbit:oak-lucene", "1.6.7");
         versions.put("org.apache.jackrabbit:oak-segment-tar", "1.6.7");
         versions.put("org.apache.jackrabbit.vault:org.apache.jackrabbit.vault", "3.1.42");
-        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.3_1");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.4_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino", "1.7.7.2_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.urlrewritefilter", "4.0.4_1");
         versions.put("org.apache.sling:org.apache.sling.adapter", "2.1.10");
@@ -123,7 +123,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.auth.openid", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.auth.selector", "1.0.6");
         versions.put("org.apache.sling:org.apache.sling.bundleresource.impl", "2.3.0");
-        versions.put("org.apache.sling:org.apache.sling.commons.classloader", "1.4.0");
+        versions.put("org.apache.sling:org.apache.sling.commons.classloader", "1.4.2");
         versions.put("org.apache.sling:org.apache.sling.commons.compiler", "2.3.4");
         versions.put("org.apache.sling:org.apache.sling.commons.fsclassloader", "1.0.8");
         versions.put("org.apache.sling:org.apache.sling.commons.html", "1.0.0");
@@ -141,11 +141,10 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.discovery.standalone", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.discovery.support", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.distribution.api", "0.3.0");
-        versions.put("org.apache.sling:org.apache.sling.distribution.core", "0.2.8");
-        versions.put("org.apache.sling:org.apache.sling.engine", "2.6.10");
+        versions.put("org.apache.sling:org.apache.sling.distribution.core", "0.2.10");
+        versions.put("org.apache.sling:org.apache.sling.engine", "2.6.12");
         versions.put("org.apache.sling:org.apache.sling.event", "4.2.10");
         versions.put("org.apache.sling:org.apache.sling.event.dea", "1.1.2");
-        versions.put("org.apache.sling:org.apache.sling.extensions.explorer", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.extensions.threaddump", "0.2.2");
         versions.put("org.apache.sling:org.apache.sling.featureflags", "1.2.2");
         versions.put("org.apache.sling:org.apache.sling.fsresource", "2.1.6");
@@ -214,7 +213,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.urlrewriter", "0.0.2");
         versions.put("org.apache.sling:org.apache.sling.validation.api", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.validation.core", "1.0.4");
-        versions.put("org.apache.sling:org.apache.sling.xss", "2.0.0");
+        versions.put("org.apache.sling:org.apache.sling.xss", "2.0.4");
         versions.put("org.apache.tika:tika-bundle", "1.17");
         versions.put("org.apache.tika:tika-core", "1.17");
         versions.put("org.attoparser:attoparser", "2.0.4.RELEASE");
@@ -222,7 +221,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.codehaus.groovy:groovy-json", "2.4.13");
         versions.put("org.codehaus.groovy:groovy-templates", "2.4.13");
         versions.put("org.javassist:javassist", "3.22.0-GA");
-        versions.put("org.mongodb:mongo-java-driver", "3.6.0");
+        versions.put("org.mongodb:mongo-java-driver", "3.6.1");
         versions.put("org.unbescape:unbescape", "1.1.5.RELEASE");
     }
 
