@@ -60,9 +60,9 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.25");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
-        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");[# th:each="bundle : ${bundles}"]
-        versions.put("[(${bundle.groupId})]:[(${bundle.artifactId})]", "[(${bundle.version})]");
-[/]    }
+        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");{{#each bundles}}
+        versions.put("{{groupId}}:{{artifactId}}", "{{version}}");{{/each}}
+    }
 
     private String key(final String groupId, final String artifactId) {
         return String.format("%s:%s", groupId, artifactId);

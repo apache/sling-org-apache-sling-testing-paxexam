@@ -124,18 +124,18 @@ public class SlingOptions {
             config()
         );
     }
-[# th:each="feature : ${features}"]
-    public static Option [(${feature.javaName})]() {
-        return composite([# th:each="fc,fcsStatus : ${feature.getFeatures()}"]
-            [(${fc})]()[# th:unless="${fcsStatus.last}"],[/][/][# th:if="${not #lists.isEmpty(feature.getFeatures())}"][# th:if="${not #lists.isEmpty(feature.getBundles())}"],[/][/][# th:each="bundle,bundlesStatus : ${feature.getBundles()}"]
-            mavenBundle().groupId("[(${bundle.groupId})]").artifactId("[(${bundle.artifactId})]").version(versionResolver)[# th:unless="${bundlesStatus.last}"],[/][/][# th:if="${not #lists.isEmpty(feature.getConfigurations())}"],[/][# th:each="configuration,configurationsStatus : ${feature.getConfigurations()}"]
-            [# th:if="${configuration.isFactory()}"]factoryConfiguration[/][# th:unless="${configuration.isFactory()}"]newConfiguration[/]("[(${configuration.pid})]")    [# th:each="entry,entriesStatus : ${configuration.getEntries()}"]
-                .put("[(${entry.key})]", [(${entry.value})])[/]
-                .asOption()[# th:unless="${configurationsStatus.last}"],[/][/]
+{{#each features}}
+    public static Option {{javaName}}() {
+        return composite({{#each features}}
+            {{this}}(){{#unless @last}},{{/unless}}{{/each}}{{#if features}}{{#if bundles}},{{/if}}{{/if}}{{#each bundles}}
+            mavenBundle().groupId("{{groupId}}").artifactId("{{artifactId}}").version(versionResolver){{#unless @last}},{{/unless}}{{/each}}{{#if configurations}},{{/if}}{{#each configurations}}
+            {{#if factory}}factoryConfiguration{{else}}newConfiguration{{/if}}("{{pid}}"){{#each entries}}
+                .put("{{@key}}", {{{this}}}){{/each}}
+                .asOption(){{#unless @last}},{{/unless}}{{/each}}
         );
     }
-
-[/]    public static Option slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
+{{/each}}
+    public static Option slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
