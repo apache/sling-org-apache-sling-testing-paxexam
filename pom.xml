@@ -29,8 +29,7 @@
   </parent>
 
   <artifactId>org.apache.sling.testing.paxexam</artifactId>
-  <version>0.0.5-SNAPSHOT</version>
-  <packaging>bundle</packaging>
+  <version>1.0.0-SNAPSHOT</version>
 
   <name>Apache Sling Testing PaxExam</name>
   <description>Test support for use with Pax Exam.</description>
@@ -51,19 +50,12 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Import-Package>
-              org.osgi.service.cm.*;resolution:=optional,
-              org.ops4j.pax.exam.cm.*;resolution:=optional,
-              org.ops4j.pax.tinybundles.*;resolution:=optional,
-              *
-            </Import-Package>
-          </instructions>
-        </configuration>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>biz.aQute.bnd</groupId>
+        <artifactId>bnd-baseline-maven-plugin</artifactId>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
