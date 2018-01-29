@@ -403,6 +403,7 @@ public class SlingOptions {
             sling(),
             jackrabbit(),
             slingEvent(),
+            slingModels(),
             slingQuery(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver)
         );
