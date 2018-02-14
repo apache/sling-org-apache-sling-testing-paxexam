@@ -143,6 +143,7 @@ public class SlingOptions {
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
             newConfiguration("org.apache.felix.http")
                 .put("org.osgi.service.http.port", httpPort)
@@ -164,6 +165,7 @@ public class SlingOptions {
         return composite(
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),

@@ -719,7 +719,9 @@ public class SlingOptions {
     public static Option slingQuickstartOakTar() {
         return composite(
             slingQuickstartOak(),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
             newConfiguration("org.apache.jackrabbit.oak.plugins.index.lucene.LuceneIndexProviderService")
                 .put("localIndexDir", "sling/repository/index")
@@ -951,7 +953,9 @@ public class SlingOptions {
         final String localIndexDir = String.format("%s/index", repositoryHome);
         return composite(
             slingQuickstartOak(),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
             newConfiguration("org.apache.felix.http")
                 .put("org.osgi.service.http.port", httpPort)
@@ -959,6 +963,9 @@ public class SlingOptions {
             newConfiguration("org.apache.jackrabbit.oak.segment.SegmentNodeStoreService")
                 .put("repository.home", repositoryHome)
                 .put("name", "Default NodeStore")
+                .asOption(),
+            newConfiguration("org.apache.jackrabbit.oak.plugins.index.lucene.LuceneIndexProviderService")
+                .put("localIndexDir", localIndexDir)
                 .asOption()
         );
     }
