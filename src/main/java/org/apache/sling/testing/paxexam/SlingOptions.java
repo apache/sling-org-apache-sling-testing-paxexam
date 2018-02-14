@@ -567,7 +567,7 @@ public class SlingOptions {
                 .put("whitelist.name", "sling")
                 .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-mapping\n\n  create service user sling-readall\n\n  create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  create path (sling:Folder) /var\n\n  create path (sling:OrderedFolder) /content\n\n  set ACL for everyone\n\n       allow   jcr:read    on /\n\n  end\n\n  set ACL for sling-mapping\n\n      allow   jcr:read    on /\n\n  end\n\n  set ACL for sling-readall\n\n      allow   jcr:read    on /\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-mapping\n\n  create service user sling-readall\n\n  create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  create path (sling:Folder) /var\n\n  create path (sling:OrderedFolder) /content\n\n  set ACL for everyone\n\n      allow   jcr:read    on /content\n\n  end\n\n  set ACL for sling-mapping\n\n      allow   jcr:read    on /\n\n  end\n\n  set ACL for sling-readall\n\n      allow   jcr:read    on /\n\n  end"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.jcr.resource:observation=sling-readall", "org.apache.sling.jcr.resource:validation=sling-readall"})
@@ -874,7 +874,6 @@ public class SlingOptions {
             mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
             mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
             mavenBundle().groupId("commons-lang").artifactId("commons-lang").version(versionResolver),
-            mavenBundle().groupId("com.google.guava").artifactId("guava").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.bundles").artifactId("commons-httpclient").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-atinject_1.0_spec").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-el_2.2_spec").version(versionResolver),

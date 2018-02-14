@@ -99,13 +99,13 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.geronimo.specs:geronimo-jta_1.1_spec", "1.1.1");
         versions.put("org.apache.httpcomponents:httpclient-osgi", "4.5.5");
         versions.put("org.apache.httpcomponents:httpcore-osgi", "4.4.9");
-        versions.put("org.apache.jackrabbit:jackrabbit-api", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-data", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-jcr-commons", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-jcr-rmi", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-spi", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-spi-commons", "2.16.0");
-        versions.put("org.apache.jackrabbit:jackrabbit-webdav", "2.16.0");
+        versions.put("org.apache.jackrabbit:jackrabbit-api", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-data", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-jcr-commons", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-jcr-rmi", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-spi", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-spi-commons", "2.16.1");
+        versions.put("org.apache.jackrabbit:jackrabbit-webdav", "2.16.1");
         versions.put("org.apache.jackrabbit:oak-api", "1.8.1");
         versions.put("org.apache.jackrabbit:oak-blob", "1.8.1");
         versions.put("org.apache.jackrabbit:oak-blob-plugins", "1.8.1");
@@ -122,7 +122,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.jackrabbit:oak-store-spi", "1.8.1");
         versions.put("org.apache.jackrabbit.vault:org.apache.jackrabbit.vault", "3.1.42");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.4_1");
-        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino", "1.7.7.2_1");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino", "1.7.8_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.urlrewritefilter", "4.0.4_1");
         versions.put("org.apache.sling:org.apache.sling.adapter", "2.1.10");
         versions.put("org.apache.sling:org.apache.sling.api", "2.16.4");
@@ -142,12 +142,12 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.commons.scheduler", "2.7.2");
         versions.put("org.apache.sling:org.apache.sling.commons.threads", "3.2.16");
         versions.put("org.apache.sling:org.apache.sling.discovery.api", "1.0.4");
-        versions.put("org.apache.sling:org.apache.sling.discovery.base", "2.0.4");
+        versions.put("org.apache.sling:org.apache.sling.discovery.base", "2.0.8");
         versions.put("org.apache.sling:org.apache.sling.discovery.commons", "1.0.20");
         versions.put("org.apache.sling:org.apache.sling.discovery.impl", "1.2.12");
         versions.put("org.apache.sling:org.apache.sling.discovery.oak", "1.2.22");
         versions.put("org.apache.sling:org.apache.sling.discovery.standalone", "1.0.2");
-        versions.put("org.apache.sling:org.apache.sling.discovery.support", "1.0.0");
+        versions.put("org.apache.sling:org.apache.sling.discovery.support", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.distribution.api", "0.3.0");
         versions.put("org.apache.sling:org.apache.sling.distribution.core", "0.2.10");
         versions.put("org.apache.sling:org.apache.sling.engine", "2.6.12");
@@ -155,7 +155,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.event.dea", "1.1.2");
         versions.put("org.apache.sling:org.apache.sling.extensions.threaddump", "0.2.2");
         versions.put("org.apache.sling:org.apache.sling.featureflags", "1.2.2");
-        versions.put("org.apache.sling:org.apache.sling.fsresource", "2.1.10");
+        versions.put("org.apache.sling:org.apache.sling.fsresource", "2.1.12");
         versions.put("org.apache.sling:org.apache.sling.hc.api", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.hc.core", "1.2.10");
         versions.put("org.apache.sling:org.apache.sling.hc.support", "1.0.4");
@@ -177,7 +177,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager", "2.2.6");
         versions.put("org.apache.sling:org.apache.sling.jcr.oak.server", "1.2.0-SNAPSHOT");
         versions.put("org.apache.sling:org.apache.sling.jcr.registration", "1.0.4");
-        versions.put("org.apache.sling:org.apache.sling.jcr.repoinit", "1.1.6");
+        versions.put("org.apache.sling:org.apache.sling.jcr.repoinit", "1.1.8");
         versions.put("org.apache.sling:org.apache.sling.jcr.resource", "3.0.8");
         versions.put("org.apache.sling:org.apache.sling.jcr.webconsole", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.jcr.webdav", "2.3.8");
@@ -190,10 +190,10 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.nosql.couchbase-resourceprovider", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.nosql.generic", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.nosql.mongodb-resourceprovider", "1.1.0");
-        versions.put("org.apache.sling:org.apache.sling.pipes", "2.0.0");
+        versions.put("org.apache.sling:org.apache.sling.pipes", "2.0.2");
         versions.put("org.apache.sling:org.apache.sling.provisioning.model", "1.8.4");
         versions.put("org.apache.sling:org.apache.sling.query", "4.0.0");
-        versions.put("org.apache.sling:org.apache.sling.repoinit.parser", "1.2.0");
+        versions.put("org.apache.sling:org.apache.sling.repoinit.parser", "1.2.2");
         versions.put("org.apache.sling:org.apache.sling.resource.inventory", "1.0.8");
         versions.put("org.apache.sling:org.apache.sling.resource.presence", "0.0.2");
         versions.put("org.apache.sling:org.apache.sling.resourcemerger", "1.3.8");
@@ -229,7 +229,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.codehaus.groovy:groovy-json", "2.4.13");
         versions.put("org.codehaus.groovy:groovy-templates", "2.4.13");
         versions.put("org.javassist:javassist", "3.22.0-GA");
-        versions.put("org.mongodb:mongo-java-driver", "3.6.1");
+        versions.put("org.mongodb:mongo-java-driver", "3.6.2");
         versions.put("org.unbescape:unbescape", "1.1.5.RELEASE");
     }
 
