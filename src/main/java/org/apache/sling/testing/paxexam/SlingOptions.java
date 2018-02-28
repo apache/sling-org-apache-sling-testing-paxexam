@@ -721,6 +721,7 @@ public class SlingOptions {
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
             newConfiguration("org.apache.jackrabbit.oak.plugins.index.lucene.LuceneIndexProviderService")
                 .put("localIndexDir", "sling/repository/index")
@@ -736,6 +737,7 @@ public class SlingOptions {
         return composite(
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
@@ -890,10 +892,18 @@ public class SlingOptions {
             scr(),
             jackrabbit(),
             tika(),
-            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-core").version(versionResolver),
-            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-commons").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-blob").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-blob-plugins").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-commons").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-core").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-core-spi").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-jcr").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-query-spi").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-security-spi").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-composite").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-spi").version(versionResolver),
+            mavenBundle().groupId("io.dropwizard.metrics").artifactId("metrics-core").version(versionResolver),
             mavenBundle().groupId("com.google.guava").artifactId("guava").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.jaas").version(versionResolver)
         );
@@ -945,6 +955,7 @@ public class SlingOptions {
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-segment-tar").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
             newConfiguration("org.apache.felix.http")
                 .put("org.osgi.service.http.port", httpPort)
@@ -965,6 +976,7 @@ public class SlingOptions {
         final String localIndexDir = String.format("%s/index", repositoryHome);
         return composite(
             slingQuickstartOak(),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-store-document").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
