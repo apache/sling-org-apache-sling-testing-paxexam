@@ -604,15 +604,6 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingLaunchpadContent() {
-        return composite(
-            sling(),
-            slingAuthForm(),
-            composum(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.launchpad.content").version(versionResolver)
-        );
-    }
-
     public static Option slingNosqlGeneric() {
         return composite(
             sling(),

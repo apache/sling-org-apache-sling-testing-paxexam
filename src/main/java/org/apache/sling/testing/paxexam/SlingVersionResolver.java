@@ -182,7 +182,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.jcr.webconsole", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.jcr.webdav", "2.3.8");
         versions.put("org.apache.sling:org.apache.sling.jmx.provider", "1.0.2");
-        versions.put("org.apache.sling:org.apache.sling.launchpad.content", "2.0.12");
         versions.put("org.apache.sling:org.apache.sling.models.api", "1.3.6");
         versions.put("org.apache.sling:org.apache.sling.models.impl", "1.4.6");
         versions.put("org.apache.sling:org.apache.sling.models.jacksonexporter", "1.0.8");
