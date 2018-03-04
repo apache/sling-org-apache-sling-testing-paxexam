@@ -118,6 +118,12 @@
       <artifactId>tinybundles</artifactId>
       <version>3.0.0</version>
     </dependency>
+    <!-- logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
+    </dependency>
     <!-- testing -->
     <dependency>
       <groupId>junit</groupId>
@@ -150,11 +156,6 @@
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-link-mvn</artifactId>
       <version>${org.ops4j.pax.exam.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
