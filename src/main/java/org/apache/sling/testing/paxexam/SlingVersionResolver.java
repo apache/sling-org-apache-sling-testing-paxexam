@@ -71,7 +71,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("com.fasterxml.jackson.core:jackson-databind", "2.9.4");
         versions.put("com.google.guava:guava", "15.0");
         versions.put("com.h2database:h2-mvstore", "1.4.196");
-        versions.put("com.sun.mail:javax.mail", "1.6.0");
+        versions.put("com.sun.mail:javax.mail", "1.6.1");
         versions.put("commons-codec:commons-codec", "1.11");
         versions.put("commons-collections:commons-collections", "3.2.2");
         versions.put("commons-fileupload:commons-fileupload", "1.3.3");
@@ -80,7 +80,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("io.dropwizard.metrics:metrics-core", "3.2.6");
         versions.put("io.wcm.osgi.wrapper:io.wcm.osgi.wrapper.rxjava", "1.0.14-0000");
         versions.put("javax.jcr:jcr", "2.0");
-        versions.put("javax.mail:javax.mail-api", "1.6.0");
+        versions.put("javax.mail:javax.mail-api", "1.6.1");
         versions.put("javax.servlet:javax.servlet-api", "3.1.0");
         versions.put("org.apache.commons:commons-collections4", "4.1");
         versions.put("org.apache.commons:commons-email", "1.5");
@@ -89,7 +89,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.inventory", "1.0.6");
         versions.put("org.apache.felix:org.apache.felix.jaas", "1.0.2");
         versions.put("org.apache.felix:org.apache.felix.prefs", "1.1.0");
-        versions.put("org.apache.felix:org.apache.felix.webconsole.plugins.memoryusage", "1.0.6");
+        versions.put("org.apache.felix:org.apache.felix.webconsole.plugins.memoryusage", "1.0.8");
         versions.put("org.apache.felix:org.apache.felix.webconsole.plugins.packageadmin", "1.0.4");
         versions.put("org.apache.geronimo.bundles:commons-httpclient", "3.1_2");
         versions.put("org.apache.geronimo.specs:geronimo-atinject_1.0_spec", "1.0");
@@ -120,7 +120,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.jackrabbit:oak-store-composite", "1.8.2");
         versions.put("org.apache.jackrabbit:oak-store-document", "1.8.2");
         versions.put("org.apache.jackrabbit:oak-store-spi", "1.8.2");
-        versions.put("org.apache.jackrabbit.vault:org.apache.jackrabbit.vault", "3.1.42");
+        versions.put("org.apache.jackrabbit.vault:org.apache.jackrabbit.vault", "3.1.44");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.4_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino", "1.7.8_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.urlrewritefilter", "4.0.4_1");
@@ -162,7 +162,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.hc.webconsole", "1.1.2");
         versions.put("org.apache.sling:org.apache.sling.i18n", "2.5.12");
         versions.put("org.apache.sling:org.apache.sling.installer.console", "1.0.2");
-        versions.put("org.apache.sling:org.apache.sling.installer.core", "3.8.10");
+        versions.put("org.apache.sling:org.apache.sling.installer.core", "3.8.12");
         versions.put("org.apache.sling:org.apache.sling.installer.factory.configuration", "1.1.2");
         versions.put("org.apache.sling:org.apache.sling.installer.hc", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.installer.provider.file", "1.1.0");
@@ -196,7 +196,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.resource.inventory", "1.0.8");
         versions.put("org.apache.sling:org.apache.sling.resource.presence", "0.0.2");
         versions.put("org.apache.sling:org.apache.sling.resourcemerger", "1.3.8");
-        versions.put("org.apache.sling:org.apache.sling.resourceresolver", "1.5.34");
+        versions.put("org.apache.sling:org.apache.sling.resourceresolver", "1.5.36");
         versions.put("org.apache.sling:org.apache.sling.rewriter", "1.2.2");
         versions.put("org.apache.sling:org.apache.sling.scripting.api", "2.2.0");
         versions.put("org.apache.sling:org.apache.sling.scripting.core", "2.0.54");
@@ -205,9 +205,9 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.scripting.javascript", "3.0.4");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp", "2.3.4");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp.taglib", "2.2.6");
-        versions.put("org.apache.sling:org.apache.sling.scripting.sightly", "1.0.46");
-        versions.put("org.apache.sling:org.apache.sling.scripting.sightly.compiler", "1.0.16");
-        versions.put("org.apache.sling:org.apache.sling.scripting.sightly.compiler.java", "1.0.18");
+        versions.put("org.apache.sling:org.apache.sling.scripting.sightly", "1.0.48-1.3.1");
+        versions.put("org.apache.sling:org.apache.sling.scripting.sightly.compiler", "1.0.20-1.3.1");
+        versions.put("org.apache.sling:org.apache.sling.scripting.sightly.compiler.java", "1.0.22-1.3.1");
         versions.put("org.apache.sling:org.apache.sling.scripting.sightly.js.provider", "1.0.26");
         versions.put("org.apache.sling:org.apache.sling.scripting.sightly.models.provider", "1.0.6");
         versions.put("org.apache.sling:org.apache.sling.scripting.thymeleaf", "1.1.0");
@@ -224,11 +224,11 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.tika:tika-bundle", "1.17");
         versions.put("org.apache.tika:tika-core", "1.17");
         versions.put("org.attoparser:attoparser", "2.0.4.RELEASE");
-        versions.put("org.codehaus.groovy:groovy", "2.4.13");
-        versions.put("org.codehaus.groovy:groovy-json", "2.4.13");
-        versions.put("org.codehaus.groovy:groovy-templates", "2.4.13");
+        versions.put("org.codehaus.groovy:groovy", "2.4.14");
+        versions.put("org.codehaus.groovy:groovy-json", "2.4.14");
+        versions.put("org.codehaus.groovy:groovy-templates", "2.4.14");
         versions.put("org.javassist:javassist", "3.22.0-GA");
-        versions.put("org.mongodb:mongo-java-driver", "3.6.2");
+        versions.put("org.mongodb:mongo-java-driver", "3.6.3");
         versions.put("org.unbescape:unbescape", "1.1.5.RELEASE");
     }
 
