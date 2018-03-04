@@ -175,7 +175,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.jcr.davex", "1.3.10");
         versions.put("org.apache.sling:org.apache.sling.jcr.jackrabbit.accessmanager", "3.0.0");
         versions.put("org.apache.sling:org.apache.sling.jcr.jackrabbit.usermanager", "2.2.6");
-        versions.put("org.apache.sling:org.apache.sling.jcr.oak.server", "1.2.0-SNAPSHOT");
+        versions.put("org.apache.sling:org.apache.sling.jcr.oak.server", "1.2.0");
         versions.put("org.apache.sling:org.apache.sling.jcr.registration", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.jcr.repoinit", "1.1.8");
         versions.put("org.apache.sling:org.apache.sling.jcr.resource", "3.0.8");
