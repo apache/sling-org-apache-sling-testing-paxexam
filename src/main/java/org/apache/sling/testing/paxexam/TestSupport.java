@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Dictionary;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -44,7 +45,7 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
 public abstract class TestSupport {
 
-    private final String workingDirectory = String.format("%s/target/paxexam/%s", PathUtils.getBaseDir(), getClass().getSimpleName());
+    private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
 
     @Inject
     protected ConfigurationAdmin configurationAdmin;

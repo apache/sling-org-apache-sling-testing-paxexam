@@ -19,6 +19,7 @@
 package org.apache.sling.testing.paxexam.it;
 
 import java.io.File;
+import java.util.UUID;
 
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
@@ -32,7 +33,7 @@ import static org.ops4j.pax.exam.CoreOptions.when;
 
 public abstract class SlingOptionsTestSupport {
 
-    private final String workingDirectory = String.format("%s/target/paxexam/%s", PathUtils.getBaseDir(), getClass().getSimpleName());
+    private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
 
     protected String workingDirectory() {
         return workingDirectory;
