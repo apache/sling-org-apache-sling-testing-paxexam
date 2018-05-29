@@ -14,12 +14,8 @@ Import-Package:\
   org.ops4j.pax.tinybundles.*;resolution:=optional,\
   *
 
--baseline: *
-
 -exportcontents: ${packages;VERSIONED}
 
 -removeheaders:\
-  Embed-Dependency,\
-  Embed-Transitive,\
   Include-Resource,\
   Private-Package
