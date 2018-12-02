@@ -18,7 +18,7 @@
  */
 package org.apache.sling.testing.paxexam;
 
-import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.ModifiableCompositeOption;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.ops4j.pax.exam.CoreOptions.composite;
@@ -35,18 +35,20 @@ public class SlingOptions {
 
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
-    public static Option config() {
-        return mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").version(versionResolver);
+    public static ModifiableCompositeOption config() {
+        return composite(
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").version(versionResolver)
+        );
     }
 
-    public static Option eventadmin() {
+    public static ModifiableCompositeOption eventadmin() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.eventadmin").version(versionResolver),
             config()
         );
     }
 
-    public static Option http() {
+    public static ModifiableCompositeOption http() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.jetty").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.servlet-api").version(versionResolver),
@@ -54,14 +56,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option httpWhiteboard() {
+    public static ModifiableCompositeOption httpWhiteboard() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.whiteboard").version(versionResolver),
             http()
         );
     }
 
-    public static Option management() {
+    public static ModifiableCompositeOption management() {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
             mavenBundle().groupId("org.apache.aries.jmx").artifactId("org.apache.aries.jmx.api").version(versionResolver),
@@ -71,7 +73,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option scr() {
+    public static ModifiableCompositeOption scr() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
@@ -79,7 +81,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option webconsole() {
+    public static ModifiableCompositeOption webconsole() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.inventory").version(versionResolver),
@@ -89,7 +91,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option paxUrl() {
+    public static ModifiableCompositeOption paxUrl() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-commons").version(versionResolver),
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-lang").version(versionResolver),
@@ -99,21 +101,21 @@ public class SlingOptions {
         );
     }
 
-    public static Option paxUrlClasspath() {
+    public static ModifiableCompositeOption paxUrlClasspath() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-classpath").version(versionResolver),
             paxUrl()
         );
     }
 
-    public static Option paxTinybundles() {
+    public static ModifiableCompositeOption paxTinybundles() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
             mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver)
         );
     }
 
-    public static Option logback() {
+    public static ModifiableCompositeOption logback() {
         final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
         return composite(
             systemProperty("logback.configurationFile").value(filename),
@@ -125,7 +127,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option sling() {
+    public static ModifiableCompositeOption sling() {
         return composite(
             config(),
             eventadmin(),
@@ -159,7 +161,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingAuthForm() {
+    public static ModifiableCompositeOption slingAuthForm() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.auth.form").version(versionResolver),
@@ -167,14 +169,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingAuthOpenid() {
+    public static ModifiableCompositeOption slingAuthOpenid() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.auth.openid").version(versionResolver)
         );
     }
 
-    public static Option slingAuthSelector() {
+    public static ModifiableCompositeOption slingAuthSelector() {
         return composite(
             slingAuthForm(),
             slingAuthOpenid(),
@@ -182,7 +184,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingCommonsCompiler() {
+    public static ModifiableCompositeOption slingCommonsCompiler() {
         return composite(
             scr(),
             slingCommonsClassloader(),
@@ -190,13 +192,13 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingCommonsClassloader() {
+    public static ModifiableCompositeOption slingCommonsClassloader() {
         return composite(
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.classloader").version(versionResolver)
         );
     }
 
-    public static Option slingCommonsFsclassloader() {
+    public static ModifiableCompositeOption slingCommonsFsclassloader() {
         return composite(
             scr(),
             webconsole(),
@@ -208,14 +210,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingCommonsHtml() {
+    public static ModifiableCompositeOption slingCommonsHtml() {
         return composite(
             scr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.html").version(versionResolver)
         );
     }
 
-    public static Option slingCommonsMetrics() {
+    public static ModifiableCompositeOption slingCommonsMetrics() {
         return composite(
             scr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.metrics").version(versionResolver),
@@ -223,7 +225,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingCommonsScheduler() {
+    public static ModifiableCompositeOption slingCommonsScheduler() {
         return composite(
             scr(),
             slingCommonsThreads(),
@@ -234,28 +236,28 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingCommonsThreads() {
+    public static ModifiableCompositeOption slingCommonsThreads() {
         return composite(
             config(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.threads").version(versionResolver)
         );
     }
 
-    public static Option slingAdapter() {
+    public static ModifiableCompositeOption slingAdapter() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.adapter").version(versionResolver)
         );
     }
 
-    public static Option slingBundleresource() {
+    public static ModifiableCompositeOption slingBundleresource() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.bundleresource.impl").version(versionResolver)
         );
     }
 
-    public static Option slingDiscovery() {
+    public static ModifiableCompositeOption slingDiscovery() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.api").version(versionResolver),
@@ -268,7 +270,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingDiscoveryImpl() {
+    public static ModifiableCompositeOption slingDiscoveryImpl() {
         return composite(
             webconsole(),
             slingDiscovery(),
@@ -276,7 +278,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingDiscoveryOak() {
+    public static ModifiableCompositeOption slingDiscoveryOak() {
         return composite(
             webconsole(),
             slingDiscovery(),
@@ -291,14 +293,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingDiscoveryStandalone() {
+    public static ModifiableCompositeOption slingDiscoveryStandalone() {
         return composite(
             slingDiscovery(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.standalone").version(versionResolver)
         );
     }
 
-    public static Option slingDistribution() {
+    public static ModifiableCompositeOption slingDistribution() {
         return composite(
             sling(),
             slingJcr(),
@@ -312,7 +314,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingEvent() {
+    public static ModifiableCompositeOption slingEvent() {
         return composite(
             sling(),
             slingDiscovery(),
@@ -328,14 +330,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingFeatureflags() {
+    public static ModifiableCompositeOption slingFeatureflags() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.featureflags").version(versionResolver)
         );
     }
 
-    public static Option slingFsresource() {
+    public static ModifiableCompositeOption slingFsresource() {
         return composite(
             sling(),
             jackrabbitVault(),
@@ -347,7 +349,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingHealthcheck() {
+    public static ModifiableCompositeOption slingHealthcheck() {
         return composite(
             sling(),
             slingJcr(),
@@ -359,7 +361,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingI18n() {
+    public static ModifiableCompositeOption slingI18n() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.i18n").version(versionResolver),
@@ -372,14 +374,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingJmxProvider() {
+    public static ModifiableCompositeOption slingJmxProvider() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jmx.provider").version(versionResolver)
         );
     }
 
-    public static Option slingModels() {
+    public static ModifiableCompositeOption slingModels() {
         return composite(
             sling(),
             slingScripting(),
@@ -388,7 +390,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingModelsJacksonexporter() {
+    public static ModifiableCompositeOption slingModelsJacksonexporter() {
         return composite(
             slingModels(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.jacksonexporter").version(versionResolver),
@@ -398,7 +400,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingPipes() {
+    public static ModifiableCompositeOption slingPipes() {
         return composite(
             sling(),
             jackrabbit(),
@@ -409,7 +411,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuery() {
+    public static ModifiableCompositeOption slingQuery() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.query").version(versionResolver),
@@ -417,7 +419,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingResourceInventory() {
+    public static ModifiableCompositeOption slingResourceInventory() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.resource.inventory").version(versionResolver),
@@ -425,7 +427,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingResourcePresence() {
+    public static ModifiableCompositeOption slingResourcePresence() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.resource.presence").version(versionResolver),
@@ -435,14 +437,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingResourcemerger() {
+    public static ModifiableCompositeOption slingResourcemerger() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.resourcemerger").version(versionResolver)
         );
     }
 
-    public static Option slingRewriter() {
+    public static ModifiableCompositeOption slingRewriter() {
         return composite(
             sling(),
             slingCommonsHtml(),
@@ -450,20 +452,20 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingSecurity() {
+    public static ModifiableCompositeOption slingSecurity() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.security").version(versionResolver)
         );
     }
 
-    public static Option slingExtensionsThreaddump() {
+    public static ModifiableCompositeOption slingExtensionsThreaddump() {
         return composite(
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.extensions.threaddump").version(versionResolver)
         );
     }
 
-    public static Option slingUrlrewriter() {
+    public static ModifiableCompositeOption slingUrlrewriter() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.urlrewriter").version(versionResolver),
@@ -471,7 +473,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingValidation() {
+    public static ModifiableCompositeOption slingValidation() {
         return composite(
             sling(),
             slingI18n(),
@@ -488,7 +490,7 @@ public class SlingOptions {
     }
 
     // DO NOT REMOVE additional system packages
-    public static Option slingXss() {
+    public static ModifiableCompositeOption slingXss() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.xss").version(versionResolver),
@@ -508,7 +510,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingInstaller() {
+    public static ModifiableCompositeOption slingInstaller() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.console").version(versionResolver),
@@ -517,7 +519,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingInstallerHealthcheck() {
+    public static ModifiableCompositeOption slingInstallerHealthcheck() {
         return composite(
             slingInstaller(),
             slingHealthcheck(),
@@ -525,14 +527,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingInstallerProviderFile() {
+    public static ModifiableCompositeOption slingInstallerProviderFile() {
         return composite(
             slingInstaller(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.provider.file").version(versionResolver)
         );
     }
 
-    public static Option slingInstallerProviderJcr() {
+    public static ModifiableCompositeOption slingInstallerProviderJcr() {
         return composite(
             slingInstaller(),
             slingJcr(),
@@ -546,7 +548,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingJcr() {
+    public static ModifiableCompositeOption slingJcr() {
         return composite(
             webconsole(),
             sling(),
@@ -575,7 +577,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingJcrCompiler() {
+    public static ModifiableCompositeOption slingJcrCompiler() {
         return composite(
             sling(),
             slingJcr(),
@@ -584,7 +586,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingJcrJackrabbitSecurity() {
+    public static ModifiableCompositeOption slingJcrJackrabbitSecurity() {
         return composite(
             slingJcr(),
             slingServlets(),
@@ -593,7 +595,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingJcrRepoinit() {
+    public static ModifiableCompositeOption slingJcrRepoinit() {
         return composite(
             sling(),
             slingJcr(),
@@ -604,14 +606,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingNosqlGeneric() {
+    public static ModifiableCompositeOption slingNosqlGeneric() {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.generic").version(versionResolver)
         );
     }
 
-    public static Option slingNosqlCouchbase() {
+    public static ModifiableCompositeOption slingNosqlCouchbase() {
         return composite(
             slingNosqlGeneric(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-client").version(versionResolver),
@@ -620,7 +622,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingNosqlMongodb() {
+    public static ModifiableCompositeOption slingNosqlMongodb() {
         return composite(
             slingNosqlGeneric(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.mongodb-resourceprovider").version(versionResolver),
@@ -628,7 +630,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartNosqlCouchbase() {
+    public static ModifiableCompositeOption slingQuickstartNosqlCouchbase() {
         return composite(
             slingNosqlCouchbase(),
             factoryConfiguration("org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config")
@@ -643,7 +645,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartNosqlMongodb() {
+    public static ModifiableCompositeOption slingQuickstartNosqlMongodb() {
         return composite(
             slingNosqlMongodb(),
             factoryConfiguration("org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config")
@@ -655,7 +657,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOak() {
+    public static ModifiableCompositeOption slingQuickstartOak() {
         return composite(
             webconsole(),
             sling(),
@@ -707,7 +709,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOakTar() {
+    public static ModifiableCompositeOption slingQuickstartOakTar() {
         return composite(
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
@@ -724,7 +726,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOakMongo() {
+    public static ModifiableCompositeOption slingQuickstartOakMongo() {
         return composite(
             slingQuickstartOak(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-lucene").version(versionResolver),
@@ -743,7 +745,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScripting() {
+    public static ModifiableCompositeOption slingScripting() {
         return composite(
             sling(),
             webconsole(),
@@ -758,7 +760,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScriptingGroovy() {
+    public static ModifiableCompositeOption slingScriptingGroovy() {
         return composite(
             sling(),
             slingScripting(),
@@ -769,7 +771,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScriptingJava() {
+    public static ModifiableCompositeOption slingScriptingJava() {
         return composite(
             sling(),
             slingScripting(),
@@ -778,7 +780,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScriptingJavascript() {
+    public static ModifiableCompositeOption slingScriptingJavascript() {
         return composite(
             slingScripting(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.javascript").version(versionResolver),
@@ -788,7 +790,7 @@ public class SlingOptions {
     }
 
     // DO NOT REMOVE org.apache.sling.scripting.jsp-api and org.apache.sling.scripting.el-api
-    public static Option slingScriptingJsp() {
+    public static ModifiableCompositeOption slingScriptingJsp() {
         return composite(
             slingScripting(),
             slingCommonsCompiler(),
@@ -799,7 +801,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScriptingSightly() {
+    public static ModifiableCompositeOption slingScriptingSightly() {
         return composite(
             sling(),
             slingJcr(),
@@ -822,7 +824,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingScriptingThymeleaf() {
+    public static ModifiableCompositeOption slingScriptingThymeleaf() {
         return composite(
             sling(),
             slingScripting(),
@@ -838,7 +840,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingServlets() {
+    public static ModifiableCompositeOption slingServlets() {
         return composite(
             sling(),
             slingXss(),
@@ -851,7 +853,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option jackrabbit() {
+    public static ModifiableCompositeOption jackrabbit() {
         return composite(
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-data").version(versionResolver),
@@ -878,7 +880,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option jackrabbitOak() {
+    public static ModifiableCompositeOption jackrabbitOak() {
         return composite(
             scr(),
             jackrabbit(),
@@ -901,7 +903,7 @@ public class SlingOptions {
     }
 
     // DO NOT REMOVE additional system packages
-    public static Option jackrabbitVault() {
+    public static ModifiableCompositeOption jackrabbitVault() {
         return composite(
             scr(),
             jackrabbit(),
@@ -912,14 +914,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option tika() {
+    public static ModifiableCompositeOption tika() {
         return composite(
             mavenBundle().groupId("org.apache.tika").artifactId("tika-core").version(versionResolver),
             mavenBundle().groupId("org.apache.tika").artifactId("tika-bundle").version(versionResolver)
         );
     }
 
-    public static Option composum() {
+    public static ModifiableCompositeOption composum() {
         return composite(
             sling(),
             slingJcr(),
@@ -938,7 +940,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
+    public static ModifiableCompositeOption slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
@@ -961,7 +963,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
+    public static ModifiableCompositeOption slingQuickstartOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);

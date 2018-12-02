@@ -28,6 +28,7 @@ import javax.inject.Inject;
 
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.ModifiableCompositeOption;
 import org.ops4j.pax.exam.util.PathUtils;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -70,7 +71,7 @@ public abstract class TestSupport {
         return Integer.parseInt(properties.get("org.osgi.service.http.port").toString());
     }
 
-    protected Option baseConfiguration() {
+    protected ModifiableCompositeOption baseConfiguration() {
         return composite(
             failOnUnresolvedBundles(),
             keepCaches(),

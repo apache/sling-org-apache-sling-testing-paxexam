@@ -18,7 +18,7 @@
  */
 package org.apache.sling.testing.paxexam;
 
-import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.options.ModifiableCompositeOption;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.ops4j.pax.exam.CoreOptions.composite;
@@ -35,18 +35,20 @@ public class SlingOptions {
 
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
-    public static Option config() {
-        return mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").version(versionResolver);
+    public static ModifiableCompositeOption config() {
+        return composite(
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").version(versionResolver)
+        );
     }
 
-    public static Option eventadmin() {
+    public static ModifiableCompositeOption eventadmin() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.eventadmin").version(versionResolver),
             config()
         );
     }
 
-    public static Option http() {
+    public static ModifiableCompositeOption http() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.jetty").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.servlet-api").version(versionResolver),
@@ -54,14 +56,14 @@ public class SlingOptions {
         );
     }
 
-    public static Option httpWhiteboard() {
+    public static ModifiableCompositeOption httpWhiteboard() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.whiteboard").version(versionResolver),
             http()
         );
     }
 
-    public static Option management() {
+    public static ModifiableCompositeOption management() {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
             mavenBundle().groupId("org.apache.aries.jmx").artifactId("org.apache.aries.jmx.api").version(versionResolver),
@@ -71,7 +73,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option scr() {
+    public static ModifiableCompositeOption scr() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
@@ -79,7 +81,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option webconsole() {
+    public static ModifiableCompositeOption webconsole() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.inventory").version(versionResolver),
@@ -89,7 +91,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option paxUrl() {
+    public static ModifiableCompositeOption paxUrl() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-commons").version(versionResolver),
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-lang").version(versionResolver),
@@ -99,21 +101,21 @@ public class SlingOptions {
         );
     }
 
-    public static Option paxUrlClasspath() {
+    public static ModifiableCompositeOption paxUrlClasspath() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-classpath").version(versionResolver),
             paxUrl()
         );
     }
 
-    public static Option paxTinybundles() {
+    public static ModifiableCompositeOption paxTinybundles() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
             mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver)
         );
     }
 
-    public static Option logback() {
+    public static ModifiableCompositeOption logback() {
         final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
         return composite(
             systemProperty("logback.configurationFile").value(filename),
@@ -125,7 +127,7 @@ public class SlingOptions {
         );
     }
 {{#each features}}
-    public static Option {{javaName}}() {
+    public static ModifiableCompositeOption {{javaName}}() {
         return composite({{#each features}}
             {{this}}(){{#unless @last}},{{/unless}}{{/each}}{{#if features}}{{#if bundles}},{{/if}}{{/if}}{{#each bundles}}
             mavenBundle().groupId("{{groupId}}").artifactId("{{artifactId}}").version(versionResolver){{#unless @last}},{{/unless}}{{/each}}{{#if configurations}},{{/if}}{{#each configurations}}
@@ -135,7 +137,7 @@ public class SlingOptions {
         );
     }
 {{/each}}
-    public static Option slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
+    public static ModifiableCompositeOption slingQuickstartOakTar(final String workingDirectory, final int httpPort) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
@@ -158,7 +160,7 @@ public class SlingOptions {
         );
     }
 
-    public static Option slingQuickstartOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
+    public static ModifiableCompositeOption slingQuickstartOakMongo(final String workingDirectory, final int httpPort, final String mongouri) {
         final String slingHome = String.format("%s/sling", workingDirectory);
         final String repositoryHome = String.format("%s/repository", slingHome);
         final String localIndexDir = String.format("%s/index", repositoryHome);
