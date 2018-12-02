@@ -100,7 +100,7 @@ public abstract class TestSupport {
         return bundle(file.toURI().toString());
     }
 
-    protected Option buildBundleWithBnd(Class... classes) {
+    protected Option buildBundleWithBnd(final Class... classes) {
         final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
         for (final Class clazz : classes) {
             bundle.add(clazz);
