@@ -428,7 +428,8 @@ public class SlingOptions {
             slingEvent(),
             slingModels(),
             slingQuery(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver),
+            mavenBundle().groupId("org.apache.geronimo.bundles").artifactId("commons-httpclient").version(versionResolver)
         );
     }
 
@@ -916,7 +917,6 @@ public class SlingOptions {
             mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
             mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
             mavenBundle().groupId("commons-lang").artifactId("commons-lang").version(versionResolver),
-            mavenBundle().groupId("org.apache.geronimo.bundles").artifactId("commons-httpclient").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-atinject_1.0_spec").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-el_2.2_spec").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-interceptor_1.1_spec").version(versionResolver),
