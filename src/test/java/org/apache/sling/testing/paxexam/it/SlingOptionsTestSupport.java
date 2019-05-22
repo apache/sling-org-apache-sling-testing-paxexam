@@ -21,6 +21,7 @@ package org.apache.sling.testing.paxexam.it;
 import java.io.File;
 import java.util.UUID;
 
+import org.apache.sling.testing.paxexam.TestSupport;
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.util.PathUtils;
@@ -40,7 +41,9 @@ public abstract class SlingOptionsTestSupport {
     }
 
     protected Option baseConfiguration() {
+        TestSupport testSupport = new TestSupport() {};
         return composite(
+            testSupport.jvmSetup(),
             failOnUnresolvedBundles(),
             keepCaches(),
             localMavenRepo(),
