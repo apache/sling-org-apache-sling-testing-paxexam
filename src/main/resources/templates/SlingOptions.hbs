@@ -25,6 +25,7 @@ import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemPackages;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.factoryConfiguration;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 
@@ -34,6 +35,25 @@ import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 public class SlingOptions {
 
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
+
+    public static ModifiableCompositeOption backing() {
+        final int version = SlingVersionResolver.getJavaVersion();
+        if (version >= 11) {
+            return composite(
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.annotation-api-1.3").version(versionResolver),
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.2").version(versionResolver),
+                mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver)
+            );
+        } else if (version >= 9) {
+            return composite(
+                vmOption("--add-modules=java.se.ee")
+            );
+        } else {
+            return composite();
+        }
+    }
 
     public static ModifiableCompositeOption config() {
         return composite(

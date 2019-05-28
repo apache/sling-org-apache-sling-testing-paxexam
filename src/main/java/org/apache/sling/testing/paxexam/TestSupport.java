@@ -33,6 +33,7 @@ import org.ops4j.pax.exam.util.PathUtils;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
 
+import static org.apache.sling.testing.paxexam.SlingOptions.backing;
 import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
@@ -79,7 +80,8 @@ public abstract class TestSupport {
             repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots(),
             CoreOptions.workingDirectory(workingDirectory()),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject(),
-            paxTinybundles()
+            paxTinybundles(),
+            backing()
         );
     }
 
