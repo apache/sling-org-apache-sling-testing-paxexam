@@ -97,6 +97,8 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
             config()
         );
     }
@@ -399,13 +401,12 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption slingHealthcheck() {
         return composite(
+            felixHealthcheck(),
             sling(),
             slingJcr(),
             slingScripting(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.api").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.core").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.support").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.webconsole").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.support").version(versionResolver)
         );
     }
 
@@ -926,6 +927,18 @@ public class SlingOptions {
             slingAuthForm(),
             composum(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.starter.content").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption felixHealthcheck() {
+        return composite(
+            scr(),
+            webconsole(),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.api").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.core").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.generalchecks").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.webconsoleplugin").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
         );
     }
 
