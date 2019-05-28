@@ -35,6 +35,7 @@ import org.osgi.service.cm.ConfigurationAdmin;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.backing;
 import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
+import static org.apache.sling.testing.paxexam.SlingOptions.spyfly;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
@@ -81,7 +82,8 @@ public abstract class TestSupport {
             CoreOptions.workingDirectory(workingDirectory()),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject(),
             paxTinybundles(),
-            backing()
+            backing(),
+            spyfly()
         );
     }
 

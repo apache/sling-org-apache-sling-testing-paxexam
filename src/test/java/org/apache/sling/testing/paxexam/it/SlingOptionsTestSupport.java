@@ -26,6 +26,7 @@ import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.backing;
+import static org.apache.sling.testing.paxexam.SlingOptions.spyfly;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
@@ -47,7 +48,8 @@ public abstract class SlingOptionsTestSupport {
             localMavenRepo(),
             CoreOptions.workingDirectory(workingDirectory()),
             testBundle("bundle.filename"),
-            backing()
+            backing(),
+            spyfly()
         );
     }
 

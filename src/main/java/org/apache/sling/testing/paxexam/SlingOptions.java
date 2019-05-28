@@ -101,6 +101,14 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption spyfly() {
+        return composite(
+            mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
+            mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption webconsole() {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole").version(versionResolver),

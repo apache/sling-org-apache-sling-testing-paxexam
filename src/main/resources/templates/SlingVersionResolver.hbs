@@ -51,6 +51,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.aries.jmx:org.apache.aries.jmx.api", "1.1.5");
         versions.put("org.apache.aries.jmx:org.apache.aries.jmx.core", "1.1.8");
         versions.put("org.apache.aries.jmx:org.apache.aries.jmx.whiteboard", "1.2.0");
+        versions.put("org.apache.aries.spifly:org.apache.aries.spifly.dynamic.bundle", "1.2.1");
         versions.put("org.apache.felix:org.apache.felix.inventory", "1.0.6");
         versions.put("org.apache.felix:org.apache.felix.metatype", "1.2.2");
         versions.put("org.apache.felix:org.apache.felix.scr", "2.1.16");
@@ -61,6 +62,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.ops4j.pax.url:pax-url-classpath", "2.6.1");
         versions.put("org.ops4j.pax.url:pax-url-commons", "2.6.1");
         versions.put("org.ops4j.pax.tinybundles:tinybundles", "3.0.0");
+        versions.put("org.ow2.asm:asm", "7.1");
         versions.put("org.slf4j:slf4j-api", "1.7.26");
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.26");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
