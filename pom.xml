@@ -29,7 +29,7 @@
   </parent>
 
   <artifactId>org.apache.sling.testing.paxexam</artifactId>
-  <version>3.0.0-SNAPSHOT</version>
+  <version>3.0.0</version>
 
   <name>Apache Sling Testing PaxExam</name>
   <description>Test support for use with Pax Exam.</description>
@@ -45,7 +45,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-testing-paxexam.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-testing-paxexam.git</developerConnection>
     <url>https://gitbox.apache.org/repos/asf?p=sling-org-apache-sling-testing-paxexam.git</url>
-    <tag>HEAD</tag>
+    <tag>org.apache.sling.testing.paxexam-3.0.0</tag>
   </scm>
 
   <build>
