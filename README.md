@@ -16,7 +16,8 @@ See Testing PaxExam's [documentation page](https://sling.apache.org/documentatio
 
 ## Features
 
-* run integration tests in a *tailored* Sling instance in the *same module* (with the build artifact under test)
-* use different versions in build (e.g. *minimal*) and tests (e.g. *latest*)
-* overriding of versions
-* build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
+* Run integration tests in a *tailored* Sling instance in the *same module* (with the build artifact under test)
+* Use different versions in build (e.g. *minimal*) and tests (e.g. *latest*)
+* Overriding of versions
+* Adjusting of provided Options (`ModifiableCompositeOption`s)
+* Build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
