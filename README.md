@@ -21,3 +21,4 @@ See Testing PaxExam's [documentation page](https://sling.apache.org/documentatio
 * Overriding of versions
 * Adjusting of provided Options (`ModifiableCompositeOption`s)
 * Build bundles with test content and OSGi DS services on-the-fly (no need for extra modules)
+* Start Docker containers via [Testcontainers](https://www.testcontainers.org/)

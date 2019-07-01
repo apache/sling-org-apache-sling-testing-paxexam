@@ -67,8 +67,10 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.osgi:org.osgi.util.function", "1.1.0");
         versions.put("org.osgi:org.osgi.util.promise", "1.1.0");
         versions.put("org.ow2.asm:asm", "7.1");
+        versions.put("org.rnorth.duct-tape:duct-tape", "1.0.8");
         versions.put("org.slf4j:slf4j-api", "1.7.26");
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.26");
+        versions.put("org.testcontainers:testcontainers", "1.11.3");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");

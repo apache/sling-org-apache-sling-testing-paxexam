@@ -26,6 +26,7 @@ import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemPackages;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
+import static org.ops4j.pax.exam.CoreOptions.wrappedBundle;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.factoryConfiguration;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 
@@ -163,6 +164,14 @@ public class SlingOptions {
             mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version(versionResolver),
             mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version(versionResolver),
             config()
+        );
+    }
+
+    public static ModifiableCompositeOption testcontainers() {
+        return composite(
+            paxUrlWrap(),
+            wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
+            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))
         );
     }
 
