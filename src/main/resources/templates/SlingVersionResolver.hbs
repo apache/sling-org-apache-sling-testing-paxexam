@@ -58,9 +58,11 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.3.12");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.0");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.0");
+        versions.put("org.ops4j.pax.swissbox:pax-swissbox-bnd", "1.8.3");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-property", "1.8.3");
         versions.put("org.ops4j.pax.url:pax-url-classpath", "2.6.1");
         versions.put("org.ops4j.pax.url:pax-url-commons", "2.6.1");
+        versions.put("org.ops4j.pax.url:pax-url-wrap", "2.6.1");
         versions.put("org.ops4j.pax.tinybundles:tinybundles", "3.0.0");
         versions.put("org.osgi:org.osgi.util.function", "1.1.0");
         versions.put("org.osgi:org.osgi.util.promise", "1.1.0");
@@ -69,7 +71,8 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.26");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
-        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");{{#each bundles}}
+        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
+        versions.put("biz.aQute.bnd:bndlib", "2.4.0");{{#each bundles}}
         versions.put("{{groupId}}:{{artifactId}}", "{{version}}");{{/each}}
     }
 

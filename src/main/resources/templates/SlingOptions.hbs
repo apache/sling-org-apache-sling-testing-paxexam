@@ -136,6 +136,15 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption paxUrlWrap() {
+        return composite(
+            mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-wrap").version(versionResolver),
+            mavenBundle().groupId("org.ops4j.pax.swissbox").artifactId("pax-swissbox-bnd").version(versionResolver),
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("bndlib").version(versionResolver),
+            paxUrl()
+        );
+    }
+
     public static ModifiableCompositeOption paxTinybundles() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),

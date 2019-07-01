@@ -58,9 +58,11 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.3.12");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.0");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.0");
+        versions.put("org.ops4j.pax.swissbox:pax-swissbox-bnd", "1.8.3");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-property", "1.8.3");
         versions.put("org.ops4j.pax.url:pax-url-classpath", "2.6.1");
         versions.put("org.ops4j.pax.url:pax-url-commons", "2.6.1");
+        versions.put("org.ops4j.pax.url:pax-url-wrap", "2.6.1");
         versions.put("org.ops4j.pax.tinybundles:tinybundles", "3.0.0");
         versions.put("org.osgi:org.osgi.util.function", "1.1.0");
         versions.put("org.osgi:org.osgi.util.promise", "1.1.0");
@@ -70,6 +72,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
+        versions.put("biz.aQute.bnd:bndlib", "2.4.0");
         versions.put("com.composum.sling.core:composum-sling-core-commons", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-config", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-console", "1.9.4");
