@@ -29,6 +29,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.spyfly;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
+import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
@@ -36,12 +37,12 @@ public class SlingOptionsSpyflyIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
-        return new Option[]{
+        return options(
             failOnUnresolvedBundles(),
             keepCaches(),
             localMavenRepo(),
             spyfly()
-        };
+        );
     }
 
     @Test

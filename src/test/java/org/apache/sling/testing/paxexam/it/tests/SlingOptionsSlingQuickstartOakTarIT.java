@@ -30,6 +30,7 @@ import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.slingQuickstartOakTar;
+import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
@@ -38,10 +39,10 @@ public class SlingOptionsSlingQuickstartOakTarIT extends SlingOptionsHttpTestSup
     @Configuration
     public Option[] configuration() throws IOException {
         final int httpPort = findFreePort();
-        return new Option[]{
+        return options(
             baseConfiguration(),
             slingQuickstartOakTar(workingDirectory(), httpPort)
-        };
+        );
     }
 
     @Test
