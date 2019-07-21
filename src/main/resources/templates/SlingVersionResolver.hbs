@@ -38,6 +38,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1", "2.9.0");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.2", "2.9.0");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.hamcrest", "1.3_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp-api", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.scripting.el-api", "1.0.0");
@@ -56,6 +57,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.metatype", "1.2.2");
         versions.put("org.apache.felix:org.apache.felix.scr", "2.1.16");
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.3.12");
+        versions.put("org.awaitility:awaitility", "3.1.6");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.0");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.0");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-bnd", "1.8.3");

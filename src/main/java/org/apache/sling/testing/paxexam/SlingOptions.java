@@ -37,6 +37,13 @@ public class SlingOptions {
 
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
+    public static ModifiableCompositeOption awaitility() {
+        return composite(
+            mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption backing() {
         final int version = SlingVersionResolver.getJavaVersion();
         if (version >= 11) {
