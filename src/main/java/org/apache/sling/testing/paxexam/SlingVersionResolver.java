@@ -34,11 +34,15 @@ public class SlingVersionResolver implements VersionResolver {
     public static final String SLING_GROUP_ID = "org.apache.sling";
 
     public SlingVersionResolver() {
+        versions.put("org.apache.commons:commons-lang3", "3.9");
+        versions.put("org.apache.httpcomponents:httpclient-osgi", "4.5.8");
+        versions.put("org.apache.httpcomponents:httpcore-osgi", "4.4.11");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.annotation-api-1.3", "1.3_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1", "2.9.0");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.2", "2.9.0");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp-api", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.scripting.el-api", "1.0.0");
         versions.put("org.apache.felix:org.apache.felix.configadmin", "1.9.14");
@@ -57,6 +61,9 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.scr", "2.1.16");
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.3.12");
         versions.put("org.awaitility:awaitility", "4.0.0-rc1");
+        versions.put("org.codehaus.groovy:groovy", "2.5.0");
+        versions.put("org.codehaus.groovy:groovy-json", "2.5.0");
+        versions.put("org.codehaus.groovy:groovy-xml", "2.5.0");
         versions.put("org.hamcrest:hamcrest", "2.1");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.0");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.0");
@@ -77,6 +84,10 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
+        versions.put("io.rest-assured:json-path", "4.0.0");
+        versions.put("io.rest-assured:rest-assured", "4.0.0");
+        versions.put("io.rest-assured:rest-assured-common", "4.0.0");
+        versions.put("io.rest-assured:xml-path", "4.0.0");
         versions.put("com.composum.sling.core:composum-sling-core-commons", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-config", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-console", "1.9.4");
