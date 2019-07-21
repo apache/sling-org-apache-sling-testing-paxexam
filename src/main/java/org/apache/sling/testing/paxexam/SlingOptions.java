@@ -40,7 +40,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption awaitility() {
         return composite(
             mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").version(versionResolver)
+            mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
         );
     }
 
