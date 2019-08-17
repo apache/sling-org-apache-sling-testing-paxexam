@@ -178,7 +178,6 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption restassured() {
         return composite(
-            backing(),
             mavenBundle().groupId("io.rest-assured").artifactId("rest-assured").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("rest-assured-common").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("json-path").version(versionResolver),
@@ -187,7 +186,11 @@ public class SlingOptions {
             mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy").version(versionResolver),
             mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-json").version(versionResolver),
             mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-xml").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.2").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
             mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
