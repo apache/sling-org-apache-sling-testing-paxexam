@@ -107,6 +107,8 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
             config()
         );
     }
