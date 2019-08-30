@@ -60,7 +60,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.metatype", "1.2.2");
         versions.put("org.apache.felix:org.apache.felix.scr", "2.1.16");
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.3.12");
-        versions.put("org.awaitility:awaitility", "4.0.0-rc1");
+        versions.put("org.awaitility:awaitility", "4.0.0");
         versions.put("org.codehaus.groovy:groovy", "2.5.0");
         versions.put("org.codehaus.groovy:groovy-json", "2.5.0");
         versions.put("org.codehaus.groovy:groovy-xml", "2.5.0");
