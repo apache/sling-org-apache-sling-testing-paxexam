@@ -270,6 +270,15 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption slingCommonsCrypto() {
+        return composite(
+            scr(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.crypto").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jasypt").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption slingCommonsFsclassloader() {
         return composite(
             scr(),

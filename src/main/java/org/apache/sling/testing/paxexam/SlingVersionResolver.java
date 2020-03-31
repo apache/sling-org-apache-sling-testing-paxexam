@@ -156,6 +156,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.pdfbox:fontbox", "2.0.15");
         versions.put("org.apache.pdfbox:jempbox", "1.8.16");
         versions.put("org.apache.pdfbox:pdfbox", "2.0.15");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jasypt", "1.9.3_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.1_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.rhino", "1.7.10_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf", "3.0.11.RELEASE_1");
@@ -173,6 +174,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.commons.classloader", "1.4.4");
         versions.put("org.apache.sling:org.apache.sling.commons.compiler", "2.3.6");
         versions.put("org.apache.sling:org.apache.sling.commons.fsclassloader", "1.0.10");
+        versions.put("org.apache.sling:org.apache.sling.commons.crypto", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.commons.html", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.commons.johnzon", "1.1.2");
         versions.put("org.apache.sling:org.apache.sling.commons.metrics", "1.2.6");
