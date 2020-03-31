@@ -858,7 +858,7 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingScriptingSightly() {
+    public static ModifiableCompositeOption slingScriptingHtl() {
         return composite(
             sling(),
             slingJcr(),

@@ -27,18 +27,18 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.slingScriptingSightly;
+import static org.apache.sling.testing.paxexam.SlingOptions.slingScriptingHtl;
 import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class SlingOptionsSlingScriptingSightlyIT extends SlingOptionsTestSupport {
+public class SlingOptionsSlingScriptingHtlIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
         return options(
             baseConfiguration(),
-            slingScriptingSightly()
+            slingScriptingHtl()
         );
     }
 
