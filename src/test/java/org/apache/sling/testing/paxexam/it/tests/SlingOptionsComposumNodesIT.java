@@ -27,18 +27,18 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.composum;
+import static org.apache.sling.testing.paxexam.SlingOptions.composumNodes;
 import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class SlingOptionsComposumIT extends SlingOptionsTestSupport {
+public class SlingOptionsComposumNodesIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
         return options(
             baseConfiguration(),
-            composum()
+            composumNodes()
         );
     }
 

@@ -1005,7 +1005,7 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption composum() {
+    public static ModifiableCompositeOption composumNodes() {
         return composite(
             sling(),
             slingJcr(),
@@ -1020,7 +1020,7 @@ public class SlingOptions {
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-package-manager").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
                 .put("whitelist.bundles", new String[]{"com.composum.core.commons", "com.composum.core.pckgmgr"})
-                .put("whitelist.name", "composum")
+                .put("whitelist.name", "composum-nodes")
                 .asOption()
         );
     }
