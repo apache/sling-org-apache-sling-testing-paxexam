@@ -106,7 +106,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("commons-io:commons-io", "2.6");
         versions.put("commons-lang:commons-lang", "2.6");
         versions.put("io.dropwizard.metrics:metrics-core", "3.2.6");
-        versions.put("io.wcm.osgi.wrapper:io.wcm.osgi.wrapper.rxjava", "1.3.8-0000");
         versions.put("javax.jcr:jcr", "2.0");
         versions.put("javax.mail:javax.mail-api", "1.6.2");
         versions.put("javax.servlet:javax.servlet-api", "3.1.0");
@@ -220,10 +219,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.models.api", "1.3.8");
         versions.put("org.apache.sling:org.apache.sling.models.impl", "1.4.10");
         versions.put("org.apache.sling:org.apache.sling.models.jacksonexporter", "1.0.8");
-        versions.put("org.apache.sling:org.apache.sling.nosql.couchbase-client", "1.0.2");
-        versions.put("org.apache.sling:org.apache.sling.nosql.couchbase-resourceprovider", "1.1.0");
-        versions.put("org.apache.sling:org.apache.sling.nosql.generic", "1.1.0");
-        versions.put("org.apache.sling:org.apache.sling.nosql.mongodb-resourceprovider", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.pipes", "3.1.0");
         versions.put("org.apache.sling:org.apache.sling.provisioning.model", "1.8.4");
         versions.put("org.apache.sling:org.apache.sling.query", "4.0.2");

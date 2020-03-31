@@ -708,57 +708,6 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingNosqlGeneric() {
-        return composite(
-            sling(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.generic").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption slingNosqlCouchbase() {
-        return composite(
-            slingNosqlGeneric(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-client").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.couchbase-resourceprovider").version(versionResolver),
-            mavenBundle().groupId("io.wcm.osgi.wrapper").artifactId("io.wcm.osgi.wrapper.rxjava").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption slingNosqlMongodb() {
-        return composite(
-            slingNosqlGeneric(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.nosql.mongodb-resourceprovider").version(versionResolver),
-            mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption slingQuickstartNosqlCouchbase() {
-        return composite(
-            slingNosqlCouchbase(),
-            factoryConfiguration("org.apache.sling.nosql.couchbase.resourceprovider.CouchbaseNoSqlResourceProviderFactory.factory.config")
-                .put("provider.roots", new String[]{"/"})
-                .asOption(),
-            factoryConfiguration("org.apache.sling.nosql.couchbase.client.CouchbaseClient.factory.config")
-                .put("bucketName", "sling")
-                .put("clientId", "sling-resourceprovider-couchbase")
-                .put("couchbaseHosts", "localhost:8091")
-                .put("enabled", true)
-                .asOption()
-        );
-    }
-
-    public static ModifiableCompositeOption slingQuickstartNosqlMongodb() {
-        return composite(
-            slingNosqlMongodb(),
-            factoryConfiguration("org.apache.sling.nosql.mongodb.resourceprovider.MongoDBNoSqlResourceProviderFactory.factory.config")
-                .put("collection", "resources")
-                .put("connectionString", "localhost:27017")
-                .put("database", "sling")
-                .put("provider.roots", new String[]{"/"})
-                .asOption()
-        );
-    }
-
     public static ModifiableCompositeOption slingQuickstartOak() {
         return composite(
             webconsole(),
