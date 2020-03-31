@@ -299,6 +299,12 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption slingCommonsMessaging() {
+        return composite(
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.messaging").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption slingCommonsMetrics() {
         return composite(
             scr(),
