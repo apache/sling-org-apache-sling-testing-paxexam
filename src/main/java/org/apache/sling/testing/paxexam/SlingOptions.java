@@ -305,6 +305,19 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption slingCommonsMessagingMail() {
+        return composite(
+            scr(),
+            slingCommonsCrypto(),
+            slingCommonsMessaging(),
+            slingCommonsThreads(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.messaging.mail").version(versionResolver),
+            mavenBundle().groupId("com.sun.mail").artifactId("javax.mail").version(versionResolver),
+            mavenBundle().groupId("javax.mail").artifactId("javax.mail-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption slingCommonsMetrics() {
         return composite(
             scr(),

@@ -180,6 +180,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.commons.metrics", "1.2.6");
         versions.put("org.apache.sling:org.apache.sling.commons.mime", "2.2.0");
         versions.put("org.apache.sling:org.apache.sling.commons.messaging", "1.0.0");
+        versions.put("org.apache.sling:org.apache.sling.commons.messaging.mail", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.commons.osgi", "2.4.0");
         versions.put("org.apache.sling:org.apache.sling.commons.scheduler", "2.7.2");
         versions.put("org.apache.sling:org.apache.sling.commons.threads", "3.2.18");
