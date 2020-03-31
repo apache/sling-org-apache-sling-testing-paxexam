@@ -922,7 +922,7 @@ public class SlingOptions {
         return composite(
             sling(),
             slingAuthForm(),
-            composum(),
+            composumNodes(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.starter.content").version(versionResolver)
         );
     }
