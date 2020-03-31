@@ -562,12 +562,6 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingExtensionsThreaddump() {
-        return composite(
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.extensions.threaddump").version(versionResolver)
-        );
-    }
-
     public static ModifiableCompositeOption slingUrlrewriter() {
         return composite(
             sling(),

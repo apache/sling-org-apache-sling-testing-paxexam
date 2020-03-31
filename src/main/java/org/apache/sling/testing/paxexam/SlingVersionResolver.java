@@ -191,7 +191,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.engine", "2.6.18");
         versions.put("org.apache.sling:org.apache.sling.event", "4.2.12");
         versions.put("org.apache.sling:org.apache.sling.event.dea", "1.1.4");
-        versions.put("org.apache.sling:org.apache.sling.extensions.threaddump", "0.2.2");
         versions.put("org.apache.sling:org.apache.sling.featureflags", "1.2.2");
         versions.put("org.apache.sling:org.apache.sling.fsresource", "2.1.14");
         versions.put("org.apache.sling:org.apache.sling.hc.api", "1.0.4");
