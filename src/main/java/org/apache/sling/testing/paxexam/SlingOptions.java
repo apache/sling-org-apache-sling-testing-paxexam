@@ -884,15 +884,11 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption slingScriptingThymeleaf() {
         return composite(
+            thymeleaf(),
             sling(),
             slingScripting(),
             slingI18n(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.thymeleaf").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.thymeleaf").version(versionResolver),
-            mavenBundle().groupId("org.attoparser").artifactId("attoparser").version(versionResolver),
-            mavenBundle().groupId("org.unbescape").artifactId("unbescape").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.ognl").version(versionResolver),
-            mavenBundle().groupId("org.javassist").artifactId("javassist").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.scripting.thymeleaf=sling-scripting"})
                 .asOption()
@@ -1022,6 +1018,16 @@ public class SlingOptions {
                 .put("whitelist.bundles", new String[]{"com.composum.core.commons", "com.composum.core.pckgmgr"})
                 .put("whitelist.name", "composum-nodes")
                 .asOption()
+        );
+    }
+
+    public static ModifiableCompositeOption thymeleaf() {
+        return composite(
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.thymeleaf").version(versionResolver),
+            mavenBundle().groupId("org.attoparser").artifactId("attoparser").version(versionResolver),
+            mavenBundle().groupId("org.unbescape").artifactId("unbescape").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.ognl").version(versionResolver),
+            mavenBundle().groupId("org.javassist").artifactId("javassist").version(versionResolver)
         );
     }
 
