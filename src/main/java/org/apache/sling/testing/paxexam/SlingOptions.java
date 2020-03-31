@@ -215,6 +215,7 @@ public class SlingOptions {
             http(),
             httpWhiteboard(),
             slingCommonsFsclassloader(),
+            slingCommonsOsgi(),
             slingCommonsScheduler(),
             slingCommonsThreads(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.api").version(versionResolver),
@@ -225,7 +226,6 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.settings").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.johnzon").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.mime").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.osgi").version(versionResolver),
             mavenBundle().groupId("commons-codec").artifactId("commons-codec").version(versionResolver),
             mavenBundle().groupId("commons-collections").artifactId("commons-collections").version(versionResolver),
             mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
@@ -284,8 +284,8 @@ public class SlingOptions {
             scr(),
             webconsole(),
             slingCommonsClassloader(),
+            slingCommonsOsgi(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.fsclassloader").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.osgi").version(versionResolver),
             mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
         );
@@ -295,7 +295,7 @@ public class SlingOptions {
         return composite(
             scr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.html").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.osgi").version(versionResolver)
+            slingCommonsOsgi()
         );
     }
 
@@ -304,6 +304,13 @@ public class SlingOptions {
             scr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.metrics").version(versionResolver),
             mavenBundle().groupId("io.dropwizard.metrics").artifactId("metrics-core").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption slingCommonsOsgi() {
+        return composite(
+            eventadmin(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.osgi").version(versionResolver)
         );
     }
 
