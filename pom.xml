@@ -38,7 +38,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <sling.java.version>8</sling.java.version>
-    <org.ops4j.pax.exam.version>4.13.1</org.ops4j.pax.exam.version>
+    <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
   </properties>
 
   <scm>
@@ -102,7 +102,7 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi.cmpn</artifactId>
+      <artifactId>org.osgi.service.cm</artifactId>
       <scope>provided</scope>
     </dependency>
     <!-- Apache Felix -->
@@ -161,7 +161,7 @@
     <dependency>
       <groupId>org.ops4j.pax.url</groupId>
       <artifactId>pax-url-wrap</artifactId>
-      <version>2.6.1</version>
+      <version>2.6.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
