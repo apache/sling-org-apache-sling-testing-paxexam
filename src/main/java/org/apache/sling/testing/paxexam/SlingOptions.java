@@ -178,6 +178,7 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption restassured() {
         return composite(
+            config(),
             mavenBundle().groupId("io.rest-assured").artifactId("rest-assured").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("rest-assured-common").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("json-path").version(versionResolver),
