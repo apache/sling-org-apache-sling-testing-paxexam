@@ -42,6 +42,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.2", "2.9.0");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit", "4.13_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp-api", "1.0.0");
         versions.put("org.apache.sling:org.apache.sling.scripting.el-api", "1.0.0");
@@ -78,16 +79,20 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.ow2.asm:asm", "7.1");
         versions.put("org.rnorth.duct-tape:duct-tape", "1.0.8");
         versions.put("org.slf4j:slf4j-api", "1.7.26");
+        versions.put("org.slf4j:slf4j-simple", "1.7.26");
         versions.put("org.slf4j:jcl-over-slf4j", "1.7.26");
         versions.put("org.testcontainers:testcontainers", "1.11.3");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
+        versions.put("com.icegreen:greenmail", "1.5.14");
+        versions.put("com.sun.mail:jakarta.mail", "1.6.5");
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
         versions.put("io.rest-assured:json-path", "4.0.0");
         versions.put("io.rest-assured:rest-assured", "4.0.0");
         versions.put("io.rest-assured:rest-assured-common", "4.0.0");
         versions.put("io.rest-assured:xml-path", "4.0.0");
+        versions.put("jakarta.mail:jakarta.mail-api", "1.6.5");
         versions.put("com.composum.sling.core:composum-sling-core-commons", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-config", "1.9.4");
         versions.put("com.composum.sling.core:composum-sling-core-console", "1.9.4");

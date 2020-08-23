@@ -18,10 +18,12 @@
  */
 package org.apache.sling.testing.paxexam;
 
+import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.ModifiableCompositeOption;
 import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 import org.ops4j.pax.exam.util.PathUtils;
 
+import static org.ops4j.pax.exam.CoreOptions.bootClasspathLibrary;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
@@ -75,6 +77,22 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.eventadmin").version(versionResolver),
             config()
+        );
+    }
+
+    public static ModifiableCompositeOption greenmail() {
+        final MavenArtifactProvisionOption greenmail = mavenBundle().groupId("com.icegreen").artifactId("greenmail").version(versionResolver);
+        final MavenArtifactProvisionOption slf4j_api = mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver);
+        final MavenArtifactProvisionOption slf4j_simple = mavenBundle().groupId("org.slf4j").artifactId("slf4j-simple").version(versionResolver);
+        return composite(
+            greenmail,
+            mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
+            mavenBundle().groupId("com.sun.mail").artifactId("jakarta.mail").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.junit").version(versionResolver),
+            // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
+            bootClasspathLibrary(greenmail).afterFramework(),
+            bootClasspathLibrary(slf4j_api).afterFramework(), // GreenMail dependency
+            bootClasspathLibrary(slf4j_simple).afterFramework() // GreenMail dependency
         );
     }
 
