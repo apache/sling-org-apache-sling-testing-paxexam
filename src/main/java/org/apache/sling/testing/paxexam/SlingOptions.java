@@ -88,7 +88,7 @@ public class SlingOptions {
             greenmail,
             mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
             mavenBundle().groupId("com.sun.mail").artifactId("jakarta.mail").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.junit").version(versionResolver),
+            junitBundles(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
             bootClasspathLibrary(greenmail).afterFramework(),
             bootClasspathLibrary(slf4j_api).afterFramework(), // GreenMail dependency

@@ -42,7 +42,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3", "2.3_3");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
-        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit", "4.13_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp-api", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.scripting.el-api", "1.0.2");
