@@ -55,7 +55,7 @@ public class SlingOptions {
                 mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.annotation-api-1.3").version(versionResolver),
                 mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
                 mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
-                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.2").version(versionResolver),
+                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.3").version(versionResolver),
                 mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver)
             );
         } else if (version >= 9) {
@@ -135,7 +135,11 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
             mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver)
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-analysis").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-commons").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-util").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-tree").version(versionResolver)
         );
     }
 
@@ -208,7 +212,7 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.2").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.3").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
@@ -253,6 +257,7 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.commons").artifactId("commons-collections4").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-math").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.converter").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.resourceresolver:mapping=sling-mapping", "org.apache.sling.resourceresolver:hierarchy=sling-readall", "org.apache.sling.resourceresolver:observation=sling-readall", "org.apache.sling.resourceresolver:console=sling-readall"})
                 .asOption()
@@ -262,8 +267,8 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingAuthForm() {
         return composite(
             sling(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.auth.form").version(versionResolver),
-            mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver)
+            jackrabbitOak(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.auth.form").version(versionResolver)
         );
     }
 
@@ -313,8 +318,8 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingCommonsHtml() {
         return composite(
             scr(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.html").version(versionResolver),
-            slingCommonsOsgi()
+            slingCommonsOsgi(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.html").version(versionResolver)
         );
     }
 
@@ -331,9 +336,10 @@ public class SlingOptions {
             slingCommonsMessaging(),
             slingCommonsThreads(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.messaging.mail").version(versionResolver),
-            mavenBundle().groupId("com.sun.mail").artifactId("javax.mail").version(versionResolver),
-            mavenBundle().groupId("javax.mail").artifactId("javax.mail-api").version(versionResolver),
-            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
+            mavenBundle().groupId("com.sun.mail").artifactId("jakarta.mail").version(versionResolver),
+            mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver)
         );
     }
 
@@ -366,6 +372,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingCommonsThreads() {
         return composite(
             config(),
+            slingCommonsMetrics(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.threads").version(versionResolver)
         );
     }
@@ -436,6 +443,10 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.commons").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.oak").version(versionResolver),
             mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver),
+            factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
+                .put("whitelist.bundles", new String[]{"org.apache.sling.discovery.commons", "org.apache.sling.discovery.base", "org.apache.sling.discovery.oak"})
+                .put("whitelist.name", "sling-discovery")
+                .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
                 .put("scripts", new String[]{"create service user sling-discovery\n\n  create path (sling:Folder) /var/discovery\n\n  create path (sling:Folder) /var/discovery/oak\n\n  set ACL for sling-discovery\n\n    allow   jcr:read    on /var/discovery\n\n    allow   rep:write   on /var/discovery\n\n  end"})
                 .asOption(),
@@ -458,8 +469,8 @@ public class SlingOptions {
             slingJcr(),
             slingEvent(),
             slingHealthcheck(),
-            jackrabbitVault(),
             httpcomponentsClient(),
+            jackrabbitVault(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.distribution.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.distribution.core").version(versionResolver)
         );
@@ -495,7 +506,7 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.fsresource").version(versionResolver),
             mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver),
             mavenBundle().groupId("com.google.guava").artifactId("guava").version(versionResolver),
-            mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-jcr-commons").version(versionResolver)
         );
     }
@@ -534,6 +545,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingModels() {
         return composite(
             sling(),
+            slingAdapter(),
             slingScripting(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.impl").version(versionResolver)
@@ -664,7 +676,7 @@ public class SlingOptions {
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.console").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.core").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.factory.configuration").version(versionResolver)
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.cm.json").version(versionResolver)
         );
     }
 
@@ -728,11 +740,8 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.webconsole").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.webdav").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
-                .put("whitelist.bundles", new String[]{"org.apache.sling.discovery.commons", "org.apache.sling.discovery.base", "org.apache.sling.discovery.oak", "org.apache.sling.jcr.base", "org.apache.sling.jcr.classloader", "org.apache.sling.jcr.contentloader", "org.apache.sling.jcr.jackrabbit.usermanager", "org.apache.sling.jcr.oak.server", "org.apache.sling.jcr.repoinit", "org.apache.sling.jcr.webconsole"})
-                .put("whitelist.name", "sling")
-                .asOption(),
-            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-mapping\n\n  create service user sling-readall\n\n  create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  create path (sling:Folder) /var\n\n  create path (sling:OrderedFolder) /content\n\n  set ACL for everyone\n\n      allow   jcr:read    on /content\n\n  end\n\n  set ACL for sling-mapping\n\n      allow   jcr:read    on /\n\n  end\n\n  set ACL for sling-readall\n\n      allow   jcr:read    on /\n\n  end"})
+                .put("whitelist.bundles", new String[]{"org.apache.sling.jcr.base", "org.apache.sling.jcr.classloader", "org.apache.sling.jcr.contentloader", "org.apache.sling.jcr.jackrabbit.usermanager", "org.apache.sling.jcr.oak.server", "org.apache.sling.jcr.repoinit", "org.apache.sling.jcr.webconsole"})
+                .put("whitelist.name", "sling-jcr")
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.jcr.resource:observation=sling-readall", "org.apache.sling.jcr.resource:validation=sling-readall"})
@@ -774,7 +783,6 @@ public class SlingOptions {
             webconsole(),
             sling(),
             slingServlets(),
-            slingInstaller(),
             slingJcr(),
             slingJcrRepoinit(),
             slingAdapter(),
@@ -818,6 +826,15 @@ public class SlingOptions {
                 .put("enabledActions", new String[]{"org.apache.jackrabbit.oak.spi.security.user.action.AccessControlAction"})
                 .put("groupPrivilegeNames", new String[]{"jcr:read"})
                 .put("userPrivilegeNames", new String[]{"jcr:all"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  create path (sling:Folder) /var\n\n  create path (sling:OrderedFolder) /content\n\n  set ACL for everyone\n\n      allow   jcr:read    on /content\n\n  end"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-mapping\n\n  set ACL for sling-mapping\n\n      allow   jcr:read    on /\n\n  end"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-readall\n\n  set ACL for sling-readall\n\n      allow   jcr:read    on /\n\n  end"})
                 .asOption()
         );
     }
@@ -861,6 +878,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingScripting() {
         return composite(
             sling(),
+            slingCommonsCompiler(),
             webconsole(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.core").version(versionResolver),
@@ -980,6 +998,7 @@ public class SlingOptions {
         return composite(
             sling(),
             slingAuthForm(),
+            slingScriptingJavascript(),
             composumNodes(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.starter.content").version(versionResolver)
         );
@@ -987,6 +1006,7 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption felixHealthcheck() {
         return composite(
+            eventadmin(),
             scr(),
             webconsole(),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.api").version(versionResolver),
@@ -997,10 +1017,18 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption httpcomponentsClient() {
+        return composite(
+            config(),
+            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
+            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption jackrabbit() {
         return composite(
             httpcomponentsClient(),
-            mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-data").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-jcr-commons").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-jcr-rmi").version(versionResolver),
@@ -1070,8 +1098,10 @@ public class SlingOptions {
     public static ModifiableCompositeOption composumNodes() {
         return composite(
             sling(),
+            slingI18n(),
             slingJcr(),
             slingScriptingJsp(),
+            slingServlets(),
             slingEvent(),
             jackrabbitVault(),
             mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-commons").version(versionResolver),
@@ -1084,14 +1114,6 @@ public class SlingOptions {
                 .put("whitelist.bundles", new String[]{"com.composum.core.commons", "com.composum.core.pckgmgr"})
                 .put("whitelist.name", "composum-nodes")
                 .asOption()
-        );
-    }
-
-    public static ModifiableCompositeOption httpcomponentsClient() {
-        return composite(
-            config(),
-            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
-            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver)
         );
     }
 
