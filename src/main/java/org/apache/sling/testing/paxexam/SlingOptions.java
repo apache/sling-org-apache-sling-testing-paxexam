@@ -668,6 +668,13 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption slingInstallerFactoryConfiguration() {
+        return composite(
+            slingInstaller(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.factory.configuration").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption slingInstallerHealthcheck() {
         return composite(
             slingInstaller(),

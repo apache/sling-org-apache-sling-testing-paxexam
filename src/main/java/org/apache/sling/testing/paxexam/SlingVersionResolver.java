@@ -207,7 +207,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.i18n", "2.5.14");
         versions.put("org.apache.sling:org.apache.sling.installer.console", "1.0.2");
         versions.put("org.apache.sling:org.apache.sling.installer.core", "3.9.0");
-        versions.put("org.apache.sling:org.apache.sling.installer.factory.configuration", "1.2.2");
+        versions.put("org.apache.sling:org.apache.sling.installer.factory.configuration", "1.3.2");
         versions.put("org.apache.sling:org.apache.sling.installer.hc", "2.0.2");
         versions.put("org.apache.sling:org.apache.sling.installer.provider.file", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.installer.provider.jcr", "3.1.26");
