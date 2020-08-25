@@ -40,6 +40,7 @@ import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 @SuppressWarnings("java:S1192")
 public class SlingOptions {
 
+    @SuppressWarnings("java:S1104")
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
     public static ModifiableCompositeOption awaitility() {
