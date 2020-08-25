@@ -675,6 +675,15 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption slingInstallerFactoryPackages() {
+        return composite(
+            slingInstaller(),
+            slingJcr(),
+            jackrabbitVault(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.factory.packages").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption slingInstallerHealthcheck() {
         return composite(
             slingInstaller(),
