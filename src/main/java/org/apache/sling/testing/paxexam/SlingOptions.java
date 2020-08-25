@@ -37,6 +37,7 @@ import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 /**
  * NOTE: This file is generated from Sling's Karaf Features
  */
+@SuppressWarnings("java:S1192")
 public class SlingOptions {
 
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
