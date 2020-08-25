@@ -27,7 +27,7 @@ import org.ops4j.pax.exam.options.MavenUrlReference.VersionResolver;
 /**
  * NOTE: This file is generated from Sling's Karaf Features
  */
-@SuppressWarnings("java:S1192")
+@SuppressWarnings({"java:S1192", "java:S4143"})
 public class SlingVersionResolver implements VersionResolver {
 
     private final Map<String, String> versions = new HashMap<>();
