@@ -58,8 +58,7 @@ public abstract class TestSupport {
     }
 
     protected synchronized int findFreePort() {
-        try {
-            final ServerSocket serverSocket = new ServerSocket(0);
+        try (final ServerSocket serverSocket = new ServerSocket(0)) {
             final int port = serverSocket.getLocalPort();
             serverSocket.close();
             return port;
