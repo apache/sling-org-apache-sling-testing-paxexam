@@ -133,7 +133,7 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption spyfly() {
+    public static ModifiableCompositeOption spifly() {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
             mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),

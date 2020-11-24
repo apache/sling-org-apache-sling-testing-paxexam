@@ -27,13 +27,13 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.spyfly;
+import static org.apache.sling.testing.paxexam.SlingOptions.spifly;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
 import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class SlingOptionsSpyflyIT extends SlingOptionsTestSupport {
+public class SlingOptionsSpiflyIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
@@ -41,7 +41,7 @@ public class SlingOptionsSpyflyIT extends SlingOptionsTestSupport {
             failOnUnresolvedBundles(),
             keepCaches(),
             localMavenRepo(),
-            spyfly()
+            spifly()
         );
     }
 
