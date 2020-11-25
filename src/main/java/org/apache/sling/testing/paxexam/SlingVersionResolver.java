@@ -66,7 +66,10 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.codehaus.groovy:groovy-json", "3.0.1");
         versions.put("org.codehaus.groovy:groovy-xml", "3.0.1");
         versions.put("org.hamcrest:hamcrest", "2.2");
+        versions.put("org.ops4j.base:ops4j-base-io", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.1");
+        versions.put("org.ops4j.base:ops4j-base-monitors", "1.5.1");
+        versions.put("org.ops4j.base:ops4j-base-store", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.1");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-bnd", "1.8.3");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-property", "1.8.3");

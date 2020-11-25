@@ -62,18 +62,28 @@ public abstract class TestSupport {
         return Integer.parseInt(properties.get("org.osgi.service.http.port").toString());
     }
 
-    protected ModifiableCompositeOption baseConfiguration() {
+    private ModifiableCompositeOption configuration() {
         return composite(
             failOnUnresolvedBundles(),
             keepCaches(),
             localMavenRepo(),
             repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots(),
             CoreOptions.workingDirectory(workingDirectory()),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject(),
             paxTinybundles(),
             backing(),
             spifly()
         );
+    }
+
+    protected ModifiableCompositeOption baseConfiguration() {
+        return composite(
+            configuration(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject()
+        );
+    }
+
+    protected ModifiableCompositeOption serverBaseConfiguration() {
+        return configuration();
     }
 
     public static int findFreePort() {
