@@ -57,16 +57,6 @@ public abstract class TestSupport {
         return workingDirectory;
     }
 
-    protected synchronized int findFreePort() {
-        try (final ServerSocket serverSocket = new ServerSocket(0)) {
-            final int port = serverSocket.getLocalPort();
-            serverSocket.close();
-            return port;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     protected int httpPort() throws IOException {
         final Dictionary<String, Object> properties = configurationAdmin.getConfiguration("org.apache.felix.http").getProperties();
         return Integer.parseInt(properties.get("org.osgi.service.http.port").toString());
@@ -86,24 +76,32 @@ public abstract class TestSupport {
         );
     }
 
-    protected Option failOnUnresolvedBundles() {
+    public static int findFreePort() {
+        try (final ServerSocket serverSocket = new ServerSocket(0)) {
+            return serverSocket.getLocalPort();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static Option failOnUnresolvedBundles() {
         return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
     }
 
-    protected Option localMavenRepo() {
+    public static Option localMavenRepo() {
         final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
         return when(localRepository.length() > 0).useOptions(
             systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localRepository)
         );
     }
 
-    protected Option testBundle(final String systemProperty) {
+    public static Option testBundle(final String systemProperty) {
         final String filename = System.getProperty(systemProperty);
         final File file = new File(filename);
         return bundle(file.toURI().toString());
     }
 
-    protected Option buildBundleWithBnd(final Class... classes) {
+    public static Option buildBundleWithBnd(final Class... classes) {
         final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
         for (final Class clazz : classes) {
             bundle.add(clazz);
