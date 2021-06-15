@@ -155,6 +155,13 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption paxLoggingLogback() {
+        return composite(
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-api").version(versionResolver),
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-logback").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption paxUrl() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-commons").version(versionResolver),
