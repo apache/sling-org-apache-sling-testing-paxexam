@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Dictionary;
+import java.util.Objects;
 import java.util.UUID;
 
 import javax.inject.Inject;
@@ -29,6 +30,8 @@ import javax.inject.Inject;
 import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.ModifiableCompositeOption;
+import org.ops4j.pax.exam.options.OptionalCompositeOption;
+import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.util.PathUtils;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -43,6 +46,7 @@ import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.repository;
 import static org.ops4j.pax.exam.CoreOptions.streamBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
+import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.when;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
@@ -62,6 +66,12 @@ public abstract class TestSupport {
         return Integer.parseInt(properties.get("org.osgi.service.http.port").toString());
     }
 
+    protected OptionalCompositeOption jacoco() {
+        final String jacocoCommand = System.getProperty("jacoco.command");
+        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
+        return when(Objects.nonNull(option)).useOptions(option);
+    }
+
     private ModifiableCompositeOption configuration() {
         return composite(
             failOnUnresolvedBundles(),
@@ -71,7 +81,8 @@ public abstract class TestSupport {
             CoreOptions.workingDirectory(workingDirectory()),
             paxTinybundles(),
             backing(),
-            spifly()
+            spifly(),
+            jacoco()
         );
     }
 
