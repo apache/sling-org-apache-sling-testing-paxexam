@@ -39,7 +39,6 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <sling.java.version>8</sling.java.version>
     <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
-    <pax.vm.options/>
   </properties>
 
   <scm>
@@ -72,22 +71,10 @@
         </executions>
         <configuration>
           <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <systemProperties>
-            <property>
-              <name>bundle.filename</name>
-              <value>${basedir}/target/${project.build.finalName}.jar</value>
-            </property>
-            <property>
-              <name>pax.vm.options</name>
-              <value>${pax.vm.options}</value>
-            </property>
-          </systemProperties>
+          <systemPropertyVariables combine.children="append">
+            <bundle.filename>${basedir}/target/${project.build.finalName}.jar</bundle.filename>
+          </systemPropertyVariables>
         </configuration>
-      </plugin>
-      <plugin>
-        <!-- Needed for mavenBundle..versionAsInProject() -->
-        <groupId>org.apache.servicemix.tooling</groupId>
-        <artifactId>depends-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
@@ -173,18 +160,6 @@
       <artifactId>pax-url-wrap</artifactId>
       <version>2.6.2</version>
       <scope>test</scope>
-    </dependency>
-     <dependency>
-        <groupId>org.ops4j.pax.logging</groupId>
-        <artifactId>pax-logging-api</artifactId>
-        <version>2.0.6</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.ops4j.pax.logging</groupId>
-        <artifactId>pax-logging-logback</artifactId>
-        <version>2.0.6</version>
-        <scope>test</scope>
     </dependency>
   </dependencies>
 
