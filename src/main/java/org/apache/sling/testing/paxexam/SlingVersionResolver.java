@@ -35,11 +35,12 @@ public class SlingVersionResolver implements VersionResolver {
     public static final String SLING_GROUP_ID = "org.apache.sling";
 
     public SlingVersionResolver() {
-        versions.put("org.apache.commons:commons-lang3", "3.11");
+        versions.put("org.apache.commons:commons-lang3", "3.12.0");
         versions.put("org.apache.httpcomponents:httpclient-osgi", "4.5.12");
         versions.put("org.apache.httpcomponents:httpcore-osgi", "4.4.13");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.annotation-api-1.3", "1.3_3");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1", "2.9.0");
+        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-2.0.1", "2.0.1_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3", "2.3_3");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
@@ -93,15 +94,15 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.testcontainers:testcontainers", "1.14.3");
         versions.put("ch.qos.logback:logback-core", "1.2.3");
         versions.put("ch.qos.logback:logback-classic", "1.2.3");
-        versions.put("com.icegreen:greenmail", "1.5.14");
-        versions.put("com.sun.mail:jakarta.mail", "1.6.5");
+        versions.put("com.icegreen:greenmail", "2.0.0-alpha-2");
+        versions.put("com.sun.mail:jakarta.mail", "2.0.1");
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
         versions.put("io.rest-assured:json-path", "4.3.1");
         versions.put("io.rest-assured:rest-assured", "4.3.1");
         versions.put("io.rest-assured:rest-assured-common", "4.3.1");
         versions.put("io.rest-assured:xml-path", "4.3.1");
-        versions.put("jakarta.mail:jakarta.mail-api", "1.6.5");
+        versions.put("jakarta.mail:jakarta.mail-api", "2.1.0");
         versions.put("com.composum.sling.core:composum-sling-core-commons", "1.12.2");
         versions.put("com.composum.sling.core:composum-sling-core-config", "1.12.2");
         versions.put("com.composum.sling.core:composum-sling-core-console", "1.12.2");
@@ -113,7 +114,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("com.fasterxml.jackson.core:jackson-databind", "2.11.2");
         versions.put("com.google.guava:guava", "15.0");
         versions.put("com.h2database:h2-mvstore", "1.4.200");
-        versions.put("com.sun.mail:jakarta.mail", "1.6.5");
+        versions.put("com.sun.mail:jakarta.mail", "2.0.1");
         versions.put("commons-codec:commons-codec", "1.14");
         versions.put("commons-collections:commons-collections", "3.2.2");
         versions.put("commons-fileupload:commons-fileupload", "1.4");
@@ -126,7 +127,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.antlr:antlr4-runtime", "4.8-1");
         versions.put("org.apache.commons:commons-collections4", "4.4");
         versions.put("org.apache.commons:commons-compress", "1.20");
-        versions.put("org.apache.commons:commons-lang3", "3.11");
+        versions.put("org.apache.commons:commons-lang3", "3.12.0");
         versions.put("org.apache.commons:commons-math", "2.2");
         versions.put("org.apache.commons:commons-math3", "3.6.1");
         versions.put("org.apache.commons:commons-text", "1.9");
@@ -198,17 +199,17 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.commons.clam", "2.0.0");
         versions.put("org.apache.sling:org.apache.sling.commons.classloader", "1.4.4");
         versions.put("org.apache.sling:org.apache.sling.commons.compiler", "2.4.0");
-        versions.put("org.apache.sling:org.apache.sling.commons.crypto", "1.0.0");
+        versions.put("org.apache.sling:org.apache.sling.commons.crypto", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.commons.fsclassloader", "1.0.14");
         versions.put("org.apache.sling:org.apache.sling.commons.html", "1.1.0");
         versions.put("org.apache.sling:org.apache.sling.commons.johnzon", "1.2.4");
-        versions.put("org.apache.sling:org.apache.sling.commons.messaging", "1.0.0");
-        versions.put("org.apache.sling:org.apache.sling.commons.messaging.mail", "1.0.0");
+        versions.put("org.apache.sling:org.apache.sling.commons.messaging", "1.0.2");
+        versions.put("org.apache.sling:org.apache.sling.commons.messaging.mail", "2.0.0");
         versions.put("org.apache.sling:org.apache.sling.commons.metrics", "1.2.8");
         versions.put("org.apache.sling:org.apache.sling.commons.mime", "2.2.2");
         versions.put("org.apache.sling:org.apache.sling.commons.osgi", "2.4.2");
         versions.put("org.apache.sling:org.apache.sling.commons.scheduler", "2.7.6");
-        versions.put("org.apache.sling:org.apache.sling.commons.threads", "3.2.20");
+        versions.put("org.apache.sling:org.apache.sling.commons.threads", "3.2.22");
         versions.put("org.apache.sling:org.apache.sling.discovery.api", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.discovery.base", "2.0.8");
         versions.put("org.apache.sling:org.apache.sling.discovery.commons", "1.0.20");
