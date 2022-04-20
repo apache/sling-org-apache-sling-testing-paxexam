@@ -57,6 +57,8 @@ public abstract class TestSupport {
     @Inject
     protected ConfigurationAdmin configurationAdmin;
 
+    private static final String WORKING_DIRECTORY_PROPERTY_KEY = "sling.testing.paxexam.workingDirectory";
+
     protected String workingDirectory() {
         return workingDirectory;
     }
@@ -78,6 +80,7 @@ public abstract class TestSupport {
             keepCaches(),
             localMavenRepo(),
             repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots(),
+            systemProperty(WORKING_DIRECTORY_PROPERTY_KEY).value(workingDirectory()),
             CoreOptions.workingDirectory(workingDirectory()),
             paxTinybundles(),
             backing(),
