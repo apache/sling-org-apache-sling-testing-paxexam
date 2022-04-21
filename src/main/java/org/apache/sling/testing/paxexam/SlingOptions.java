@@ -162,6 +162,21 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption paxLoggingLog4j2(final String configurationFile) {
+        return composite(
+            paxLoggingApi(),
+            newConfiguration("org.ops4j.pax.logging")
+                .put("org.ops4j.pax.logging.log4j2.config.file", configurationFile)
+                .asOption(),
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-log4j2").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption paxLoggingLog4j2() {
+        final String filename = String.format("%s/src/test/resources/log4j2.xml", PathUtils.getBaseDir());
+        return paxLoggingLog4j2(filename);
+    }
+
     public static ModifiableCompositeOption paxLoggingLogback() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-api").version(versionResolver),
