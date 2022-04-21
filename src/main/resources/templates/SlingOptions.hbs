@@ -183,7 +183,8 @@ public class SlingOptions {
             newConfiguration("org.ops4j.pax.logging")
                 .put("org.ops4j.pax.logging.logback.config.file", configurationFile)
                 .asOption(),
-            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-logback").version(versionResolver)
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-logback").version(versionResolver),
+            config()
         );
     }
 
