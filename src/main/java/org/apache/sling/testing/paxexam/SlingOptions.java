@@ -168,7 +168,8 @@ public class SlingOptions {
             newConfiguration("org.ops4j.pax.logging")
                 .put("org.ops4j.pax.logging.log4j2.config.file", configurationFile)
                 .asOption(),
-            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-log4j2").version(versionResolver)
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-log4j2").version(versionResolver),
+            config()
         );
     }
 
