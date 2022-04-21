@@ -177,11 +177,19 @@ public class SlingOptions {
         return paxLoggingLog4j2(filename);
     }
 
-    public static ModifiableCompositeOption paxLoggingLogback() {
+    public static ModifiableCompositeOption paxLoggingLogback(final String configurationFile) {
         return composite(
-            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-api").version(versionResolver),
+            paxLoggingApi(),
+            newConfiguration("org.ops4j.pax.logging")
+                .put("org.ops4j.pax.logging.logback.config.file", configurationFile)
+                .asOption(),
             mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-logback").version(versionResolver)
         );
+    }
+
+    public static ModifiableCompositeOption paxLoggingLogback() {
+        final String filename = String.format("%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
+        return paxLoggingLogback(filename);
     }
 
     public static ModifiableCompositeOption paxUrl() {
