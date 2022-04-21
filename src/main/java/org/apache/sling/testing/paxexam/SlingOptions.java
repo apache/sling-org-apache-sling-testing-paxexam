@@ -156,6 +156,12 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption paxLoggingApi() {
+        return composite(
+            mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-api").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption paxLoggingLogback() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.logging").artifactId("pax-logging-api").version(versionResolver),

@@ -72,7 +72,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.ops4j.base:ops4j-base-monitors", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-store", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.1");
-        versions.put("org.ops4j.pax.logging:pax-logging-api", "2.0.9");
+        versions.put("org.ops4j.pax.logging:pax-logging-api", "2.1.2");
         versions.put("org.ops4j.pax.logging:pax-logging-logback", "2.0.9");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-bnd", "1.8.3");
         versions.put("org.ops4j.pax.swissbox:pax-swissbox-property", "1.8.3");
