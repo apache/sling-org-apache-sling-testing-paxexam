@@ -106,7 +106,7 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.framework</artifactId>
-      <version>6.0.3</version>
+      <version>7.0.5</version>
       <scope>test</scope>
     </dependency>
     <!-- OPS4J Pax -->
@@ -158,7 +158,7 @@
     <dependency>
       <groupId>org.ops4j.pax.url</groupId>
       <artifactId>pax-url-wrap</artifactId>
-      <version>2.6.2</version>
+      <version>2.6.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
