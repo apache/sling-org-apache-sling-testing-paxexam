@@ -35,6 +35,9 @@ public class SlingVersionResolver implements VersionResolver {
     public static final String SLING_GROUP_ID = "org.apache.sling";
 
     public SlingVersionResolver() {
+        versions.put("com.fasterxml.jackson.core:jackson-annotations", "2.13.3");
+        versions.put("com.fasterxml.jackson.core:jackson-core", "2.13.3");
+        versions.put("com.fasterxml.jackson.core:jackson-databind", "2.13.3");
         versions.put("org.apache.commons:commons-lang3", "3.12.0");
         versions.put("org.apache.httpcomponents:httpclient-osgi", "4.5.12");
         versions.put("org.apache.httpcomponents:httpcore-osgi", "4.4.13");

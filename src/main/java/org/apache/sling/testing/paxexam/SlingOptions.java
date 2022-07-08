@@ -114,6 +114,14 @@ public class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption jackson() {
+        return composite(
+            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-annotations").version(versionResolver),
+            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-core").version(versionResolver),
+            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-databind").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption management() {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
