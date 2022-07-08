@@ -136,6 +136,7 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.component").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
             config()
@@ -259,9 +260,9 @@ public class SlingOptions {
             mavenBundle().groupId("io.rest-assured").artifactId("json-path").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("xml-path").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-json").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-xml").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-xml").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
@@ -278,7 +279,7 @@ public class SlingOptions {
             junitBundles(),
             paxUrlWrap(),
             wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
-            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver)).imports("org.junit.rules").overwriteManifest(WrappedUrlProvisionOption.OverwriteMode.MERGE)
+            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))
         );
     }
 {{#each features}}

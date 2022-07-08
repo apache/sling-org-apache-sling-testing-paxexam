@@ -27,18 +27,18 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.slingJcrJackrabbitSecurity;
+import static org.apache.sling.testing.paxexam.SlingOptions.slingJcrJackrabbitUsermanager;
 import static org.ops4j.pax.exam.CoreOptions.options;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class SlingOptionsSlingJcrJackrabbitSecurityIT extends SlingOptionsTestSupport {
+public class SlingOptionsSlingJcrJackrabbitUsermanagerIT extends SlingOptionsTestSupport {
 
     @Configuration
     public Option[] configuration() {
         return options(
             baseConfiguration(),
-            slingJcrJackrabbitSecurity()
+            slingJcrJackrabbitUsermanager()
         );
     }
 

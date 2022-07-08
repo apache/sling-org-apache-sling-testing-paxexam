@@ -136,6 +136,7 @@ public class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.component").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
             config()
@@ -259,9 +260,9 @@ public class SlingOptions {
             mavenBundle().groupId("io.rest-assured").artifactId("json-path").version(versionResolver),
             mavenBundle().groupId("io.rest-assured").artifactId("xml-path").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-json").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-xml").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-xml").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
@@ -278,7 +279,7 @@ public class SlingOptions {
             junitBundles(),
             paxUrlWrap(),
             wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
-            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver)).imports("org.junit.rules").overwriteManifest(WrappedUrlProvisionOption.OverwriteMode.MERGE)
+            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))
         );
     }
 
@@ -290,6 +291,7 @@ public class SlingOptions {
             management(),
             http(),
             httpWhiteboard(),
+            paxUrlClasspath(),
             slingCommonsFsclassloader(),
             slingCommonsOsgi(),
             slingCommonsScheduler(),
@@ -312,7 +314,10 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.commons").artifactId("commons-math").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.converter").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.resourceresolver:mapping=sling-mapping", "org.apache.sling.resourceresolver:hierarchy=sling-readall", "org.apache.sling.resourceresolver:observation=sling-readall", "org.apache.sling.resourceresolver:console=sling-readall"})
+                .put("user.mapping", new String[]{"org.apache.sling.auth.core=[sling-readall]"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
+                .put("user.mapping", new String[]{"org.apache.sling.resourceresolver:mapping=[sling-mapping]", "org.apache.sling.resourceresolver:hierarchy=[sling-readall]", "org.apache.sling.resourceresolver:observation=[sling-readall]", "org.apache.sling.resourceresolver:console=[sling-readall]"})
                 .asOption()
         );
     }
@@ -457,7 +462,7 @@ public class SlingOptions {
                 .put("scripts", new String[]{"create path (sling:Folder) /conf"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.caconfig.impl=sling-readall"})
+                .put("user.mapping", new String[]{"org.apache.sling.caconfig.impl=[sling-readall]"})
                 .asOption()
         );
     }
@@ -470,10 +475,10 @@ public class SlingOptions {
             slingJcr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.clam").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-clam\n\n  create path (sling:Folder) /var/clam/results(sling:OrderedFolder)\n\n  set ACL for sling-clam\n\n    allow   jcr:read    on /\n\n    allow   rep:write   on /var/clam\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-clam with path system/sling\n\nset principal ACL for sling-clam\n  allow     jcr:read    on /\n  allow     rep:write   on /var/clam\nend\n\ncreate path (sling:Folder) /var/clam/results(sling:OrderedFolder)"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.clam=sling-clam", "org.apache.sling.clam:result-writer=sling-clam"})
+                .put("user.mapping", new String[]{"org.apache.sling.clam=[sling-clam]", "org.apache.sling.clam:result-writer=[sling-clam]"})
                 .asOption()
         );
     }
@@ -481,8 +486,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingDiscovery() {
         return composite(
             sling(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.api").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.support").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.api").version(versionResolver)
         );
     }
 
@@ -495,16 +499,17 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.base").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.commons").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.oak").version(versionResolver),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.support").version(versionResolver),
             mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
                 .put("whitelist.bundles", new String[]{"org.apache.sling.discovery.commons", "org.apache.sling.discovery.base", "org.apache.sling.discovery.oak"})
                 .put("whitelist.name", "sling-discovery")
                 .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-discovery\n\n  create path (sling:Folder) /var/discovery\n\n  create path (sling:Folder) /var/discovery/oak\n\n  set ACL for sling-discovery\n\n    allow   jcr:read    on /var/discovery\n\n    allow   rep:write   on /var/discovery\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-discovery with path system/sling\n\nset principal ACL for sling-discovery\n  allow   jcr:read,rep:write    on /var/discovery\nend\n\ncreate path (sling:Folder) /var/discovery\ncreate path (sling:Folder) /var/discovery/oak"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.discovery.commons=sling-discovery", "org.apache.sling.discovery.base=sling-discovery", "org.apache.sling.discovery.oak=sling-discovery"})
+                .put("user.mapping", new String[]{"org.apache.sling.discovery.commons=[sling-discovery]", "org.apache.sling.discovery.base=[sling-discovery]", "org.apache.sling.discovery.oak=[sling-discovery]"})
                 .asOption()
         );
     }
@@ -537,11 +542,20 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.event.dea").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.inventory").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-event\n\n  create path (sling:Folder) /var/eventing\n\n  set ACL for sling-event\n\n    allow   jcr:all     on /var/eventing\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-event with path system/sling\n\nset principal ACL for sling-event\n    allow   jcr:all     on /var/eventing\nend\n\ncreate path (sling:Folder) /var/eventing"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.event=sling-event", "org.apache.sling.event.dea=sling-event"})
+                .put("user.mapping", new String[]{"org.apache.sling.event=[sling-event]", "org.apache.sling.event.dea=[sling-event]"})
                 .asOption()
+        );
+    }
+
+    public static ModifiableCompositeOption slingExtensionsWebconsolesecurityprovider() {
+        return composite(
+            sling(),
+            jackrabbit(),
+            webconsole(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.extensions.webconsolesecurityprovider").version(versionResolver)
         );
     }
 
@@ -579,11 +593,8 @@ public class SlingOptions {
         return composite(
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.i18n").version(versionResolver),
-            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-i18n\n\n  set ACL for sling-i18n\n\n    allow   jcr:read    on /\n\n  end"})
-                .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.i18n=sling-i18n"})
+                .put("user.mapping", new String[]{"org.apache.sling.i18n=[sling-readall]"})
                 .asOption()
         );
     }
@@ -601,17 +612,16 @@ public class SlingOptions {
             slingAdapter(),
             slingScripting(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.api").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.impl").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.impl").version(versionResolver),
+            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.annotation-api-1.3").version(versionResolver)
         );
     }
 
     public static ModifiableCompositeOption slingModelsJacksonexporter() {
         return composite(
             slingModels(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.jacksonexporter").version(versionResolver),
-            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-annotations").version(versionResolver),
-            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-core").version(versionResolver),
-            mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-databind").version(versionResolver)
+            jackson(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.models.jacksonexporter").version(versionResolver)
         );
     }
 
@@ -620,11 +630,11 @@ public class SlingOptions {
             sling(),
             jackrabbit(),
             jackrabbitVault(),
+            slingCaconfig(),
             slingEvent(),
             slingModels(),
             slingQuery(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver),
-            mavenBundle().groupId("org.apache.geronimo.bundles").artifactId("commons-httpclient").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.pipes").version(versionResolver)
         );
     }
 
@@ -649,7 +659,7 @@ public class SlingOptions {
             sling(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.resource.presence").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.resource.presence=sling-readall"})
+                .put("user.mapping", new String[]{"org.apache.sling.resource.presence=[sling-readall]"})
                 .asOption()
         );
     }
@@ -666,8 +676,9 @@ public class SlingOptions {
             sling(),
             slingCommonsHtml(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.rewriter").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-text").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.rewriter=sling-readall"})
+                .put("user.mapping", new String[]{"org.apache.sling.rewriter=[sling-readall]"})
                 .asOption()
         );
     }
@@ -695,10 +706,10 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.validation.api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.validation.core").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-validation\n\n  create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  set ACL for sling-validation\n\n    allow   jcr:read    on /apps\n\n    allow   jcr:read    on /libs\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-validation with path system/sling\n\nset principal ACL for sling-validation\n  allow   jcr:read    on /apps\n  allow   jcr:read    on /libs\nend"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.validation.core=sling-validation"})
+                .put("user.mapping", new String[]{"org.apache.sling.validation.core=[sling-validation]"})
                 .asOption()
         );
     }
@@ -710,10 +721,10 @@ public class SlingOptions {
             httpcomponentsClient(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.xss").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-xss\n\n  create path (sling:Folder) /apps/sling/xss\n\n  create path (sling:Folder) /libs/sling/xss\n\n  set ACL for sling-xss\n\n    allow   jcr:read    on /apps/sling/xss\n\n    allow   jcr:read    on /libs/sling/xss\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-xss with path system/sling\n\nset principal ACL for sling-xss\n  allow   jcr:read    on /apps/sling/xss\n  allow   jcr:read    on /libs/sling/xss\nend\n\ncreate path (sling:Folder) /apps/sling/xss\ncreate path (sling:Folder) /libs/sling/xss"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.xss=sling-xss"})
+                .put("user.mapping", new String[]{"org.apache.sling.xss=[sling-xss]"})
                 .asOption(),
             systemPackages(
                 "org.w3c.dom.css",
@@ -745,7 +756,13 @@ public class SlingOptions {
             slingInstaller(),
             slingJcr(),
             jackrabbitVault(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.factory.packages").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.factory.packages").version(versionResolver),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-installer-factory-packages with path system/sling\n\nset principal ACL for sling-installer-factory-packages\n    allow   jcr:all     on    /\n    allow   jcr:namespaceManagement,jcr:nodeTypeDefinitionManagement on :repository\nend"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
+                .put("user.mapping", new String[]{"org.apache.sling.installer.factory.packages=[sling-installer-factory-packages]"})
+                .asOption()
         );
     }
 
@@ -770,10 +787,10 @@ public class SlingOptions {
             slingJcr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.provider.jcr").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-jcr-install\n\n  create path (sling:Folder) /apps/sling/install\n\n  set ACL for sling-jcr-install\n\n    allow   jcr:read    on /\n\n    allow   rep:write   on /apps/sling/install\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-installer-provider-jcr with path system/sling\n\nset principal ACL for sling-installer-provider-jcr\n    allow   jcr:read    on /\n    allow   rep:write   on /apps/sling/install\nend\n\ncreate path (sling:Folder) /apps/sling/install"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.installer.provider.jcr=sling-jcr-install"})
+                .put("user.mapping", new String[]{"org.apache.sling.installer.provider.jcr=[sling-installer-provider-jcr]"})
                 .asOption()
         );
     }
@@ -793,11 +810,17 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.webconsole").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.webdav").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
-                .put("whitelist.bundles", new String[]{"org.apache.sling.jcr.base", "org.apache.sling.jcr.classloader", "org.apache.sling.jcr.contentloader", "org.apache.sling.jcr.jackrabbit.usermanager", "org.apache.sling.jcr.oak.server", "org.apache.sling.jcr.repoinit", "org.apache.sling.jcr.webconsole"})
+                .put("whitelist.bundles", new String[]{"org.apache.sling.jcr.base", "org.apache.sling.jcr.classloader", "org.apache.sling.jcr.oak.server", "org.apache.sling.jcr.repoinit", "org.apache.sling.jcr.webconsole"})
                 .put("whitelist.name", "sling-jcr")
                 .asOption(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-jcr-contentloader with path system/sling\n\nset principal ACL for sling-jcr-contentloader\n  allow   jcr:all    on /\nend"})
+                .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.jcr.resource:observation=sling-readall", "org.apache.sling.jcr.resource:validation=sling-readall"})
+                .put("user.mapping", new String[]{"org.apache.sling.jcr.resource:observation=[sling-readall]", "org.apache.sling.jcr.resource:validation=[sling-readall]"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
+                .put("user.mapping", new String[]{"org.apache.sling.jcr.contentloader=[sling-jcr-contentloader]"})
                 .asOption()
         );
     }
@@ -811,12 +834,25 @@ public class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingJcrJackrabbitSecurity() {
+    public static ModifiableCompositeOption slingJcrJackrabbitAccessmanager() {
         return composite(
             slingJcr(),
             slingServlets(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.jackrabbit.accessmanager").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.jackrabbit.usermanager").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.jackrabbit.accessmanager").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption slingJcrJackrabbitUsermanager() {
+        return composite(
+            slingJcr(),
+            slingServlets(),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.jackrabbit.usermanager").version(versionResolver),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-jcr-jackrabbit-usermanager with path system/sling\n\nset principal ACL for sling-jcr-jackrabbit-usermanager\n  allow jcr:read,jcr:readAccessControl,jcr:modifyAccessControl,rep:write,rep:userManagement on /home\nend"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
+                .put("user.mapping", new String[]{"org.apache.sling.jcr.jackrabbit.usermanager=[sling-jcr-jackrabbit-usermanager]"})
+                .asOption()
         );
     }
 
@@ -824,7 +860,6 @@ public class SlingOptions {
         return composite(
             sling(),
             slingJcr(),
-            slingJcrJackrabbitSecurity(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.repoinit").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.repoinit.parser").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.provisioning.model").version(versionResolver)
@@ -866,6 +901,12 @@ public class SlingOptions {
             newConfiguration("org.apache.jackrabbit.oak.security.authentication.AuthenticationConfigurationImpl")
                 .put("org.apache.jackrabbit.oak.authentication.configSpiName", "FelixJaasProvider")
                 .asOption(),
+            newConfiguration("org.apache.jackrabbit.oak.security.authorization.AuthorizationConfigurationImpl")
+                .put("importBehavior", "besteffort")
+                .asOption(),
+            newConfiguration("org.apache.jackrabbit.oak.security.internal.SecurityProviderRegistration")
+                .put("requiredServicePids", new String[]{"org.apache.jackrabbit.oak.security.authorization.AuthorizationConfigurationImpl", "org.apache.jackrabbit.oak.security.principal.PrincipalConfigurationImpl", "org.apache.jackrabbit.oak.security.authentication.token.TokenConfigurationImpl", "org.apache.jackrabbit.oak.spi.security.user.action.DefaultAuthorizableActionProvider", "org.apache.jackrabbit.oak.security.authorization.restriction.RestrictionProviderImpl", "org.apache.jackrabbit.oak.security.user.UserAuthenticationFactoryImpl", "org.apache.jackrabbit.oak.spi.security.authorization.principalbased.impl.PrincipalBasedAuthorizationConfiguration"})
+                .asOption(),
             newConfiguration("org.apache.jackrabbit.oak.security.user.UserConfigurationImpl")
                 .put("defaultDepth", 1)
                 .put("groupsPath", "/home/groups")
@@ -875,19 +916,30 @@ public class SlingOptions {
             newConfiguration("org.apache.jackrabbit.oak.security.user.RandomAuthorizableNodeName")
                 .put("length", 21)
                 .asOption(),
+            newConfiguration("org.apache.jackrabbit.oak.spi.security.authorization.principalbased.impl.FilterProviderImpl")
+                .put("path", "/home/users/system/sling")
+                .asOption(),
+            newConfiguration("org.apache.jackrabbit.oak.spi.security.authorization.principalbased.impl.PrincipalBasedAuthorizationConfiguration")
+                .put("enableAggregationFilter", true)
+                .asOption(),
             newConfiguration("org.apache.jackrabbit.oak.spi.security.user.action.DefaultAuthorizableActionProvider")
                 .put("enabledActions", new String[]{"org.apache.jackrabbit.oak.spi.security.user.action.AccessControlAction"})
                 .put("groupPrivilegeNames", new String[]{"jcr:read"})
                 .put("userPrivilegeNames", new String[]{"jcr:all"})
                 .asOption(),
-            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  create path (sling:Folder) /var\n\n  create path (sling:OrderedFolder) /content\n\n  set ACL for everyone\n\n      allow   jcr:read    on /content\n\n  end"})
+            newConfiguration("org.apache.jackrabbit.vault.packaging.impl.PackagingImpl")
+                .put("authIdsForHookExecution", new String[]{"sling-installer-factory-packages"})
+                .put("authIdsForRootInstallation", new String[]{"sling-installer-factory-packages"})
+                .put("packageRoots", new String[]{"/etc/packages"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-mapping\n\n  set ACL for sling-mapping\n\n      allow   jcr:read    on /\n\n  end"})
+                .put("scripts", new String[]{"create path (sling:Folder) /apps\ncreate path (sling:Folder) /libs\ncreate path (sling:Folder) /var\ncreate path (sling:OrderedFolder) /content"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-readall\n\n  set ACL for sling-readall\n\n      allow   jcr:read    on /\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-mapping with path system/sling\n\nset principal ACL for sling-mapping\n  allow   jcr:read    on /\nend"})
+                .asOption(),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create service user sling-readall with path system/sling\n\nset principal ACL for sling-readall\n  allow   jcr:read    on /\nend"})
                 .asOption()
         );
     }
@@ -934,12 +986,13 @@ public class SlingOptions {
             slingCommonsCompiler(),
             webconsole(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.api").version(versionResolver),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.spi").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.core").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create service user sling-scripting\n\n  create path (sling:Folder) /apps\n\n  create path (sling:Folder) /libs\n\n  set ACL for sling-scripting\n\n    allow   jcr:read    on /apps\n\n    allow   jcr:read    on /libs\n\n  end"})
+                .put("scripts", new String[]{"create service user sling-scripting with path system/sling\n\nset principal ACL for sling-scripting\n  allow   jcr:read    on /apps\n  allow   jcr:read    on /libs\nend"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.scripting.core=sling-scripting"})
+                .put("user.mapping", new String[]{"org.apache.sling.scripting.core=[sling-scripting]"})
                 .asOption()
         );
     }
@@ -958,10 +1011,11 @@ public class SlingOptions {
         return composite(
             sling(),
             slingScripting(),
+            spifly(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.groovy").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-json").version(versionResolver),
-            mavenBundle().groupId("org.codehaus.groovy").artifactId("groovy-templates").version(versionResolver)
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-templates").version(versionResolver)
         );
     }
 
@@ -991,8 +1045,9 @@ public class SlingOptions {
             slingCaconfig(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.jsp").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.jsp.taglib").version(versionResolver),
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.el-api").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.jsp-api").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.el-api").version(versionResolver)
+            mavenBundle().groupId("org.apache.geronimo.bundles").artifactId("jstl").version(versionResolver)
         );
     }
 
@@ -1010,12 +1065,11 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.sightly.compiler").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.sightly.compiler.java").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.sightly.js.provider").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.sightly.models.provider").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.sightly.runtime").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.rhino").version(versionResolver),
             mavenBundle().groupId("org.antlr").artifactId("antlr4-runtime").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.scripting.sightly.js.provider=sling-scripting"})
+                .put("user.mapping", new String[]{"org.apache.sling.scripting.sightly.js.provider=[sling-scripting]"})
                 .asOption()
         );
     }
@@ -1028,7 +1082,7 @@ public class SlingOptions {
             slingI18n(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.thymeleaf").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.scripting.thymeleaf=sling-scripting"})
+                .put("user.mapping", new String[]{"org.apache.sling.scripting.thymeleaf=[sling-scripting]"})
                 .asOption()
         );
     }
@@ -1041,8 +1095,12 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.servlets.get").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.servlets.post").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.servlets.resolver").version(versionResolver),
+            factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
+                .put("whitelist.bundles", new String[]{"org.apache.sling.servlets.post"})
+                .put("whitelist.name", "sling-servlets")
+                .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
-                .put("user.mapping", new String[]{"org.apache.sling.servlets.resolver:console=sling-readall", "org.apache.sling.servlets.resolver:scripts=sling-scripting"})
+                .put("user.mapping", new String[]{"org.apache.sling.servlets.resolver:console=[sling-readall]", "org.apache.sling.servlets.resolver:scripts=[sling-scripting]"})
                 .asOption()
         );
     }
@@ -1053,7 +1111,10 @@ public class SlingOptions {
             slingAuthForm(),
             slingScriptingJavascript(),
             composumNodes(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.starter.content").version(versionResolver)
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.starter.content").version(versionResolver),
+            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
+                .put("scripts", new String[]{"create path (sling:OrderedFolder) /content/starter\n\nset ACL for everyone\n  allow     jcr:read    on /content/starter\nend"})
+                .asOption()
         );
     }
 
@@ -1111,6 +1172,7 @@ public class SlingOptions {
             jackrabbit(),
             tika(),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-authorization-principalbased").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-blob").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-blob-plugins").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-commons").version(versionResolver),
@@ -1157,14 +1219,13 @@ public class SlingOptions {
             slingServlets(),
             slingEvent(),
             jackrabbitVault(),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-commons").version(versionResolver),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-config").version(versionResolver),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-console").version(versionResolver),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-core-jslibs").version(versionResolver),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-user-management").version(versionResolver),
-            mavenBundle().groupId("com.composum.sling.core").artifactId("composum-sling-package-manager").version(versionResolver),
+            mavenBundle().groupId("com.composum.nodes").artifactId("composum-nodes-commons").version(versionResolver),
+            mavenBundle().groupId("com.composum.nodes").artifactId("composum-nodes-console").version(versionResolver),
+            mavenBundle().groupId("com.composum.nodes").artifactId("composum-nodes-jslibs").version(versionResolver),
+            mavenBundle().groupId("com.composum.nodes").artifactId("composum-nodes-pckgmgr").version(versionResolver),
+            mavenBundle().groupId("com.composum.nodes").artifactId("composum-nodes-usermgr").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
-                .put("whitelist.bundles", new String[]{"com.composum.core.commons", "com.composum.core.pckgmgr"})
+                .put("whitelist.bundles", new String[]{"com.composum.nodes.commons", "com.composum.nodes.pckgmgr", "com.composum.nodes.usermgr"})
                 .put("whitelist.name", "composum-nodes")
                 .asOption()
         );
