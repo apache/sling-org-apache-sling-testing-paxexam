@@ -46,7 +46,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption awaitility() {
         return composite(
             mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
-            mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
+            hamcrest()
         );
     }
 
@@ -96,6 +96,12 @@ public class SlingOptions {
             bootClasspathLibrary(greenmail).afterFramework(),
             bootClasspathLibrary(slf4j_api).afterFramework(), // GreenMail dependency
             bootClasspathLibrary(slf4j_simple).afterFramework() // GreenMail dependency
+        );
+    }
+
+    public static ModifiableCompositeOption hamcrest() {
+        return composite(
+            mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
         );
     }
 
@@ -270,7 +276,7 @@ public class SlingOptions {
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
-            mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
+            hamcrest()
         );
     }
 
