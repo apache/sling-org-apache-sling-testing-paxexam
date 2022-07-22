@@ -25,7 +25,6 @@ import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.ops4j.pax.exam.CoreOptions.bootClasspathLibrary;
 import static org.ops4j.pax.exam.CoreOptions.composite;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemPackages;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
@@ -91,7 +90,7 @@ public class SlingOptions {
             mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
             mavenBundle().groupId("com.sun.mail").artifactId("jakarta.mail").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-2.0.1").version(versionResolver),
-            junitBundles(),
+            junit(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
             bootClasspathLibrary(greenmail).afterFramework(),
             bootClasspathLibrary(slf4j_api).afterFramework(), // GreenMail dependency
@@ -125,6 +124,12 @@ public class SlingOptions {
             mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-annotations").version(versionResolver),
             mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-core").version(versionResolver),
             mavenBundle().groupId("com.fasterxml.jackson.core").artifactId("jackson-databind").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption junit() {
+        return composite(
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.junit").version(versionResolver)
         );
     }
 
@@ -282,7 +287,7 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption testcontainers() {
         return composite(
-            junitBundles(),
+            junit(),
             paxUrlWrap(),
             wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
             wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))

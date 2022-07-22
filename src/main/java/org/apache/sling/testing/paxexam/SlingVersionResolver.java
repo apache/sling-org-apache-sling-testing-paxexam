@@ -66,6 +66,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.groovy:groovy-json", "4.0.3");
         versions.put("org.apache.groovy:groovy-xml", "4.0.3");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit", "4.13.2_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.annotation-api-1.3", "1.3_3");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1", "2.9.0");
