@@ -20,7 +20,6 @@ package org.apache.sling.testing.paxexam;
 
 import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.ModifiableCompositeOption;
-import org.ops4j.pax.exam.options.WrappedUrlProvisionOption;
 import org.ops4j.pax.exam.util.PathUtils;
 
 import static org.ops4j.pax.exam.CoreOptions.bootClasspathLibrary;
@@ -319,11 +318,10 @@ public class SlingOptions {
             mavenBundle().groupId("commons-collections").artifactId("commons-collections").version(versionResolver),
             mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
             mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
-            mavenBundle().groupId("commons-lang").artifactId("commons-lang").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-collections4").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-math").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.converter").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.converter").version(versionResolver),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.auth.core=[sling-readall]"})
                 .asOption(),
@@ -416,7 +414,8 @@ public class SlingOptions {
         return composite(
             scr(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.metrics").version(versionResolver),
-            mavenBundle().groupId("io.dropwizard.metrics").artifactId("metrics-core").version(versionResolver)
+            mavenBundle().groupId("io.dropwizard.metrics").artifactId("metrics-core").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
         );
     }
 
@@ -505,7 +504,7 @@ public class SlingOptions {
         return composite(
             webconsole(),
             slingDiscovery(),
-            slingHealthcheck(),
+            felixHealthcheck(),
             httpcomponentsClient(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.base").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.discovery.commons").version(versionResolver),
@@ -537,7 +536,7 @@ public class SlingOptions {
             sling(),
             slingJcr(),
             slingEvent(),
-            slingHealthcheck(),
+            felixHealthcheck(),
             httpcomponentsClient(),
             jackrabbitVault(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.distribution.api").version(versionResolver),
@@ -586,17 +585,6 @@ public class SlingOptions {
             mavenBundle().groupId("com.google.guava").artifactId("guava").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("oak-jackrabbit-api").version(versionResolver),
             mavenBundle().groupId("org.apache.jackrabbit").artifactId("jackrabbit-jcr-commons").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption slingHealthcheck() {
-        return composite(
-            felixHealthcheck(),
-            sling(),
-            slingJcr(),
-            slingScripting(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.api").version(versionResolver),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.hc.support").version(versionResolver)
         );
     }
 
@@ -725,24 +713,18 @@ public class SlingOptions {
         );
     }
 
-    // DO NOT REMOVE additional system packages
     public static ModifiableCompositeOption slingXss() {
         return composite(
             sling(),
             httpcomponentsClient(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.xss").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-text").version(versionResolver),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
                 .put("scripts", new String[]{"create service user sling-xss with path system/sling\n\nset principal ACL for sling-xss\n  allow   jcr:read    on /apps/sling/xss\n  allow   jcr:read    on /libs/sling/xss\nend\n\ncreate path (sling:Folder) /apps/sling/xss\ncreate path (sling:Folder) /libs/sling/xss"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended")
                 .put("user.mapping", new String[]{"org.apache.sling.xss=[sling-xss]"})
-                .asOption(),
-            systemPackages(
-                "org.w3c.dom.css",
-                "org.w3c.dom.html",
-                "org.w3c.dom.ranges",
-                "org.w3c.dom.traversal"
-            )
+                .asOption()
         );
     }
 
@@ -780,7 +762,7 @@ public class SlingOptions {
     public static ModifiableCompositeOption slingInstallerHealthcheck() {
         return composite(
             slingInstaller(),
-            slingHealthcheck(),
+            felixHealthcheck(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.installer.hc").version(versionResolver)
         );
     }
@@ -885,9 +867,8 @@ public class SlingOptions {
             slingJcr(),
             slingJcrRepoinit(),
             slingAdapter(),
-            slingBundleresource(),
             slingDiscoveryStandalone(),
-            slingHealthcheck(),
+            felixHealthcheck(),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.prefs").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole.plugins.memoryusage").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole.plugins.packageadmin").version(versionResolver),
@@ -941,7 +922,7 @@ public class SlingOptions {
             newConfiguration("org.apache.jackrabbit.vault.packaging.impl.PackagingImpl")
                 .put("authIdsForHookExecution", new String[]{"sling-installer-factory-packages"})
                 .put("authIdsForRootInstallation", new String[]{"sling-installer-factory-packages"})
-                .put("packageRoots", new String[]{"/etc/packages"})
+                .put("packageRoots", new String[]{"/var/packages"})
                 .asOption(),
             factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
                 .put("scripts", new String[]{"create path (sling:Folder) /apps\ncreate path (sling:Folder) /libs\ncreate path (sling:Folder) /var\ncreate path (sling:OrderedFolder) /content"})
@@ -1048,7 +1029,6 @@ public class SlingOptions {
         );
     }
 
-    // DO NOT REMOVE org.apache.sling.scripting.jsp-api and org.apache.sling.scripting.el-api
     public static ModifiableCompositeOption slingScriptingJsp() {
         return composite(
             slingScripting(),
@@ -1199,15 +1179,11 @@ public class SlingOptions {
         );
     }
 
-    // DO NOT REMOVE additional system packages
     public static ModifiableCompositeOption jackrabbitVault() {
         return composite(
             scr(),
             jackrabbit(),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver),
-            systemPackages(
-                "org.w3c.dom.html"
-            )
+            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver)
         );
     }
 
