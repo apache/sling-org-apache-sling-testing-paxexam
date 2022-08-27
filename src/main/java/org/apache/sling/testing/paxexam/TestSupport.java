@@ -87,9 +87,7 @@ public abstract class TestSupport {
             paxTinybundles(),
             backing(),
             spifly(),
-            jacoco(),
-            junit(),
-            hamcrest()
+            jacoco()
         );
     }
 
