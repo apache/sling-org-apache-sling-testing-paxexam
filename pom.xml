@@ -105,7 +105,7 @@
     <dependency>
       <groupId>org.ops4j.pax.tinybundles</groupId>
       <artifactId>tinybundles</artifactId>
-      <scope>provided</scope>
+      <scope>compile</scope>
       <version>3.0.0</version>
     </dependency>
     <!-- logging -->
@@ -123,13 +123,13 @@
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam</artifactId>
-      <scope>provided</scope>
+      <scope>compile</scope>
       <version>${org.ops4j.pax.exam.version}</version>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
       <artifactId>pax-exam-cm</artifactId>
-      <scope>provided</scope>
+      <scope>compile</scope>
       <version>${org.ops4j.pax.exam.version}</version>
     </dependency>
     <dependency>
