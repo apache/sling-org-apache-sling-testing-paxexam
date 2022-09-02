@@ -37,8 +37,6 @@ import org.ops4j.pax.tinybundles.core.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.backing;
-import static org.apache.sling.testing.paxexam.SlingOptions.hamcrest;
-import static org.apache.sling.testing.paxexam.SlingOptions.junit;
 import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
 import static org.apache.sling.testing.paxexam.SlingOptions.spifly;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
