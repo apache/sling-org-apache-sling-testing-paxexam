@@ -74,7 +74,8 @@ public abstract class TestSupport {
         return when(Objects.nonNull(option)).useOptions(option);
     }
 
-    private ModifiableCompositeOption configuration() {
+    // commons options for both default and server mode
+    protected ModifiableCompositeOption commonConfiguration() {
         return composite(
             failOnUnresolvedBundles(),
             keepCaches(),
@@ -89,15 +90,17 @@ public abstract class TestSupport {
         );
     }
 
+    // default mode
     protected ModifiableCompositeOption baseConfiguration() {
         return composite(
-            configuration(),
+            commonConfiguration(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject()
         );
     }
 
+    // server mode
     protected ModifiableCompositeOption serverBaseConfiguration() {
-        return configuration();
+        return commonConfiguration();
     }
 
     public static int findFreePort() {
