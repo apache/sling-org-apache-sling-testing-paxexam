@@ -39,8 +39,10 @@ import org.osgi.service.cm.ConfigurationAdmin;
 import static org.apache.sling.testing.paxexam.SlingOptions.backing;
 import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
 import static org.apache.sling.testing.paxexam.SlingOptions.spifly;
+import static org.apache.sling.testing.paxexam.SlingOptions.versionResolver;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
+import static org.ops4j.pax.exam.CoreOptions.junitBundles;
 import static org.ops4j.pax.exam.CoreOptions.keepCaches;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.repository;
@@ -94,7 +96,9 @@ public abstract class TestSupport {
     protected ModifiableCompositeOption baseConfiguration() {
         return composite(
             commonConfiguration(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject()
+            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.testing.paxexam").versionAsInProject(),
+            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").version(versionResolver),
+            junitBundles()
         );
     }
 

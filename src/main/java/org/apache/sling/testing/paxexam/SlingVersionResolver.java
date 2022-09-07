@@ -65,6 +65,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.groovy:groovy", "4.0.3");
         versions.put("org.apache.groovy:groovy-json", "4.0.3");
         versions.put("org.apache.groovy:groovy-xml", "4.0.3");
+        versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.hamcrest", "1.3_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit", "4.12_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
@@ -73,7 +74,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-2.0.1", "2.0.1_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3", "2.3_3");
-        versions.put("org.awaitility:awaitility", "4.2.0");
+        versions.put("org.awaitility:awaitility", "3.1.6");
         versions.put("org.hamcrest:hamcrest", "2.2");
         versions.put("org.ops4j.base:ops4j-base-io", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.1");
