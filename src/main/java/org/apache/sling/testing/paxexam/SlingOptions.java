@@ -1002,10 +1002,8 @@ public class SlingOptions {
         return composite(
             sling(),
             slingScripting(),
-            spifly(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.scripting.groovy").version(versionResolver),
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
-            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver),
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy-templates").version(versionResolver)
         );
     }
@@ -1142,10 +1140,10 @@ public class SlingOptions {
             mavenBundle().groupId("javax.jcr").artifactId("jcr").version(versionResolver),
             mavenBundle().groupId("javax.servlet").artifactId("javax.servlet-api").version(versionResolver),
             mavenBundle().groupId("commons-codec").artifactId("commons-codec").version(versionResolver),
-            mavenBundle().groupId("commons-collections").artifactId("commons-collections").version(versionResolver),
             mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
             mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
             mavenBundle().groupId("commons-lang").artifactId("commons-lang").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-collections4").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-atinject_1.0_spec").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-el_2.2_spec").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-interceptor_1.1_spec").version(versionResolver),
@@ -1182,7 +1180,8 @@ public class SlingOptions {
         return composite(
             scr(),
             jackrabbit(),
-            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver)
+            mavenBundle().groupId("org.apache.jackrabbit.vault").artifactId("org.apache.jackrabbit.vault").version(versionResolver),
+            mavenBundle().groupId("commons-collections").artifactId("commons-collections").version(versionResolver)
         );
     }
 
