@@ -39,7 +39,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
         versions.put("ch.qos.logback:logback-classic", "1.2.11");
         versions.put("ch.qos.logback:logback-core", "1.2.11");
-        versions.put("com.icegreen:greenmail", "2.0.0-alpha-3");
+        versions.put("com.icegreen:greenmail", "2.0.0");
         versions.put("com.sun.mail:jakarta.mail", "2.0.1");
         versions.put("com.fasterxml.jackson.core:jackson-annotations", "2.14.2");
         versions.put("com.fasterxml.jackson.core:jackson-core", "2.14.2");
