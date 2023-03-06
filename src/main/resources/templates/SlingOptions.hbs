@@ -40,6 +40,9 @@ public class SlingOptions {
     @SuppressWarnings("java:S1104")
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
+    private SlingOptions() { //
+    }
+
     public static ModifiableCompositeOption awaitility() {
         return composite(
             mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
