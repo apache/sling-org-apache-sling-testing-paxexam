@@ -21,4 +21,5 @@
 <suppressions>
   <suppress checks="MultipleStringLiterals" files=".*\/SlingOptions\.java"/>
   <suppress checks="MultipleStringLiterals" files=".*\/SlingVersionResolver\.java"/>
+  <suppress checks="SeparatorWrap" files=".*\/SlingOptions\.java"/>
 </suppressions>
