@@ -57,6 +57,7 @@ public abstract class TestSupport {
     private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
 
     @Inject
+    @SuppressWarnings("checkstyle:VisibilityModifier")
     protected ConfigurationAdmin configurationAdmin;
 
     private static final String WORKING_DIRECTORY_PROPERTY_KEY = "sling.testing.paxexam.workingDirectory";
