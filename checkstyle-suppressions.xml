@@ -28,5 +28,7 @@
   <suppress checks="MultipleStringLiterals" files=".*\/SlingOptions\.java"/>
   <suppress checks="MultipleStringLiterals" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="OverloadMethodsDeclarationOrder" files=".*\/SlingOptions\.java"/>
+  <suppress checks="ReturnCount" files=".*\/SlingOptions\.java"/>
+  <suppress checks="ReturnCount" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="SeparatorWrap" files=".*\/SlingOptions\.java"/>
 </suppressions>
