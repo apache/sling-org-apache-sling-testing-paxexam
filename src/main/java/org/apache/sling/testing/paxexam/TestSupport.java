@@ -108,7 +108,7 @@ public abstract class TestSupport {
     }
 
     public static int findFreePort() {
-        try (final ServerSocket serverSocket = new ServerSocket(0)) {
+        try (ServerSocket serverSocket = new ServerSocket(0)) {
             return serverSocket.getLocalPort();
         } catch (Exception e) {
             throw new RuntimeException(e);
