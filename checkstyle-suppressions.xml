@@ -23,6 +23,7 @@
   <suppress checks="ExecutableStatementCount" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="MagicNumber" files=".*\/SlingOptions\.java"/>
   <suppress checks="MethodCount" files=".*\/SlingOptions\.java"/>
+  <suppress checks="MethodLength" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="MultipleStringLiterals" files=".*\/SlingOptions\.java"/>
   <suppress checks="MultipleStringLiterals" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="OverloadMethodsDeclarationOrder" files=".*\/SlingOptions\.java"/>
