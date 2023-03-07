@@ -21,6 +21,7 @@
 <suppressions>
   <suppress checks="AbstractClassName" files=".*\/TestSupport\.java"/>
   <suppress checks="ExecutableStatementCount" files=".*\/SlingVersionResolver\.java"/>
+  <suppress checks="JavaNCSS" files=".*\/SlingVersionResolver\.java"/>
   <suppress checks="MagicNumber" files=".*\/SlingOptions\.java"/>
   <suppress checks="MethodCount" files=".*\/SlingOptions\.java"/>
   <suppress checks="MethodLength" files=".*\/SlingVersionResolver\.java"/>
