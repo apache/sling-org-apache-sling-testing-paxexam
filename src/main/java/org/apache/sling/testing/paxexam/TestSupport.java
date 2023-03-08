@@ -53,6 +53,9 @@ import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.when;
 import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
+/**
+ * Test Support for OPS4J Pax Exam.
+ */
 public abstract class TestSupport {
 
     private static final String WORKING_DIRECTORY_PROPERTY_KEY = "sling.testing.paxexam.workingDirectory";
