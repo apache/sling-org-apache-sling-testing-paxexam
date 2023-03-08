@@ -16,6 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+/**
+ * Provides support for testing with OPS4J Pax Exam.
+ */
 @Version("5.0.0")
 package org.apache.sling.testing.paxexam;
 
