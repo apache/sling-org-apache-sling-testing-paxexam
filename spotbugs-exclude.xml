@@ -28,4 +28,9 @@
     <Class name="org.apache.sling.testing.paxexam.TestSupport"/>
     <Method name="testBundle"/>
   </Match>
+  <Match>
+    <Bug pattern="UNENCRYPTED_SERVER_SOCKET"/>
+    <Class name="org.apache.sling.testing.paxexam.TestSupport"/>
+    <Method name="findFreePort"/>
+  </Match>
 </FindBugsFilter>
