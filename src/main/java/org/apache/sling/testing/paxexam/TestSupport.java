@@ -28,9 +28,10 @@ import java.util.UUID;
 import javax.inject.Inject;
 
 import org.ops4j.pax.exam.CoreOptions;
-import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.options.ModifiableCompositeOption;
 import org.ops4j.pax.exam.options.OptionalCompositeOption;
+import org.ops4j.pax.exam.options.SystemPropertyOption;
+import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.util.PathUtils;
 import org.ops4j.pax.tinybundles.core.TinyBundle;
@@ -156,7 +157,7 @@ public abstract class TestSupport {
      *
      * @return the property option
      */
-    public static Option failOnUnresolvedBundles() {
+    public static SystemPropertyOption failOnUnresolvedBundles() {
         return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
     }
 
@@ -165,7 +166,7 @@ public abstract class TestSupport {
      *
      * @return the property option
      */
-    public static Option localMavenRepo() {
+    public static OptionalCompositeOption localMavenRepo() {
         final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
         return when(localRepository.length() > 0).useOptions(
             systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localRepository)
@@ -178,9 +179,9 @@ public abstract class TestSupport {
      * @param systemProperty the System property which contains the pathname of the test bundle
      * @return the provisioning option
      */
-    public static Option testBundle(final String systemProperty) {
-        final String filename = System.getProperty(systemProperty);
-        final File file = new File(filename);
+    public static UrlProvisionOption testBundle(final String systemProperty) {
+        final String pathname = System.getProperty(systemProperty);
+        final File file = new File(pathname);
         return bundle(file.toURI().toString());
     }
 
@@ -190,7 +191,7 @@ public abstract class TestSupport {
      * @param classes the classes to include in the OSGi bundle
      * @return the provisioning option
      */
-    public static Option buildBundleWithBnd(final Class... classes) {
+    public static UrlProvisionOption buildBundleWithBnd(final Class... classes) {
         final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
         for (final Class clazz : classes) {
             bundle.add(clazz);
