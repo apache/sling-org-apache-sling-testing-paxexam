@@ -43,6 +43,7 @@ public class SlingOptionsSlingCommonsPermissionsSlingIT extends SlingOptionsTest
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

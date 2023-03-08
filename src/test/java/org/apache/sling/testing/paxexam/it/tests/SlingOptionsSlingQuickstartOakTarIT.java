@@ -46,6 +46,7 @@ public class SlingOptionsSlingQuickstartOakTarIT extends SlingOptionsHttpTestSup
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

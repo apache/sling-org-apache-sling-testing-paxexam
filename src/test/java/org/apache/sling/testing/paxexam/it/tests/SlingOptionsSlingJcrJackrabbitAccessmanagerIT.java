@@ -43,6 +43,7 @@ public class SlingOptionsSlingJcrJackrabbitAccessmanagerIT extends SlingOptionsT
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

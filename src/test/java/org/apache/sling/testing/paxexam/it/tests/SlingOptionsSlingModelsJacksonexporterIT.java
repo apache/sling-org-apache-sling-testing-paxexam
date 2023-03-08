@@ -43,6 +43,7 @@ public class SlingOptionsSlingModelsJacksonexporterIT extends SlingOptionsTestSu
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

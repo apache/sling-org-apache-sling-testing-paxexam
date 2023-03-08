@@ -43,6 +43,7 @@ public class SlingOptionsSlingInstallerProviderJcrIT extends SlingOptionsTestSup
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

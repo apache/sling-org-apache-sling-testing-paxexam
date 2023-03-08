@@ -43,6 +43,7 @@ public class SlingOptionsSlingCommonsOsgiIT extends SlingOptionsTestSupport {
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

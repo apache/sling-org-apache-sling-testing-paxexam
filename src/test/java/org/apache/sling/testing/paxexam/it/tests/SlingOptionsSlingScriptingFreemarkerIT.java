@@ -43,6 +43,7 @@ public class SlingOptionsSlingScriptingFreemarkerIT extends SlingOptionsTestSupp
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

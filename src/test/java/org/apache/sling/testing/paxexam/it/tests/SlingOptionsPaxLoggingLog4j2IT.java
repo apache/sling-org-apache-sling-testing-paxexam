@@ -43,6 +43,7 @@ public class SlingOptionsPaxLoggingLog4j2IT extends SlingOptionsTestSupport {
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 

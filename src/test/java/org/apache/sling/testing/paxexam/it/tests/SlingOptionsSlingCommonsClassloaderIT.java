@@ -43,6 +43,7 @@ public class SlingOptionsSlingCommonsClassloaderIT extends SlingOptionsTestSuppo
     }
 
     @Test
+    @SuppressWarnings("java:S2699")
     public void test() {
     }
 
