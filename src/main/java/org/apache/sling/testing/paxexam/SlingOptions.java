@@ -39,7 +39,7 @@ import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 @SuppressWarnings("java:S1192")
 public final class SlingOptions {
 
-    @SuppressWarnings({"java:S1104", "checkstyle:VisibilityModifier"})
+    @SuppressWarnings({"java:S1104", "java:S1444", "checkstyle:VisibilityModifier"})
     public static SlingVersionResolver versionResolver = new SlingVersionResolver();
 
     private SlingOptions() { //
