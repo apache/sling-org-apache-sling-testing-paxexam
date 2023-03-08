@@ -25,7 +25,9 @@ import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.exam.options.MavenUrlReference.VersionResolver;
 
 /**
- * NOTE: This file is generated from Sling's Karaf Features
+ * Sling's Version Resolver for Sling's Options.
+ *
+ * <p>NOTE: This file is generated from Sling's Karaf Features
  */
 @SuppressWarnings({"java:S1192", "java:S4143"})
 public class SlingVersionResolver implements VersionResolver {

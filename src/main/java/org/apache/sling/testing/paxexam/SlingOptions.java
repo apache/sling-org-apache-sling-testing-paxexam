@@ -32,7 +32,9 @@ import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.factoryConfigurati
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 
 /**
- * NOTE: This file is generated from Sling's Karaf Features
+ * Sling's Options for Pax Exam created from Sling's Karaf Features.
+ *
+ * <p>NOTE: This file is generated from Sling's Karaf Features
  */
 @SuppressWarnings("java:S1192")
 public final class SlingOptions {
