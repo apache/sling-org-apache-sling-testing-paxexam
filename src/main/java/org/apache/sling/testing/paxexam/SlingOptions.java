@@ -1287,6 +1287,9 @@ public final class SlingOptions {
             mavenBundle().groupId("org.mongodb").artifactId("mongo-java-driver").version(versionResolver),
             mavenBundle().groupId("com.h2database").artifactId("h2-mvstore").version(versionResolver),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.jcr.oak.server").version(versionResolver),
+            newConfiguration("org.apache.felix.http")
+                .put("org.osgi.service.http.port", httpPort)
+                .asOption(),
             newConfiguration("org.apache.jackrabbit.oak.plugins.index.lucene.LuceneIndexProviderService")
                 .put("localIndexDir", localIndexDir)
                 .asOption(),
