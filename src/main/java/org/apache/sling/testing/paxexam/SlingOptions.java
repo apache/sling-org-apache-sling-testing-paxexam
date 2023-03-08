@@ -84,8 +84,8 @@ public class SlingOptions {
 
     public static ModifiableCompositeOption greenmail() {
         final MavenArtifactProvisionOption greenmail = mavenBundle().groupId("com.icegreen").artifactId("greenmail").version(versionResolver);
-        final MavenArtifactProvisionOption slf4j_api = mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver);
-        final MavenArtifactProvisionOption slf4j_simple = mavenBundle().groupId("org.slf4j").artifactId("slf4j-simple").version(versionResolver);
+        final MavenArtifactProvisionOption slf4jApi = mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver);
+        final MavenArtifactProvisionOption slf4jSimple = mavenBundle().groupId("org.slf4j").artifactId("slf4j-simple").version(versionResolver);
         return composite(
             greenmail,
             mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
@@ -94,8 +94,8 @@ public class SlingOptions {
             junit(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
             bootClasspathLibrary(greenmail).afterFramework(),
-            bootClasspathLibrary(slf4j_api).afterFramework(), // GreenMail dependency
-            bootClasspathLibrary(slf4j_simple).afterFramework() // GreenMail dependency
+            bootClasspathLibrary(slf4jApi).afterFramework(), // GreenMail dependency
+            bootClasspathLibrary(slf4jSimple).afterFramework() // GreenMail dependency
         );
     }
 
