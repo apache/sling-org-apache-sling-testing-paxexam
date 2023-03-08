@@ -109,6 +109,7 @@ public abstract class TestSupport {
         return commonConfiguration();
     }
 
+    @SuppressWarnings("checkstyle:IllegalCatch")
     public static int findFreePort() {
         try (ServerSocket serverSocket = new ServerSocket(0)) {
             return serverSocket.getLocalPort();
