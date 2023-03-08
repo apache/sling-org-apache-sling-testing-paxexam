@@ -54,13 +54,13 @@ import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
 public abstract class TestSupport {
 
-    private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
+    private static final String WORKING_DIRECTORY_PROPERTY_KEY = "sling.testing.paxexam.workingDirectory";
 
     @Inject
     @SuppressWarnings("checkstyle:VisibilityModifier")
     protected ConfigurationAdmin configurationAdmin;
 
-    private static final String WORKING_DIRECTORY_PROPERTY_KEY = "sling.testing.paxexam.workingDirectory";
+    private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
 
     protected String workingDirectory() {
         return workingDirectory;

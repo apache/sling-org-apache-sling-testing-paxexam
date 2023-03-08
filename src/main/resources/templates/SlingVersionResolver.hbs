@@ -30,9 +30,9 @@ import org.ops4j.pax.exam.options.MavenUrlReference.VersionResolver;
 @SuppressWarnings({"java:S1192", "java:S4143"})
 public class SlingVersionResolver implements VersionResolver {
 
-    private final Map<String, String> versions = new HashMap<>();
-
     public static final String SLING_GROUP_ID = "org.apache.sling";
+
+    private final Map<String, String> versions = new HashMap<>();
 
     public SlingVersionResolver() {
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
