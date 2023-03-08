@@ -73,6 +73,7 @@ public abstract class TestSupport {
 
     protected OptionalCompositeOption jacoco() {
         final String jacocoCommand = System.getProperty("jacoco.command");
+        @SuppressWarnings("checkstyle:AvoidInlineConditionals")
         final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
         return when(Objects.nonNull(option)).useOptions(option);
     }
