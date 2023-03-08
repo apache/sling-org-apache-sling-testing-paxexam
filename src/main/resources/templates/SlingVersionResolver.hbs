@@ -34,6 +34,9 @@ public class SlingVersionResolver implements VersionResolver {
 
     private final Map<String, String> versions = new HashMap<>();
 
+    /**
+     * Creates a new {@code SlingVersionResolver}.
+     */
     public SlingVersionResolver() {
         versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
@@ -115,20 +118,47 @@ public class SlingVersionResolver implements VersionResolver {
         return String.format("%s:%s", groupId, artifactId);
     }
 
+    /**
+     * Sets the version of the bundle.
+     *
+     * @param groupId    the group ID
+     * @param artifactId the artifact ID
+     * @param version    the version
+     * @return the previous version, or {@code null}
+     */
     public String setVersion(final String groupId, final String artifactId, final String version) {
         return versions.put(key(groupId, artifactId), version);
     }
 
+    /**
+     * Sets the version of the bundle by using the declared version from Maven project.
+     *
+     * @param groupId    the group ID
+     * @param artifactId the artifact ID
+     * @return the previous version, or {@code null}
+     */
     public String setVersionFromProject(final String groupId, final String artifactId) {
         final String version = MavenUtils.getArtifactVersion(groupId, artifactId);
         return versions.put(key(groupId, artifactId), version);
     }
 
+    /**
+     * Gets the version of the bundle.
+     *
+     * @param groupId    the group ID
+     * @param artifactId the artifact ID
+     * @return the version, or {@code null}
+     */
     @Override
     public String getVersion(final String groupId, final String artifactId) {
         return versions.get(key(groupId, artifactId));
     }
 
+    /**
+     * Gets the Java major version from System property {@code java.specification.version} or {@code 0} in case of error.
+     *
+     * @return the Java version
+     */
     public static int getJavaVersion() {
         final String version = System.getProperty("java.specification.version");
         try {

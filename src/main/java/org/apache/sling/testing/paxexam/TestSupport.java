@@ -62,15 +62,31 @@ public abstract class TestSupport {
 
     private final String workingDirectory = String.format("%s/target/paxexam/%s/%s", PathUtils.getBaseDir(), getClass().getSimpleName(), UUID.randomUUID());
 
+    /**
+     * Provides a random path for a working directory below Maven's build target directory.
+     *
+     * @return the absolute path for working directory
+     */
     protected String workingDirectory() {
         return workingDirectory;
     }
 
+    /**
+     * Provides Felix HTTP Service's HTTP port ({@code org.osgi.service.http.port}).
+     *
+     * @return the HTTP port
+     * @throws IOException if reading OSGi configuration fails
+     */
     protected int httpPort() throws IOException {
         final Dictionary<String, Object> properties = configurationAdmin.getConfiguration("org.apache.felix.http").getProperties();
         return Integer.parseInt(properties.get("org.osgi.service.http.port").toString());
     }
 
+    /**
+     * Provides the Jacoco VM option when System property {@code jacoco.command} is set.
+     *
+     * @return the property option
+     */
     protected OptionalCompositeOption jacoco() {
         final String jacocoCommand = System.getProperty("jacoco.command");
         @SuppressWarnings("checkstyle:AvoidInlineConditionals")
@@ -78,7 +94,11 @@ public abstract class TestSupport {
         return when(Objects.nonNull(option)).useOptions(option);
     }
 
-    // commons options for both default and server mode
+    /**
+     * Provides commons property and provisioning options for both default and server mode.
+     *
+     * @return the composite option
+     */
     protected ModifiableCompositeOption commonConfiguration() {
         return composite(
             failOnUnresolvedBundles(),
@@ -94,7 +114,11 @@ public abstract class TestSupport {
         );
     }
 
-    // default mode
+    /**
+     * Provides base property and provisioning options for default mode.
+     *
+     * @return the composite option
+     */
     protected ModifiableCompositeOption baseConfiguration() {
         return composite(
             commonConfiguration(),
@@ -104,11 +128,20 @@ public abstract class TestSupport {
         );
     }
 
-    // server mode
+    /**
+     * Provides base property and provisioning options for server mode.
+     *
+     * @return the composite option
+     */
     protected ModifiableCompositeOption serverBaseConfiguration() {
         return commonConfiguration();
     }
 
+    /**
+     * Finds a free local port.
+     *
+     * @return the free local port
+     */
     @SuppressWarnings("checkstyle:IllegalCatch")
     public static int findFreePort() {
         try (ServerSocket serverSocket = new ServerSocket(0)) {
@@ -118,10 +151,20 @@ public abstract class TestSupport {
         }
     }
 
+    /**
+     * Provides an option to set the System property {@code pax.exam.osgi.unresolved.fail} to {@code "true"}.
+     *
+     * @return the property option
+     */
     public static Option failOnUnresolvedBundles() {
         return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
     }
 
+    /**
+     * Reads the System property {@code maven.repo.local} and provides an option to set the System property {@code org.ops4j.pax.url.mvn.localRepository} when former is not empty.
+     *
+     * @return the property option
+     */
     public static Option localMavenRepo() {
         final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
         return when(localRepository.length() > 0).useOptions(
@@ -129,12 +172,24 @@ public abstract class TestSupport {
         );
     }
 
+    /**
+     * Reads the pathname of the test bundle from the given System property and provides a provisioning option.
+     *
+     * @param systemProperty the System property which contains the pathname of the test bundle
+     * @return the provisioning option
+     */
     public static Option testBundle(final String systemProperty) {
         final String filename = System.getProperty(systemProperty);
         final File file = new File(filename);
         return bundle(file.toURI().toString());
     }
 
+    /**
+     * Builds an OSGi bundle with BND from given classes and provides it as provisioning option.
+     *
+     * @param classes the classes to include in the OSGi bundle
+     * @return the provisioning option
+     */
     public static Option buildBundleWithBnd(final Class... classes) {
         final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
         for (final Class clazz : classes) {
