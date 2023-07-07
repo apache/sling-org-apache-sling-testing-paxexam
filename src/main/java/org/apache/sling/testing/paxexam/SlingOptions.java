@@ -430,12 +430,6 @@ public final class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingCommonsPermissions() {
-        return composite(
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.permissions").version(versionResolver)
-        );
-    }
-
     public static ModifiableCompositeOption slingCommonsScheduler() {
         return composite(
             scr(),
