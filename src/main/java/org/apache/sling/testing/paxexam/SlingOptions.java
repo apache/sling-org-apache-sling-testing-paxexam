@@ -436,22 +436,6 @@ public final class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption slingCommonsPermissionsSling() {
-        return composite(
-            scr(),
-            slingCommonsPermissions(),
-            slingJcr(),
-            mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.permissions.sling").version(versionResolver),
-            factoryConfiguration("org.apache.sling.jcr.base.internal.LoginAdminWhitelist.fragment")
-                .put("whitelist.bundles", new String[]{"org.apache.sling.commons.permissions.sling"})
-                .put("whitelist.name", "sling-commons-permissions-sling")
-                .asOption(),
-            factoryConfiguration("org.apache.sling.jcr.repoinit.RepositoryInitializer")
-                .put("scripts", new String[]{"create path (sling:Folder) /libs/sling/permissions(sling:OrderedFolder)"})
-                .asOption()
-        );
-    }
-
     public static ModifiableCompositeOption slingCommonsScheduler() {
         return composite(
             scr(),
