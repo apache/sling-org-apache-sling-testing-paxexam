@@ -35,7 +35,7 @@
   <description>Test support for use with Pax Exam.</description>
 
   <properties>
-    <sling.java.version>8</sling.java.version>
+    <sling.java.version>11</sling.java.version>
     <javadoc.excludePackageNames/>
     <project.build.outputTimestamp>1980-01-01T00:00:02Z</project.build.outputTimestamp>
     <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
