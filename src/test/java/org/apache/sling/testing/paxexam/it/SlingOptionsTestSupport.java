@@ -47,7 +47,7 @@ public abstract class SlingOptionsTestSupport {
             failOnUnresolvedBundles(),
             keepCaches(),
             localMavenRepo(),
-            repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots(),
+            allowSnapshotsExceptRelease(),
             CoreOptions.workingDirectory(workingDirectory()),
             testBundle("bundle.filename"),
             backing(),
@@ -57,6 +57,13 @@ public abstract class SlingOptionsTestSupport {
 
     protected Option failOnUnresolvedBundles() {
         return systemProperty("pax.exam.osgi.unresolved.fail").value("true");
+    }
+
+    protected Option allowSnapshotsExceptRelease() {
+        final String releaseVersion = System.getProperty("releaseVersion", "");
+        return when(releaseVersion.isBlank()).useOptions(
+            repository("https://repository.apache.org/snapshots/").id("apache-snapshots").allowSnapshots()
+        );
     }
 
     protected Option localMavenRepo() {
