@@ -61,7 +61,7 @@ public abstract class SlingOptionsTestSupport {
 
     protected Option localMavenRepo() {
         final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
-        return when(localRepository.length() > 0).useOptions(
+        return when(!localRepository.isBlank()).useOptions(
             systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localRepository)
         );
     }

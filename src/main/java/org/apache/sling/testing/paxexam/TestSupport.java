@@ -94,7 +94,7 @@ public abstract class TestSupport {
     protected OptionalCompositeOption jacoco() {
         final String jacocoCommand = System.getProperty("jacoco.it.command");
         @SuppressWarnings("checkstyle:AvoidInlineConditionals")
-        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isEmpty() ? vmOption(jacocoCommand) : null;
+        final VMOption option = Objects.nonNull(jacocoCommand) && !jacocoCommand.trim().isBlank() ? vmOption(jacocoCommand) : null;
         return when(Objects.nonNull(option)).useOptions(option);
     }
 
@@ -171,7 +171,7 @@ public abstract class TestSupport {
      */
     public static OptionalCompositeOption localMavenRepo() {
         final String localRepository = System.getProperty("maven.repo.local", ""); // PAXEXAM-543
-        return when(localRepository.length() > 0).useOptions(
+        return when(!localRepository.isBlank()).useOptions(
             systemProperty("org.ops4j.pax.url.mvn.localRepository").value(localRepository)
         );
     }
