@@ -67,9 +67,9 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.felix:org.apache.felix.scr", "2.2.6");
         versions.put("org.apache.felix:org.apache.felix.webconsole", "4.8.4");
         versions.put("org.apache.felix:org.apache.felix.webconsole.plugins.ds", "2.2.0");
-        versions.put("org.apache.groovy:groovy", "4.0.9");
-        versions.put("org.apache.groovy:groovy-json", "4.0.9");
-        versions.put("org.apache.groovy:groovy-xml", "4.0.9");
+        versions.put("org.apache.groovy:groovy", "4.0.13");
+        versions.put("org.apache.groovy:groovy-json", "4.0.13");
+        versions.put("org.apache.groovy:groovy-xml", "4.0.13");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.hamcrest", "1.3_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.jaxb-impl", "2.2.11_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.junit", "4.12_1");
@@ -151,8 +151,8 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.geronimo.specs:geronimo-interceptor_1.1_spec", "1.0");
         versions.put("org.apache.geronimo.specs:geronimo-jcdi_1.0_spec", "1.1");
         versions.put("org.apache.geronimo.specs:geronimo-jta_1.1_spec", "1.1.1");
-        versions.put("org.apache.groovy:groovy", "4.0.9");
-        versions.put("org.apache.groovy:groovy-templates", "4.0.9");
+        versions.put("org.apache.groovy:groovy", "4.0.13");
+        versions.put("org.apache.groovy:groovy-templates", "4.0.13");
         versions.put("org.apache.httpcomponents:httpclient-osgi", "4.5.14");
         versions.put("org.apache.httpcomponents:httpcore-osgi", "4.4.16");
         versions.put("org.apache.jackrabbit:jackrabbit-data", "2.20.8");
@@ -262,7 +262,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.scripting.core", "2.4.8");
         versions.put("org.apache.sling:org.apache.sling.scripting.el-api", "1.0.4");
         versions.put("org.apache.sling:org.apache.sling.scripting.freemarker", "1.0.4");
-        versions.put("org.apache.sling:org.apache.sling.scripting.groovy", "1.3.0-SNAPSHOT");
+        versions.put("org.apache.sling:org.apache.sling.scripting.groovy", "1.3.0");
         versions.put("org.apache.sling:org.apache.sling.scripting.java", "2.1.6");
         versions.put("org.apache.sling:org.apache.sling.scripting.javascript", "3.1.4");
         versions.put("org.apache.sling:org.apache.sling.scripting.jsp", "2.6.2");
