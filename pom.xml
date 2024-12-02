@@ -38,7 +38,7 @@
     <sling.java.version>11</sling.java.version>
     <javadoc.excludePackageNames />
     <project.build.outputTimestamp>2023-07-09T18:52:44Z</project.build.outputTimestamp>
-    <org.ops4j.pax.exam.version>4.13.3</org.ops4j.pax.exam.version>
+    <org.ops4j.pax.exam.version>4.14.0</org.ops4j.pax.exam.version>
   </properties>
 
   <scm>
