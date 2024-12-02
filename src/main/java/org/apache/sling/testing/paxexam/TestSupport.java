@@ -34,7 +34,7 @@ import org.ops4j.pax.exam.options.SystemPropertyOption;
 import org.ops4j.pax.exam.options.UrlProvisionOption;
 import org.ops4j.pax.exam.options.extra.VMOption;
 import org.ops4j.pax.exam.util.PathUtils;
-import org.ops4j.pax.tinybundles.core.TinyBundle;
+import org.ops4j.pax.tinybundles.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
 
 import static org.apache.sling.testing.paxexam.SlingOptions.backing;
@@ -51,7 +51,6 @@ import static org.ops4j.pax.exam.CoreOptions.streamBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
 import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.when;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
 /**
  * Test Support for OPS4J Pax Exam.
@@ -189,18 +188,18 @@ public abstract class TestSupport {
     }
 
     /**
-     * Builds an OSGi bundle with BND from given classes and provides it as provisioning option.
+     * Builds an OSGi bundle with bnd from given classes and provides it as provisioning option.
      *
      * @param classes the classes to include in the OSGi bundle
      * @return the provisioning option
      */
     public static UrlProvisionOption buildBundleWithBnd(final Class... classes) {
-        final TinyBundle bundle = org.ops4j.pax.tinybundles.core.TinyBundles.bundle();
+        final TinyBundle bundle = org.ops4j.pax.tinybundles.TinyBundles.bundle();
         for (final Class clazz : classes) {
-            bundle.add(clazz);
+            bundle.addClass(clazz);
         }
         return streamBundle(
-            bundle.build(withBnd())
+            bundle.build()
         ).start();
     }
 

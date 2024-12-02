@@ -246,11 +246,12 @@ public final class SlingOptions {
     public static ModifiableCompositeOption paxTinybundles() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
-            mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-io").version(versionResolver),
-            mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-lang").version(versionResolver),
-            mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-monitors").version(versionResolver),
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-store").version(versionResolver),
-            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver)
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver),
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bnd.util").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.repository").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver)
         );
     }
 

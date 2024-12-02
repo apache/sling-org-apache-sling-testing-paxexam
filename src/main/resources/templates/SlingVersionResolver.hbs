@@ -40,7 +40,8 @@ public class SlingVersionResolver implements VersionResolver {
      * Creates a new {@code SlingVersionResolver}.
      */
     public SlingVersionResolver() {
-        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "3.5.0");
+        versions.put("biz.aQute.bnd:biz.aQute.bndlib", "6.4.1");
+        versions.put("biz.aQute.bnd:biz.aQute.bnd.util", "6.4.1");
         versions.put("biz.aQute.bnd:bndlib", "2.4.0");
         versions.put("ch.qos.logback:logback-classic", "1.2.11");
         versions.put("ch.qos.logback:logback-core", "1.2.11");
@@ -81,9 +82,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3", "2.3_3");
         versions.put("org.awaitility:awaitility", "3.1.6");
         versions.put("org.hamcrest:hamcrest", "2.2");
-        versions.put("org.ops4j.base:ops4j-base-io", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-lang", "1.5.1");
-        versions.put("org.ops4j.base:ops4j-base-monitors", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-store", "1.5.1");
         versions.put("org.ops4j.base:ops4j-base-util-property", "1.5.1");
         versions.put("org.ops4j.pax.logging:pax-logging-api", "2.2.1");
@@ -94,8 +93,9 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.ops4j.pax.url:pax-url-classpath", "2.6.12");
         versions.put("org.ops4j.pax.url:pax-url-commons", "2.6.12");
         versions.put("org.ops4j.pax.url:pax-url-wrap", "2.6.12");
-        versions.put("org.ops4j.pax.tinybundles:tinybundles", "3.0.0");
+        versions.put("org.ops4j.pax.tinybundles:tinybundles", "4.0.0");
         versions.put("org.osgi:org.osgi.service.component", "1.5.1");
+        versions.put("org.osgi:org.osgi.service.repository", "1.1.0");
         versions.put("org.osgi:org.osgi.util.function", "1.2.0");
         versions.put("org.osgi:org.osgi.util.promise", "1.3.0");
         versions.put("org.ow2.asm:asm", "9.4");
