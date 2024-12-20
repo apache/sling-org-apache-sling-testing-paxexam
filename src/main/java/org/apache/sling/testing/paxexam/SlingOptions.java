@@ -44,6 +44,16 @@ public final class SlingOptions {
     private SlingOptions() { //
     }
 
+    public static ModifiableCompositeOption bnd() {
+        return composite(
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver),
+            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bnd.util").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.repository").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption awaitility() {
         return composite(
             mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
@@ -237,8 +247,8 @@ public final class SlingOptions {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-wrap").version(versionResolver),
             mavenBundle().groupId("org.ops4j.pax.swissbox").artifactId("pax-swissbox-bnd").version(versionResolver),
-            mavenBundle().groupId("biz.aQute.bnd").artifactId("bndlib").version(versionResolver),
-            paxUrl()
+            paxUrl(),
+            bnd()
         );
     }
 
@@ -246,11 +256,7 @@ public final class SlingOptions {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-store").version(versionResolver),
-            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver),
-            mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bnd.util").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.repository").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver)
+            bnd()
         );
     }
 
