@@ -44,6 +44,13 @@ public final class SlingOptions {
     private SlingOptions() { //
     }
 
+    public static ModifiableCompositeOption awaitility() {
+        return composite(
+            mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
+            mavenBundle().groupId("org.hamcrest").artifactId("hamcrest").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption bnd() {
         return composite(
             mavenBundle().groupId("biz.aQute.bnd").artifactId("biz.aQute.bndlib").version(versionResolver),
@@ -51,13 +58,6 @@ public final class SlingOptions {
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.repository").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption awaitility() {
-        return composite(
-            mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.hamcrest").version(versionResolver)
         );
     }
 
@@ -93,6 +93,19 @@ public final class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption felixHealthcheck() {
+        return composite(
+            eventadmin(),
+            scr(),
+            webconsole(),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.api").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.core").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.generalchecks").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.webconsoleplugin").version(versionResolver),
+            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption greenmail() {
         final MavenArtifactProvisionOption greenmail = mavenBundle().groupId("com.icegreen").artifactId("greenmail").version(versionResolver);
         final MavenArtifactProvisionOption slf4jApi = mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver);
@@ -100,8 +113,8 @@ public final class SlingOptions {
         return composite(
             greenmail,
             mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
-            mavenBundle().groupId("com.sun.mail").artifactId("jakarta.mail").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-2.0.1").version(versionResolver),
+            mavenBundle().groupId("org.eclipse.angus").artifactId("jakarta.mail").version(versionResolver),
+            mavenBundle().groupId("jakarta.activation").artifactId("jakarta.activation-api").version(versionResolver),
             junit(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
             bootClasspathLibrary(greenmail).afterFramework(),
@@ -116,9 +129,17 @@ public final class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption httpcomponentsClient() {
+        return composite(
+            config(),
+            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
+            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver)
+        );
+    }
+
     public static ModifiableCompositeOption http() {
         return composite(
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.jetty").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.jetty12").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.servlet-api").version(versionResolver),
             config()
         );
@@ -145,6 +166,18 @@ public final class SlingOptions {
         );
     }
 
+    public static ModifiableCompositeOption logback() {
+        final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
+        return composite(
+            systemProperty("logback.configurationFile").value(filename),
+            mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver),
+            mavenBundle().groupId("org.slf4j").artifactId("jcl-over-slf4j").version(versionResolver),
+            mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version(versionResolver),
+            mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version(versionResolver),
+            config()
+        );
+    }
+
     public static ModifiableCompositeOption management() {
         return composite(
             mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
@@ -152,39 +185,6 @@ public final class SlingOptions {
             mavenBundle().groupId("org.apache.aries.jmx").artifactId("org.apache.aries.jmx.core").version(versionResolver),
             mavenBundle().groupId("org.apache.aries.jmx").artifactId("org.apache.aries.jmx.whiteboard").version(versionResolver),
             config()
-        );
-    }
-
-    public static ModifiableCompositeOption scr() {
-        return composite(
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.component").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
-            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
-            config()
-        );
-    }
-
-    public static ModifiableCompositeOption spifly() {
-        return composite(
-            mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
-            mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-analysis").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-commons").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-util").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-tree").version(versionResolver)
-        );
-    }
-
-    public static ModifiableCompositeOption webconsole() {
-        return composite(
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.inventory").version(versionResolver),
-            mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
-            mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
-            http()
         );
     }
 
@@ -226,6 +226,14 @@ public final class SlingOptions {
         return paxLoggingLogback(filename);
     }
 
+    public static ModifiableCompositeOption paxTinybundles() {
+        return composite(
+            mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
+            mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-store").version(versionResolver),
+            bnd()
+        );
+    }
+
     public static ModifiableCompositeOption paxUrl() {
         return composite(
             mavenBundle().groupId("org.ops4j.pax.url").artifactId("pax-url-commons").version(versionResolver),
@@ -252,26 +260,6 @@ public final class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption paxTinybundles() {
-        return composite(
-            mavenBundle().groupId("org.ops4j.pax.tinybundles").artifactId("tinybundles").version(versionResolver),
-            mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-store").version(versionResolver),
-            bnd()
-        );
-    }
-
-    public static ModifiableCompositeOption logback() {
-        final String filename = String.format("file:%s/src/test/resources/logback.xml", PathUtils.getBaseDir());
-        return composite(
-            systemProperty("logback.configurationFile").value(filename),
-            mavenBundle().groupId("org.slf4j").artifactId("slf4j-api").version(versionResolver),
-            mavenBundle().groupId("org.slf4j").artifactId("jcl-over-slf4j").version(versionResolver),
-            mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version(versionResolver),
-            mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version(versionResolver),
-            config()
-        );
-    }
-
     public static ModifiableCompositeOption restassured() {
         return composite(
             config(),
@@ -294,12 +282,14 @@ public final class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption testcontainers() {
+    public static ModifiableCompositeOption scr() {
         return composite(
-            junit(),
-            paxUrlWrap(),
-            wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
-            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.metatype").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.scr").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.service.component").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
+            mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver),
+            config()
         );
     }
 
@@ -327,7 +317,7 @@ public final class SlingOptions {
             slingCommonsMetrics(),
             slingCommonsThreads(),
             mavenBundle().groupId("org.apache.sling").artifactId("org.apache.sling.commons.scheduler").version(versionResolver),
-            mavenBundle().groupId("javax.servlet").artifactId("javax.servlet-api").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.servlet-api").version(versionResolver),
             mavenBundle().groupId("org.apache.geronimo.specs").artifactId("geronimo-jta_1.1_spec").version(versionResolver)
         );
     }
@@ -340,24 +330,24 @@ public final class SlingOptions {
         );
     }
 
-    public static ModifiableCompositeOption felixHealthcheck() {
+    public static ModifiableCompositeOption spifly() {
         return composite(
-            eventadmin(),
-            scr(),
-            webconsole(),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.api").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.core").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.generalchecks").version(versionResolver),
-            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.healthcheck.webconsoleplugin").version(versionResolver),
-            mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver)
+            mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
+            mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-analysis").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-commons").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-util").version(versionResolver),
+            mavenBundle().groupId("org.ow2.asm").artifactId("asm-tree").version(versionResolver)
         );
     }
 
-    public static ModifiableCompositeOption httpcomponentsClient() {
+    public static ModifiableCompositeOption testcontainers() {
         return composite(
-            config(),
-            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
-            mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver)
+            junit(),
+            paxUrlWrap(),
+            wrappedBundle(mavenBundle().groupId("org.rnorth.duct-tape").artifactId("duct-tape").version(versionResolver)),
+            wrappedBundle(mavenBundle().groupId("org.testcontainers").artifactId("testcontainers").version(versionResolver))
         );
     }
 
@@ -368,6 +358,17 @@ public final class SlingOptions {
             mavenBundle().groupId("org.unbescape").artifactId("unbescape").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.ognl").version(versionResolver),
             mavenBundle().groupId("org.javassist").artifactId("javassist").version(versionResolver)
+        );
+    }
+
+    public static ModifiableCompositeOption webconsole() {
+        return composite(
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.webconsole").version(versionResolver),
+            mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.inventory").version(versionResolver),
+            mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
+            mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
+            mavenBundle().groupId("org.owasp.encoder").artifactId("encoder").version(versionResolver),
+            http()
         );
     }
 
