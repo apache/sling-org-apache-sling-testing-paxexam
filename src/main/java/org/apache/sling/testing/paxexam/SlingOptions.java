@@ -332,13 +332,7 @@ public final class SlingOptions {
 
     public static ModifiableCompositeOption spifly() {
         return composite(
-            mavenBundle().groupId("org.apache.aries").artifactId("org.apache.aries.util").version(versionResolver),
-            mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.bundle").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-analysis").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-commons").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-util").version(versionResolver),
-            mavenBundle().groupId("org.ow2.asm").artifactId("asm-tree").version(versionResolver)
+            mavenBundle().groupId("org.apache.aries.spifly").artifactId("org.apache.aries.spifly.dynamic.framework.extension").version(versionResolver)
         );
     }
 
