@@ -197,7 +197,7 @@
       <groupId>org.ops4j.pax.tinybundles</groupId>
       <artifactId>tinybundles</artifactId>
       <scope>compile</scope>
-      <version>4.0.0</version>
+      <version>4.0.1</version>
     </dependency>
     <!-- logging -->
     <dependency>
