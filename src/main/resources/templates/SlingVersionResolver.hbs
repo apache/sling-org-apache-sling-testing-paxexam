@@ -98,11 +98,11 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.osgi:org.osgi.service.repository", "1.1.0");
         versions.put("org.osgi:org.osgi.util.function", "1.2.0");
         versions.put("org.osgi:org.osgi.util.promise", "1.3.0");
-        versions.put("org.ow2.asm:asm", "9.4");
-        versions.put("org.ow2.asm:asm-analysis", "9.4");
-        versions.put("org.ow2.asm:asm-commons", "9.4");
-        versions.put("org.ow2.asm:asm-util", "9.4");
-        versions.put("org.ow2.asm:asm-tree", "9.4");
+        versions.put("org.ow2.asm:asm", "9.7.1");
+        versions.put("org.ow2.asm:asm-analysis", "9.7.1");
+        versions.put("org.ow2.asm:asm-commons", "9.7.1");
+        versions.put("org.ow2.asm:asm-util", "9.7.1");
+        versions.put("org.ow2.asm:asm-tree", "9.7.1");
         versions.put("org.rnorth.duct-tape:duct-tape", "1.0.8");
         versions.put("org.slf4j:slf4j-api", "1.7.36");
         versions.put("org.slf4j:slf4j-simple", "1.7.36");
