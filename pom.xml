@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.sling</groupId>
     <artifactId>sling-bundle-parent</artifactId>
-    <version>62</version>
+    <version>66</version>
     <relativePath />
   </parent>
 
@@ -35,7 +35,7 @@
   <description>Test support for use with Pax Exam.</description>
 
   <properties>
-    <sling.java.version>11</sling.java.version>
+    <sling.java.version>17</sling.java.version>
     <javadoc.excludePackageNames />
     <project.build.outputTimestamp>2023-07-09T18:52:44Z</project.build.outputTimestamp>
     <org.ops4j.pax.exam.version>4.14.0</org.ops4j.pax.exam.version>
