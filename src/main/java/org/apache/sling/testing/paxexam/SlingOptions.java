@@ -113,7 +113,7 @@ public final class SlingOptions {
         return composite(
             greenmail,
             mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
-            mavenBundle().groupId("org.eclipse.angus").artifactId("jakarta.mail").version(versionResolver),
+            mavenBundle().groupId("org.eclipse.angus").artifactId("angus-mail").version(versionResolver),
             mavenBundle().groupId("jakarta.activation").artifactId("jakarta.activation-api").version(versionResolver),
             junit(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
@@ -141,7 +141,10 @@ public final class SlingOptions {
         return composite(
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.jetty12").version(versionResolver),
             mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.http.servlet-api").version(versionResolver),
-            config()
+            mavenBundle().groupId("commons-fileupload").artifactId("commons-fileupload").version(versionResolver),
+            mavenBundle().groupId("commons-io").artifactId("commons-io").version(versionResolver),
+            config(),
+            paxLoggingApi()
         );
     }
 
@@ -240,7 +243,8 @@ public final class SlingOptions {
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-lang").version(versionResolver),
             mavenBundle().groupId("org.ops4j.base").artifactId("ops4j-base-util-property").version(versionResolver),
             mavenBundle().groupId("org.ops4j.pax.swissbox").artifactId("pax-swissbox-property").version(versionResolver),
-            config()
+            config(),
+            paxLoggingApi()
         );
     }
 
@@ -269,8 +273,8 @@ public final class SlingOptions {
             mavenBundle().groupId("io.rest-assured").artifactId("xml-path").version(versionResolver),
             mavenBundle().groupId("org.apache.commons").artifactId("commons-lang3").version(versionResolver),
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
-            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver),
-            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-xml").version(versionResolver),
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver).noStart(), // fragment
+            mavenBundle().groupId("org.apache.groovy").artifactId("groovy-xml").version(versionResolver).noStart(), // fragment
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
