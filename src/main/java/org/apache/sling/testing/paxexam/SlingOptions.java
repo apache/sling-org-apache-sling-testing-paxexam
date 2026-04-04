@@ -26,7 +26,6 @@ import static org.ops4j.pax.exam.CoreOptions.bootClasspathLibrary;
 import static org.ops4j.pax.exam.CoreOptions.composite;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
-import static org.ops4j.pax.exam.CoreOptions.vmOption;
 import static org.ops4j.pax.exam.CoreOptions.wrappedBundle;
 import static org.ops4j.pax.exam.cm.ConfigurationAdminOptions.newConfiguration;
 
@@ -59,25 +58,6 @@ public final class SlingOptions {
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.function").version(versionResolver),
             mavenBundle().groupId("org.osgi").artifactId("org.osgi.util.promise").version(versionResolver)
         );
-    }
-
-    public static ModifiableCompositeOption backing() {
-        final int version = SlingVersionResolver.getJavaVersion();
-        if (version >= 11) {
-            return composite(
-                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.annotation-api-1.3").version(versionResolver),
-                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
-                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
-                mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.3").version(versionResolver),
-                mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver)
-            );
-        } else if (version >= 9) {
-            return composite(
-                vmOption("--add-modules=java.se.ee")
-            );
-        } else {
-            return composite();
-        }
     }
 
     public static ModifiableCompositeOption config() {
@@ -275,11 +255,7 @@ public final class SlingOptions {
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy").version(versionResolver),
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy-json").version(versionResolver).noStart(), // fragment
             mavenBundle().groupId("org.apache.groovy").artifactId("groovy-xml").version(versionResolver).noStart(), // fragment
-            mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.jaxb-impl").version(versionResolver),
             mavenBundle().groupId("org.apache.servicemix.bundles").artifactId("org.apache.servicemix.bundles.tagsoup").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.activation-api-1.1").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.jaxb-api-2.3").version(versionResolver),
-            mavenBundle().groupId("org.apache.servicemix.specs").artifactId("org.apache.servicemix.specs.stax-api-1.2").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpcore-osgi").version(versionResolver),
             mavenBundle().groupId("org.apache.httpcomponents").artifactId("httpclient-osgi").version(versionResolver),
             hamcrest()

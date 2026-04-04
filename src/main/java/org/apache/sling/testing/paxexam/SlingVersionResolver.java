@@ -90,11 +90,6 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.ognl", "3.2.1_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.tagsoup", "1.2.1_1");
         versions.put("org.apache.servicemix.bundles:org.apache.servicemix.bundles.thymeleaf", "3.0.15.RELEASE_1");
-        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-1.1", "2.9.0");
-        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.activation-api-2.0.1", "2.0.1_1");
-        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.annotation-api-1.3", "1.3_3");
-        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.jaxb-api-2.3", "2.3_3");
-        versions.put("org.apache.servicemix.specs:org.apache.servicemix.specs.stax-api-1.2", "1.2_1");
         versions.put("org.apache.sling:org.apache.sling.commons.crypto", "1.2.0");
         versions.put("org.apache.sling:org.apache.sling.commons.metrics", "1.2.14");
         versions.put("org.apache.sling:org.apache.sling.commons.scheduler", "2.7.14");

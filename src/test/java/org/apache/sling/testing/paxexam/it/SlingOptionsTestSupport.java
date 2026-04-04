@@ -25,7 +25,6 @@ import org.ops4j.pax.exam.CoreOptions;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.util.PathUtils;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.backing;
 import static org.apache.sling.testing.paxexam.SlingOptions.spifly;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
 import static org.ops4j.pax.exam.CoreOptions.composite;
@@ -50,7 +49,6 @@ public abstract class SlingOptionsTestSupport {
             allowSnapshotsExceptRelease(),
             CoreOptions.workingDirectory(workingDirectory()),
             testBundle("bundle.filename"),
-            backing(),
             spifly()
         );
     }

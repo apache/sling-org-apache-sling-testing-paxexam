@@ -37,7 +37,6 @@ import org.ops4j.pax.exam.util.PathUtils;
 import org.ops4j.pax.tinybundles.TinyBundle;
 import org.osgi.service.cm.ConfigurationAdmin;
 
-import static org.apache.sling.testing.paxexam.SlingOptions.backing;
 import static org.apache.sling.testing.paxexam.SlingOptions.paxTinybundles;
 import static org.apache.sling.testing.paxexam.SlingOptions.spifly;
 import static org.ops4j.pax.exam.CoreOptions.bundle;
@@ -110,7 +109,6 @@ public abstract class TestSupport {
             systemProperty(WORKING_DIRECTORY_PROPERTY_KEY).value(workingDirectory()),
             CoreOptions.workingDirectory(workingDirectory()),
             paxTinybundles(),
-            backing(),
             spifly(),
             jacoco()
         );
