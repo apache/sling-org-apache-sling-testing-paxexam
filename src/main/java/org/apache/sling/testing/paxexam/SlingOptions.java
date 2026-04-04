@@ -100,9 +100,7 @@ public final class SlingOptions {
         final MavenArtifactProvisionOption slf4jSimple = mavenBundle().groupId("org.slf4j").artifactId("slf4j-simple").version(versionResolver);
         return composite(
             greenmail,
-            mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
-            mavenBundle().groupId("org.eclipse.angus").artifactId("angus-mail").version(versionResolver),
-            mavenBundle().groupId("jakarta.activation").artifactId("jakarta.activation-api").version(versionResolver),
+            mail(),
             junit(),
             // add GreenMail to boot classpath *also* to allow setting ssl.SocketFactory.provider to GreenMail's DummySSLSocketFactory
             bootClasspathLibrary(greenmail).afterFramework(),
@@ -166,6 +164,14 @@ public final class SlingOptions {
             mavenBundle().groupId("ch.qos.logback").artifactId("logback-core").version(versionResolver),
             mavenBundle().groupId("ch.qos.logback").artifactId("logback-classic").version(versionResolver),
             config()
+        );
+    }
+
+    public static ModifiableCompositeOption mail() {
+        return composite(
+            mavenBundle().groupId("jakarta.mail").artifactId("jakarta.mail-api").version(versionResolver),
+            mavenBundle().groupId("org.eclipse.angus").artifactId("angus-mail").version(versionResolver),
+            activation()
         );
     }
 
