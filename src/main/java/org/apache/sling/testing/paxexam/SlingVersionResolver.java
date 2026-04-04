@@ -96,6 +96,7 @@ public class SlingVersionResolver implements VersionResolver {
         versions.put("org.apache.sling:org.apache.sling.commons.threads", "3.3.0");
         versions.put("org.attoparser:attoparser", "2.0.7.RELEASE");
         versions.put("org.awaitility:awaitility", "4.3.0");
+        versions.put("org.eclipse.angus:angus-activation", "2.1.0-M1");
         versions.put("org.eclipse.angus:angus-mail", "2.1.0-M1");
         versions.put("org.hamcrest:hamcrest", "2.2");
         versions.put("org.javassist:javassist", "3.30.2-GA");

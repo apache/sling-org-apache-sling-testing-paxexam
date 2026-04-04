@@ -43,6 +43,14 @@ public final class SlingOptions {
     private SlingOptions() { //
     }
 
+    public static ModifiableCompositeOption activation() {
+        return composite(
+            mavenBundle().groupId("jakarta.activation").artifactId("jakarta.activation-api").version(versionResolver),
+            mavenBundle().groupId("org.eclipse.angus").artifactId("angus-activation").version(versionResolver),
+            spifly()
+        );
+    }
+
     public static ModifiableCompositeOption awaitility() {
         return composite(
             mavenBundle().groupId("org.awaitility").artifactId("awaitility").version(versionResolver),
